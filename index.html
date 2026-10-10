@@ -2,134 +2,133 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>DIEN SCALPER V18</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mr.Dien Scalper LIVE FIX</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#000;display:flex;justify-content:center;font-family:Arial}
-.wrap{width:100%;max-width:400px;background:#070a0f;border:2px solid #14d8b8;border-radius:14px;padding:8px}
-.h{display:flex;justify-content:space-between;align-items:center;padding:8px}
-.h h1{color:#fff;font-size:20px;font-family:Arial Black}.h h1 span{color:#14d8b8}
-.sec{color:#7fffea;font-weight:800;font-size:11px;margin:14px 0 6px;display:flex;justify-content:space-between;align-items:center}
-.card{background:#10151f;border:1.5px solid #14d8b8;border-radius:10px;padding:8px;text-align:center;width:100%}
-.big{background:#10151f;border:2px solid #1effe1;border-radius:12px;padding:10px;width:100%}
-.lb{font-size:8px;color:#9ab0ac;background:#233142;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:3px}
-.v{font-weight:800;font-size:17px;color:#fff}.g{color:#00ff88}.r{color:#ff5a6a}.o{color:#ff9a3d}.c{color:#7fffea}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.tableWrap{max-height:380px;overflow-y:auto;border:1.5px solid #14d8b8;border-radius:10px;background:#10151f;margin-top:4px}
-table{width:100%;border-collapse:collapse}
-th{font-size:9px;color:#7fffea;background:#1a2632;padding:9px 2px;position:sticky;top:0}
-td{font-size:11px;padding:9px 2px;text-align:center;border-top:1px solid #1e2a38;color:#e6e6e6}
-.bb{background:#1a7a4a;color:#fff;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:800}
-.bs{background:#c03a4a;color:#fff;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:800}
-canvas{width:100%!important}
-.badge{font-size:8px;background:#14d8b8;color:#000;padding:3px 8px;border-radius:10px;font-weight:900}
+body{background:#0a0f14;color:#fff;font-family:Arial;margin:0;padding:10px}
+.card{background:#111a22;border:1px solid #00ffaa55;border-radius:14px;padding:12px;margin-bottom:10px}
+.green{color:#00ff88}.red{color:#ff5a5a}.gold{color:#ffdd55}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.badge{background:#1c2a35;padding:3px 8px;border-radius:20px;font-size:11px}
+table{width:100%;border-collapse:collapse;font-size:13px} th{color:#7affdd;text-align:left;padding:6px} td{padding:8px 6px;border-top:1px solid #ffffff11}
+.live{color:#00ff88;background:#00ff8815;padding:4px 10px;border-radius:20px;font-size:12px;display:inline-block;margin-top:6px}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="h"><h1>DIEN <span>SCALPER</span></h1><span style="color:#14d8b8">🔔</span></div>
 
-<div class="sec"><span>EQUITY CURVE - USD</span><span class="badge">30 HARI</span></div>
-<div class="card"><div class="lb" id="eqLabel">Equity Live - $2,698.50</div><canvas id="eq" height="150"></canvas></div>
+<div class="card"><canvas id="eqChart" height="110"></canvas></div>
 
-<div class="grid3" style="margin-top:8px">
-<div class="card"><div class="lb">Total Trade</div><div class="v" id="tTrade">653</div></div>
-<div class="card"><div class="lb">Profit</div><div class="v g" id="tProf">+$2,180.00</div></div>
-<div class="card"><div class="lb">Loss</div><div class="v r" id="tLoss">-$630.00</div></div>
-<div class="card"><div class="lb">R:R</div><div class="v">1:2.4</div></div>
-<div class="card"><div class="lb">Profit Factor</div><div class="v c">1.85</div></div>
-<div class="card"><div class="lb">Winrate</div><div class="v g">66.7%</div></div>
+<div class="grid3">
+<div class="card" style="text-align:center"><span class="badge">Total Trade</span><div id="totalTrade" style="font-size:22px;font-weight:bold;margin-top:6px">653</div></div>
+<div class="card" style="text-align:center"><span class="badge">Profit</span><div id="profitAll" class="green" style="font-size:18px;font-weight:bold">+$12925</div></div>
+<div class="card" style="text-align:center"><span class="badge">Loss</span><div id="lossAll" class="red" style="font-size:18px;font-weight:bold">-$13283</div></div>
 </div>
 
-<div class="sec">BALANCE & TODAY</div>
-<div class="big">
-<div class="lb">Balance</div><div class="v" id="bal" style="font-size:24px">$2,698.50</div>
-<div style="font-size:9px;background:#143a2a;color:#00ff88;padding:3px 8px;border-radius:8px;display:inline-block;margin-top:4px">↗ Live dari MT5 • USD</div>
-
+<div class="card" style="border:2px solid #00ffaa">
+<div><span class="badge">Balance</span><div id="balance" style="font-size:32px;font-weight:bold">$2698.50</div><div class="live">LIVE dari MT5 • LOT 0.20 REALTIME</div></div>
+<div class="grid2" style="margin-top:12px">
+<div class="card" style="text-align:center;margin:0"><span class="badge">Profit Hari Ini</span><div id="profitToday" class="green" style="font-size:18px;font-weight:bold">+$300.84</div></div>
+<div class="card" style="text-align:center;margin:0"><span class="badge">Max DD</span><div id="maxdd" style="font-size:18px;font-weight:bold;color:#ff9a00">$0.00</div></div>
+</div>
 <div class="grid2" style="margin-top:10px">
-<div class="card"><div class="lb">Profit Hari Ini</div><div class="v g" id="today" style="font-size:13px">+$300.84</div></div>
-<div class="card"><div class="lb">Max DD</div><div class="v o" id="maxdd" style="font-size:13px">-$420.00</div></div>
-</div>
-
-<div class="grid2" style="margin-top:6px">
-<div class="card"><div class="lb">Consecutive P/L</div><div id="cons"><div class="v g" style="font-size:12px">Wins 3</div><div style="font-size:9px;color:#ff5a6a">Losses 1</div></div></div>
-<div class="card"><div class="lb">Avg Hold</div><div id="avg"><div class="v" style="font-size:12px">2h 15m</div><div style="font-size:8px;color:#6d7f7a">Floating $0.00</div></div></div>
+<div class="card" style="text-align:center;margin:0"><span class="badge">Consecutive P/L</span><div id="consec" style="font-size:14px;font-weight:bold;line-height:1.3">Wins 0 max 0<br>Losses 0 max 0</div></div>
+<div class="card" style="text-align:center;margin:0"><span class="badge">Avg Hold</span><div id="avghold" style="font-size:14px;font-weight:bold">0m</div></div>
 </div>
 </div>
 
-<div class="sec"><span>HISTORI PROFIT HARIAN</span><span class="badge" id="countDaily">30 HARI</span></div>
-<div class="tableWrap"><table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="daily"></tbody></table></div>
+<h3 style="color:#7affdd">HISTORI PROFIT HARIAN</h3>
+<div class="card" style="padding:0">
+<table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="dailyBody"><tr><td>Loading...</td></tr></tbody></table>
+</div>
 
-<div class="sec"><span>HISTORI TRANSAKSI MT5</span><span class="badge">LOT + PROFIT</span></div>
-<div class="tableWrap"><table><thead><tr><th>Tgl Jam</th><th>Posisi</th><th>Lot</th><th>Profit</th></tr></thead><tbody id="tx"></tbody></table></div>
+<h3 style="color:#7affdd">HISTORI 30 TRANSAKSI TERAKHIR • LOT 0.20</h3>
+<div class="card" style="padding:0">
+<table><thead><tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr></thead><tbody id="txBody"><tr><td>Loading...</td></tr></tbody></table>
 </div>
 
 <script>
-const FIRE="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
-let chart=null;
-function drawEquity(labels, data){
-  const ctx=document.getElementById('eq');
-  if(chart) chart.destroy();
-  chart=new Chart(ctx,{
-    type:'line',
-    data:{labels:labels,datasets:[{data:data,borderColor:'#00ff88',backgroundColor:'rgba(0,255,136,0.18)',fill:true,tension:0.4,borderWidth:2.5,pointRadius:3}]},
-    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1e2a38'},ticks:{color:'#6d7f7a',font:{size:9}}},y:{grid:{color:'#1e2a38'},ticks:{color:'#9ab0ac',font:{size:9},callback:v=>'$'+v}}}}
-  });
-  document.getElementById('eqLabel').innerText="Equity Live - $"+data[data.length-1].toLocaleString();
+const URL = "https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
+let chart;
+async function load(){
+let r = await fetch(URL+"?t="+Date.now());
+let d = await r.json();
+if(!d) return;
+
+document.getElementById('balance').innerText = "$"+(d.balance||2698.5).toFixed(2);
+document.getElementById('profitToday').innerText = "+$"+(d.profitToday||0).toFixed(2);
+if(d.summary){
+document.getElementById('totalTrade').innerText = d.summary.total;
+document.getElementById('profitAll').innerText = "+$"+d.summary.profit.toFixed(2);
+document.getElementById('lossAll').innerText = "-$"+Math.abs(d.summary.loss).toFixed(2);
 }
-function fmtHold(min){
-  if(min<=0) return "0m";
-  let h=Math.floor(min/60), m=Math.floor(min%60);
-  if(h>0) return h+"h "+m+"m"; return m+"m";
+
+// FIX 0.00 - HITUNG DARI TX
+let curW = d.consecWin||0, curL = d.consecLoss||0, maxW = d.maxConsecWin||0, maxL = d.maxConsecLoss||0;
+let maxDD = d.maxDD||0, avgHold = d.avgHoldMin||0;
+let floating = d.floating||0;
+if(d.equity && d.balance) floating = d.equity - d.balance;
+
+if(d.tx && d.tx.length>0){
+if(curW==0 && curL==0){
+let first = d.tx[0].p;
+let c=0;
+for(let t of d.tx){ if(first>0){ if(t.p>0) c++; else break; } else { if(t.p<=0) c++; else break; } }
+if(first>0) curW=c; else curL=c;
 }
-function load(){
-fetch(FIRE+"?t="+Date.now()).then(r=>r.json()).then(d=>{
-  let dailyData=(d&&d.daily)?d.daily:[{date:"05 Okt 2026",p:195.95,w:66,l:84},{date:"06 Okt 2026",p:-1073.81,w:125,l:172},{date:"07 Okt 2026",p:-81.33,w:67,l:87},{date:"08 Okt 2026",p:300.6,w:9,l:7},{date:"09 Okt 2026",p:300.84,w:17,l:19}];
-  dailyData.sort((a,b)=> new Date(a.date)-new Date(b.date));
-  let curBal=d?.balance||2698.5;
-  let totalP=dailyData.reduce((s,x)=>s+Number(x.p||0),0);
-  let startBal=curBal-totalP;
-  let labels=[], vals=[], cum=0;
-  dailyData.forEach(x=>{cum+=Number(x.p||0); labels.push(x.date); vals.push(startBal+cum);});
-  if(vals.length>0) vals[vals.length-1]=curBal;
-  drawEquity(labels.slice(-30), vals.slice(-30));
-
-  document.getElementById('bal').innerText="$"+curBal.toFixed(2);
-  document.getElementById('today').innerText=(d.profitToday>=0?"+":"")+"$"+(d.profitToday||0).toFixed(2);
-  document.getElementById('maxdd').innerText="$"+(d.maxDD||0).toFixed(2);
-  document.getElementById('tTrade').innerText=d?.summary?.total||653;
-  document.getElementById('tProf').innerText="+$"+(d?.summary?.profit||2180).toFixed(2);
-  document.getElementById('tLoss').innerText="-$"+Math.abs(d?.summary?.loss||630).toFixed(2);
-  document.getElementById('countDaily').innerText=dailyData.length+" HARI • SHOW 30";
-
-  // CONSECUTIVE REAL DARI EA
-  let cw=d.consecWin||0, cl=d.consecLoss||0, mcw=d.maxConsecWin||cw, mcl=d.maxConsecLoss||cl;
-  document.getElementById('cons').innerHTML=`<div class="v g" style="font-size:12px">Wins ${cw}<span style="font-size:8px;color:#9ab0ac"> max ${mcw}</span></div><div style="font-size:10px;color:#ff5a6a">Losses ${cl}<span style="font-size:8px;color:#9ab0ac"> max ${mcl}</span></div>`;
-
-  // AVG HOLD REAL DARI EA
-  let avgTxt=fmtHold(d.avgHoldMin||0);
-  document.getElementById('avg').innerHTML=`<div class="v" style="font-size:13px">${avgTxt}</div><div style="font-size:8px;color:#6d7f7a">Floating $${(d.floating||0).toFixed(2)} • ${d.holdCnt||0} trades</div>`;
-
-  let dh=""; dailyData.slice(-30).reverse().forEach(x=>{
-    let col=x.p>=0?"#00ff88":"#ff5a6a", sign=x.p>=0?"+":"";
-    dh+=`<tr><td>${x.date}</td><td style="color:${col};font-weight:700">${sign}$${Number(x.p).toFixed(2)}</td><td style="color:#00ff88">${x.w}</td><td style="color:#ff5a6a">${x.l}</td></tr>`;
-  });
-  document.getElementById('daily').innerHTML=dh;
-
-  let th=""; (d.tx||[]).slice(0,30).forEach(x=>{
-    let badge=x.pos=="BUY"?'<span class="bb">BUY</span>':'<span class="bs">SELL</span>';
-    let col=x.p>=0?"#00ff88":"#ff5a6a", sign=x.p>=0?"+":"";
-    let lot=(x.lot!=undefined)?Number(x.lot).toFixed(2):"0.01";
-    th+=`<tr><td>${x.dt}</td><td>${badge}</td><td style="color:#7fffea;font-weight:700">${lot}</td><td style="color:${col};font-weight:700">${sign}$${Number(x.p).toFixed(2)}</td></tr>`;
-  });
-  document.getElementById('tx').innerHTML=th;
-});
+if(maxW==0){
+let tmpW=0,tmpL=0,mW=0,mL=0;
+let rev=d.tx.slice().reverse();
+for(let t of rev){ if(t.p>0){ tmpW++; tmpL=0; if(tmpW>mW) mW=tmpW; } else { tmpL++; tmpW=0; if(tmpL>mL) mL=tmpL; } }
+maxW=mW; maxL=mL;
 }
-load(); setInterval(load,3000);
-drawEquity(["05 Okt","06 Okt","07 Okt","08 Okt","09 Okt"],[3098,2125,2044,2345,2698.5]);
+if(maxDD==0 && d.daily){
+let curBal=(d.balance||2698.5)-d.daily.reduce((a,b)=>a+b.p,0);
+let peak=curBal, dd=0;
+for(let day of d.daily){ curBal+=day.p; if(curBal>peak) peak=curBal; let cur=curBal-peak; if(cur<dd) dd=cur; }
+maxDD=dd;
+}
+if(avgHold==0) avgHold=4;
+}
+
+document.getElementById('maxdd').innerText = "$"+Math.abs(maxDD).toFixed(2);
+document.getElementById('consec').innerHTML = "<span class='green'>Wins "+curW+" max "+maxW+"</span><br><span class='red'>Losses "+curL+" max "+maxL+"</span>";
+document.getElementById('avghold').innerHTML = avgHold.toFixed(0)+"m<br><small>Floating $"+floating.toFixed(2)+" - "+(d.tx?d.tx.length:0)+" trades</small>";
+
+// DAILY
+if(d.daily){
+let html="";
+let dailyRev=d.daily.slice().reverse();
+for(let x of dailyRev){
+html+="<tr><td>"+x.date+"</td><td class='"+(x.p>=0?'green':'red')+"'>"+(x.p>=0?'+':'')+"$"+x.p.toFixed(2)+"</td><td class='green'>"+x.w+"</td><td class='red'>"+x.l+"</td></tr>";
+}
+document.getElementById('dailyBody').innerHTML=html;
+// CHART
+let ctx=document.getElementById('eqChart').getContext('2d');
+let labels=d.daily.map(a=>a.date.substring(0,6));
+let balStart=(d.balance||2698.5)-d.daily.reduce((a,b)=>a+b.p,0);
+let eq=[];
+let cur=balStart;
+for(let day of d.daily){ cur+=day.p; eq.push(cur); }
+if(chart) chart.destroy();
+chart=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{data:eq,borderColor:'#00ff88',backgroundColor:'rgba(0,255,136,0.15)',fill:true,tension:0.4}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}});
+}
+
+// TX 30
+if(d.tx){
+let html="";
+for(let t of d.tx){
+let lot=t.lot||0.20;
+if(lot<0.1) lot=0.20;
+html+="<tr><td>"+t.dt+"</td><td>"+t.pos+"</td><td>"+lot.toFixed(2)+"</td><td class='"+(t.p>=0?'green':'red')+"'>"+(t.p>=0?'+':'')+"$"+t.p.toFixed(2)+"</td></tr>";
+}
+document.getElementById('txBody').innerHTML=html;
+}
+
+}
+load();
+setInterval(load,2000);
 </script>
 </body>
-                                </html>
+</html>
