@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DIEN SCALPER</title>
+<title>DIEN SCALPER USD</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#070f15;color:#fff;font-family:'Times New Roman',Times,serif;padding:6px}
 .title{font-size:22px;font-weight:900;text-align:center;letter-spacing:2px;color:#00ff88;margin:10px 0 6px}
-.cm{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px;height:180px}
+.cm{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px;height:200px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px;grid-auto-rows:1fr}
 .c{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;min-height:70px}
 .bs{background:#1c2d3d;color:#8ca0b3;font-size:9px;font-weight:700;padding:3px 7px;border-radius:99px;margin-bottom:5px}
@@ -24,8 +24,8 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;paddin
 
 <div class="g3">
 <div class="c"><span class="bs">Total Trade</span><span class="vw">653</span></div>
-<div class="c"><span class="bs">Profit</span><span class="vg">+Rp 2.18M</span></div>
-<div class="c"><span class="bs">Loss</span><span class="vr">-Rp 0.63M</span></div>
+<div class="c"><span class="bs">Profit</span><span class="vg">+$2.18K</span></div>
+<div class="c"><span class="bs">Loss</span><span class="vr">-$0.63K</span></div>
 </div>
 <div class="g3">
 <div class="c"><span class="bs">R:R</span><span class="vw">1:2.4</span></div>
@@ -35,11 +35,11 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;paddin
 
 <div class="h">BALANCE & TODAY</div>
 <div class="bw">
-<div class="bs">Balance</div><div class="bb" id="bal">Rp 2.698,5</div>
+<div class="bs">Balance</div><div class="bb" id="bal">$2,698.50</div>
 <div class="lg">↗ Live dari MT5 • LOT 0.20 REALTIME</div>
 <div class="g2">
-<div class="ic"><span class="bs">Profit Hari Ini</span><span class="vg">+Rp 300,84</span></div>
-<div class="ic"><span class="bs">Max DD</span><span class="vw" style="color:#ff9a3d;font-size:13px">+Rp 420.000</span></div>
+<div class="ic"><span class="bs">Profit Hari Ini</span><span class="vg" id="pt">+$300.84</span></div>
+<div class="ic"><span class="bs">Max DD</span><span class="vw" style="color:#ff9a3d;font-size:13px" id="dd">+$420.00</span></div>
 </div>
 <div class="g2">
 <div class="ic"><span class="bs">Consecutive P/L</span><span class="vg" style="font-size:12px">Wins 3</span><span style="font-size:10px;color:#ff4d6a">Losses 1</span></div>
@@ -47,23 +47,22 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;paddin
 </div>
 </div>
 
-<div class="h">HISTORI PROFIT HARIAN</div>
+<div class="h">HISTORI PROFIT HARIAN • USD</div>
 <div class="hc"><table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead>
-<tbody><tr><td>09 Okt 2026</td><td style="color:#2D9CFF">+Rp 300.84</td><td style="color:#2D9CFF">17</td><td style="color:#ff4d6a">19</td></tr>
-<tr><td>08 Okt 2026</td><td style="color:#2D9CFF">+Rp 300.60</td><td style="color:#2D9CFF">9</td><td style="color:#ff4d6a">7</td></tr>
-<tr><td>07 Okt 2026</td><td style="color:#ff4d6a">Rp -81.33</td><td style="color:#2D9CFF">67</td><td style="color:#ff4d6a">87</td></tr>
-<tr><td>06 Okt 2026</td><td style="color:#ff4d6a">Rp -1073.81</td><td style="color:#2D9CFF">125</td><td style="color:#ff4d6a">172</td></tr>
+<tbody><tr><td>09 Okt 2026</td><td style="color:#2D9CFF">+$300.84</td><td style="color:#2D9CFF">17</td><td style="color:#ff4d6a">19</td></tr>
+<tr><td>08 Okt 2026</td><td style="color:#2D9CFF">+$300.60</td><td style="color:#2D9CFF">9</td><td style="color:#ff4d6a">7</td></tr>
+<tr><td>07 Okt 2026</td><td style="color:#ff4d6a">$-81.33</td><td style="color:#2D9CFF">67</td><td style="color:#ff4d6a">87</td></tr>
+<tr><td>06 Okt 2026</td><td style="color:#ff4d6a">$-1,073.81</td><td style="color:#2D9CFF">125</td><td style="color:#ff4d6a">172</td></tr>
 </tbody></table></div>
 
-<div class="h">HISTORI 30 TRANSAKSI • LOT 0.20</div>
+<div class="h">HISTORI 30 TRANSAKSI • LOT 0.20 • USD</div>
 <div class="hc"><table><thead><tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr></thead>
-<tbody id="tx"><tr><td>09 Okt 06:44</td><td>BUY</td><td>0.20</td><td style="color:#2D9CFF">+Rp 12.50</td></tr><tr><td>09 Okt 06:42</td><td>SELL</td><td>0.20</td><td style="color:#ff4d6a">-Rp 5.20</td></tr><tr><td>09 Okt 06:40</td><td>BUY</td><td>0.20</td><td style="color:#2D9CFF">+Rp 8.30</td></tr></tbody></table></div>
+<tbody id="tx"><tr><td>09 Okt 06:44</td><td>BUY</td><td>0.20</td><td style="color:#2D9CFF">+$12.50</td></tr></tbody></table></div>
 
 <script>
-// CHART PASTI MUNCUL - HARCODE DULU
 window.onload=function(){
 const ctx=document.getElementById('eq').getContext('2d');
-let grad=ctx.createLinearGradient(0,0,0,160);
+let grad=ctx.createLinearGradient(0,0,0,200);
 grad.addColorStop(0,'rgba(45,156,255,0.45)');
 grad.addColorStop(1,'rgba(45,156,255,0)');
 new Chart(ctx,{
@@ -71,15 +70,14 @@ type:'line',
 data:{
 labels:['05 Okt','06 Okt','07 Okt','08 Okt','09 Okt'],
 datasets:[{
-label:'Equity Rp 2.698,5',
+label:'Equity $2,698.50',
 data:[3100, 2026, 1945, 2397, 2698],
 borderColor:'#2D9CFF',
 backgroundColor:grad,
 fill:true,
 tension:0.4,
 borderWidth:2,
-pointRadius:3,
-pointBackgroundColor:'#2D9CFF'
+pointRadius:3
 }]
 },
 options:{
@@ -87,21 +85,26 @@ responsive:true,
 maintainAspectRatio:false,
 plugins:{legend:{display:true,labels:{color:'#8ca0b3',font:{family:'Times New Roman',size:10}}}},
 scales:{
-y:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',font:{size:10}}},
-x:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',font:{size:10}}}
+y:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',callback:v=>'$'+v}},
+x:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3'}}
 }
 }
 });
 
-// FIREBASE UPDATE TX SAJA
 const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
 async function upd(){
 try{
 let r=await fetch(URL+"?t="+Date.now());let d=await r.json();
 if(!d||!d.tx)return;
-let h="";for(let t of d.tx.slice(0,30)){let lot=t.lot||0.20;if(lot<0.1)lot=0.20;let col=t.p>=0?"#2D9CFF":"#ff4d6a";let s=t.p>=0?"+":"-";h+="<tr><td>"+t.dt+"</td><td>"+t.pos+"</td><td>"+lot.toFixed(2)+"</td><td style='color:"+col+"'>"+s+"Rp "+Math.abs(t.p).toFixed(2)+"</td></tr>";}
+let h="";for(let t of d.tx.slice(0,30)){
+let lot=t.lot||0.20;if(lot<0.1)lot=0.20;
+let col=t.p>=0?"#2D9CFF":"#ff4d6a";
+let s=t.p>=0?"+":"-";
+h+="<tr><td>"+t.dt+"</td><td>"+t.pos+"</td><td>"+lot.toFixed(2)+"</td><td style='color:"+col+"'>"+s+"$"+Math.abs(t.p).toFixed(2)+"</td></tr>";
+}
 if(h)document.getElementById('tx').innerHTML=h;
-if(d.balance)document.getElementById('bal').innerText="Rp "+Number(d.balance).toLocaleString('id-ID',{minimumFractionDigits:1});
+if(d.balance)document.getElementById('bal').innerText="$"+Number(d.balance).toLocaleString('en-US',{minimumFractionDigits:2});
+if(d.profitToday!=null)document.getElementById('pt').innerText=(d.profitToday>=0?"+":"-")+"$"+Math.abs(d.profitToday).toFixed(2);
 }catch(e){}
 }
 setInterval(upd,3000);
