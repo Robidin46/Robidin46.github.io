@@ -1,123 +1,74 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DIEN SCALPER</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--bg:#070a0f;--card:#10151f;--border:#14d8b8;--teal:#7fffea;--green:#00ff88;--red:#ff5a6a;--orange:#ff9a3d}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:#e8f5f1;font-family:system-ui,-apple-system,Segoe UI,Roboto; padding:12px;max-width:480px;margin:0 auto;border:3px solid var(--border);border-radius:24px;min-height:100vh}
-.top{display:flex;justify-content:space-between;align-items:center;padding:14px 4px 10px}
-.top h1{font-size:28px;letter-spacing:0.5px}.top h1 span{color:var(--teal)}
-.sec{color:var(--teal);font-weight:700;font-size:13px;margin:16px 0 8px;display:flex;gap:6px;align-items:center}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-.card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:10px;text-align:center}
-.card.label{font-size:11px;color:#a9b5b1}.card.val{font-size:22px;font-weight:800;margin-top:2px}
-.g{color:var(--green)}.r{color:var(--red)}.c{color:var(--teal)}.o{color:var(--orange)}
-.chartBox{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:10px;margin-top:8px}
-.tableBox{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:10px;margin-top:8px;overflow:hidden}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{color:var(--teal);padding:8px 4px;text-align:center;font-size:12px}
-td{padding:7px 4px;text-align:center;border-top:1px solid #1e2633}
-.badge-buy{background:#1a7a4a;color:#fff;padding:4px 12px;border-radius:20px;font-weight:800;font-size:11px}
-.badge-sell{background:#c03a4a;color:#fff;padding:4px 12px;border-radius:20px;font-weight:800;font-size:11px}
-.small{font-size:10px;color:#889;color:#7a8a86;text-align:center;margin-top:6px}
-.nav{display:flex;justify-content:space-around;padding:12px 0 0;margin-top:12px;border-top:1px solid #1a2530;opacity:0.7}
+:root{--bg:#070a0f;--card:#10151f;--bd:#14d8b8;--teal:#7fffea;--g:#00ff88;--r:#ff5a6a;--o:#ff9a3d}
+*{box-sizing:border-box;margin:0;padding:0} body{background:var(--bg);color:#e8f5f1;font-family:system-ui;max-width:480px;margin:0 auto;border:3px solid var(--bd);border-radius:24px;padding:12px}
+.h{display:flex;justify-content:space-between;align-items:center;padding:10px 4px} h1{font-size:30px;letter-spacing:.5px} h1 span{color:var(--teal)}
+.sec{color:var(--teal);font-weight:800;font-size:12px;margin:12px 0 6px}
+.card{background:var(--card);border:1.5px solid var(--bd);border-radius:10px;padding:9px;text-align:center}
+.lb{font-size:9px;color:#9ab0ac;background:#2a3441;padding:2px 6px;border-radius:6px;display:inline-block;margin-bottom:4px}
+.vl{font-size:20px;font-weight:800}.g{color:var(--g)}.r{color:var(--r)}.c{color:var(--teal)}.o{color:var(--o)}
+.box{background:var(--card);border:1.5px solid var(--bd);border-radius:12px;padding:8px}
+.bigBal{background:linear-gradient(90deg,#0f2020,#10151f);border:2px solid #1effe1;box-shadow:0 0 15px rgba(20,216,184,.4);border-radius:12px;padding:12px;text-align:left}
+.bigBal .vl{font-size:34px}
+table{width:100%;border-collapse:collapse;font-size:11px} th{color:#ccc;padding:6px 2px;background:#2a3441} td{padding:7px 2px;text-align:center;border-top:1px solid #1d2633}
+.b-buy{background:#1a7a4a;color:#fff;padding:4px 12px;border-radius:12px;font-weight:800;font-size:11px}.b-sell{background:#c03a4a;color:#fff;padding:4px 12px;border-radius:12px;font-weight:800;font-size:11px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}
 </style>
 </head>
 <body>
-<div class="top"><h1>DIEN <span>SCALPER</span></h1><div style="font-size:22px">⚙️</div></div>
+<div class="h"><div style="font-size:22px">☰</div><h1>DIEN <span>SCALPER</span></h1><div>🔔 👤</div></div>
 
-<div class="sec">📊 — SUMMARY</div>
-<div class="grid3">
-<div class="card"><div class="label">Total Trade</div><div class="val" id="total">42</div><div class="label">trades</div></div>
-<div class="card"><div class="label">Profit</div><div class="val g" id="profit">+Rp 2.18M</div></div>
-<div class="card"><div class="label">Loss</div><div class="val r" id="loss">-Rp 0.63M</div></div>
-</div>
+<div class="sec">📈 SUMMARY GRAFIK</div>
+<div style="display:flex;gap:7px"><div class="box" style="flex:1"><div style="font-size:11px">Equity Curve</div><canvas id="eq" height="120"></canvas></div><div class="box" style="flex:1"><div style="font-size:11px;text-align:center">Winrate</div><canvas id="wr" height="120"></canvas></div></div>
+
 <div class="grid3" style="margin-top:8px">
-<div class="card"><div class="label">R:R</div><div class="val" id="rr">1:2.4</div><div class="label">Risk/Reward</div></div>
-<div class="card"><div class="label">Profit Factor</div><div class="val c" id="pf">1.85</div></div>
-<div class="card"><div class="label">Winrate</div><div class="val g" id="wr">66.7%</div><div class="label" id="wl">14W / 7L</div></div>
+<div class="card"><div class="lb">Total Trade</div><div class="vl" id="total">42</div></div>
+<div class="card"><div class="lb">Profit</div><div class="vl g" id="profit">+Rp 2.18M</div></div>
+<div class="card"><div class="lb">Loss</div><div class="vl r" id="loss">-Rp 0.63M</div></div>
+<div class="card"><div class="lb">R:R</div><div class="vl" id="rr">1:2.4</div></div>
+<div class="card"><div class="lb">Profit Factor</div><div class="vl" id="pf">1.85</div></div>
+<div class="card"><div class="lb">Winrate</div><div class="vl g" id="wrate">66.7%</div></div>
 </div>
 
-<div class="chartBox">
-<div class="sec" style="margin:0 0 6px">📈 Equity Curve</div>
-<canvas id="eqChart" height="110"></canvas>
-<div class="small" id="eqInfo">Equity over time • Net +Rp 1.55M • +14.2%</div>
-</div>
+<div class="sec">BALANCE & TODAY 💳</div>
+<div class="bigBal"><div class="lb">Balance</div><div class="vl" id="balance">Rp 12.450.000</div><div style="font-size:11px;color:var(--g);background:#1a4a2a;display:inline-block;padding:2px 8px;border-radius:12px">↗ Available +2.4% today</div></div>
+<div class="grid2"><div class="card"><div class="lb">Profit Hari Ini</div><div class="vl g" id="today">+Rp 320.000</div></div><div class="card"><div class="lb">Max DD</div><div class="vl o" id="maxDD">-Rp 420.000 ⬇</div></div></div>
+<div class="grid2"><div class="card"><div class="lb">Consecutive P/L</div><div class="vl g" style="font-size:14px">Wins 3 <span style="font-size:10px">↗</span></div><div class="lb" style="background:none;color:var(--r)">Losses 1 ↘</div></div><div class="card"><div class="lb">Avg Hold</div><div class="vl" style="font-size:18px">2h 15m</div><div style="font-size:10px">Floating $0.00</div></div></div>
 
-<div class="sec">💳 2 -BALANCE CARDS</div>
-<div class="grid2">
-<div class="card"><div class="label">Balance</div><div class="val" id="balance">Rp 12.450.000</div><div class="label g" style="font-size:10px">Available • ↑ +2.4% today</div></div>
-<div class="card"><div class="label">Avg Hold</div><div class="val" id="avgHold">2h 15m</div><div class="label">Average holding time</div></div>
-<div class="card"><div class="label">Max DD</div><div class="val o" id="maxDD">-Rp 420.000</div><div class="label">-3.37% Drawdown</div></div>
-<div class="card"><div class="label">Consecutive P/L</div><div class="val" style="font-size:14px" id="consec">Wins: 3 • Losses: 1</div><div class="label g">Current streak: 3 Wins • 🔥</div></div>
-</div>
+<div style="margin-top:8px"><table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="daily"></tbody></table></div>
 
-<div class="tableBox">
-<div class="sec" style="margin:0 0 6px">🗓️ 3 -HISTORY PROFIT HARIAN</div>
-<table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="daily"></tbody></table>
-<div class="small" id="dailyInfo">Showing 8 days • Last updated 09-10-2026 09:30</div>
-</div>
-
-<div class="sec">⏱️ 4-HISTORI TRANSAKSI</div>
-<div class="tableBox">
-<table><thead><tr><th>Tgl</th><th>Bln</th><th>Thn</th><th>Jam</th><th>Posisi</th><th>Profit</th></tr></thead><tbody id="tx"></tbody></table>
-</div>
-
-<div class="nav">🏠 📊 🗑️ 👤</div>
+<div class="sec">🔄 HISTORI TRANSAKSI MT5</div>
+<div><table><thead><tr><th>Tgl Bln Thn Jam</th><th>Posisi</th><th>Profit</th></tr></thead><tbody id="tx"></tbody></table></div>
 
 <script>
-const FB_URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
-let eqChart;
-function formatRp(n){ if(Math.abs(n)>=1000000) return (n>=0?"+":"-")+"Rp "+(Math.abs(n)/1000000).toFixed(2)+"M"; return (n>=0?"+":"-")+"Rp "+Math.abs(n).toLocaleString('id-ID'); }
-
-async function loadData(){
- try{
-  const r=await fetch(FB_URL+"?t="+Date.now()); const d=await r.json(); if(!d) throw "no data";
-  // SUMMARY
+const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
+let eqC, wrC;
+function fmtRp(n){return (n>=0?"+Rp ":"-Rp ")+Math.abs(n).toLocaleString('id-ID');}
+function load(){
+ fetch(URL+"?t="+Date.now()).then(r=>r.json()).then(d=>{
+  if(!d) return;
   document.getElementById('total').innerText=d.summary?.total||42;
-  document.getElementById('profit').innerText=formatRp(d.summary?.profit>0?d.summary.profit:2180000);
-  document.getElementById('loss').innerText=formatRp(d.summary?.loss? -Math.abs(d.summary.loss) : -630000);
-  document.getElementById('rr').innerText=(d.summary?.rr||2.4).toFixed(1).replace('.0','')? "1:"+d.summary.rr.toFixed(1) : "1:2.4";
-  document.getElementById('pf').innerText=(d.summary?.pf||1.85).toFixed(2);
-  document.getElementById('wr').innerText=(d.summary?.winrate||66.7).toFixed(1)+"%";
-  document.getElementById('wl').innerText=`${d.summary?.win||14}W / ${d.summary?.lossCount||7}L`;
   document.getElementById('balance').innerText="Rp "+(d.balance||12450000).toLocaleString('id-ID');
-  document.getElementById('avgHold').innerText=d.avgHold||"2h 15m";
-  document.getElementById('maxDD').innerText=formatRp(d.maxDD? -Math.abs(d.maxDD) : -420000);
-  document.getElementById('consec').innerText=`Wins: ${d.lastP||3} • Losses: ${d.lastL||1}`;
-  // DAILY
-  let dailyHTML=""; (d.daily||[
-    {date:"01-10-2026",p:820000,w:4,l:1},{date:"02-10-2026",p:310000,w:2,l:1},{date:"03-10-2026",p:-120000,w:1,l:2},{date:"04-10-2026",p:550000,w:3,l:0},{date:"05-10-2026",p:640000,w:3,l:1},{date:"06-10-2026",p:-210000,w:1,l:2},{date:"07-10-2026",p:470000,w:2,l:0},{date:"08-10-2026",p:-95000,w:1,l:2}
-  ]).forEach(x=>{
-    let col=x.p>=0?"g":"r"; dailyHTML+=`<tr><td>${x.date}</td><td class="${col}">${x.p>=0?"+":"-"}Rp ${Math.abs(x.p).toLocaleString('id-ID')}</td><td class="g">${x.w}</td><td class="r">${x.l}</td></tr>`;
-  }); document.getElementById('daily').innerHTML=dailyHTML;
-  // TX - Format Tgl Bln Thn Jam Posisi Profit
-  let txHTML=""; (d.tx||[
-    {dt:"09-10-2026 20:37:15",pos:"BUY",p:42.80},{dt:"09-10-2026 14:22:03",pos:"SELL",p:-27.35}
-  ]).forEach(x=>{
-    let dpart=x.dt.split(' ')[0].split('-'); let tpart=x.dt.split(' ')[1].substring(0,5);
-    let badge=x.pos=="BUY"?'<span class="badge-buy">BUY</span>':'<span class="badge-sell">SELL</span>';
-    let col=x.p>=0?"g":"r";
-    txHTML+=`<tr><td>${dpart[0]}</td><td>${dpart[1]}</td><td>${dpart[2]}</td><td>${tpart}</td><td>${badge}</td><td class="${col}" style="font-weight:800">${x.p>=0?"+":""}$${x.p.toFixed(2)}</td></tr>`;
-  }); document.getElementById('tx').innerHTML=txHTML;
-  // CHART
-  let labels=(d.daily||[]).map(x=>x.date.substring(0,5)); let cum=0; let data=(d.daily||[]).map(x=>{cum+=x.p/1000;return cum;});
-  if(data.length==0) data=[0,2,3,2,5,8,6,10,15]; if(labels.length==0) labels=["01","02","03","04","05","06","07","08","09"];
-  if(eqChart) eqChart.destroy();
-  eqChart=new Chart(document.getElementById('eqChart'),{type:'line',data:{labels:labels,datasets:[{label:'Equity',data:data,borderColor:'#00ff88',backgroundColor:'rgba(0,255,136,0.15)',tension:0.4,fill:true,pointRadius:3}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}});
- }catch(e){
-  console.log("fallback mock",e);
-  // fallback pakai data mock biar visual tetep muncul
-  document.getElementById('daily').innerHTML=`<tr><td>01-10-2026</td><td class="g">+Rp 820.000</td><td class="g">4</td><td class="r">1</td></tr><tr><td>02-10-2026</td><td class="g">+Rp 310.000</td><td class="g">2</td><td class="r">1</td></tr><tr><td>03-10-2026</td><td class="r">-Rp 120.000</td><td class="g">1</td><td class="r">2</td></tr><tr><td>04-10-2026</td><td class="g">+Rp 550.000</td><td class="g">3</td><td>0</td></tr><tr><td>05-10-2026</td><td class="g">+Rp 640.000</td><td class="g">3</td><td class="r">1</td></tr><tr><td>06-10-2026</td><td class="r">-Rp 210.000</td><td class="g">1</td><td class="r">2</td></tr><tr><td>07-10-2026</td><td class="g">+Rp 470.000</td><td class="g">2</td><td>0</td></tr><tr><td>08-10-2026</td><td class="r">-Rp 95.000</td><td class="g">1</td><td class="r">2</td></tr>`;
-  document.getElementById('tx').innerHTML=`<tr><td>09</td><td>10</td><td>2026</td><td>20:37</td><td><span class="badge-buy">BUY</span></td><td class="g" style="font-weight:800">+$42.80</td></tr><tr><td>09</td><td>10</td><td>2026</td><td>14:12</td><td><span class="badge-sell">SELL</span></td><td class="r" style="font-weight:800">-$27.35</td></tr>`;
-  eqChart=new Chart(document.getElementById('eqChart'),{type:'line',data:{labels:["01","02","03","04","05","06","07","08","09"],datasets:[{data:[0,2,2.5,4,6,5,8,12,15.5],borderColor:'#00ff88',backgroundColor:'rgba(0,255,136,0.15)',tension:0.4,fill:true,pointRadius:3}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}});
- }
+  document.getElementById('today').innerText=fmtRp(d.profitToday||320000);
+  document.getElementById('maxDD').innerText=(d.maxDD<0?"-Rp ":"+Rp ")+Math.abs(d.maxDD||420000).toLocaleString('id-ID');
+  let dh=""; (d.daily||[{date:"15 Okt 2025",p:410000,w:3,l:1},{date:"14 Okt 2025",p:260000,w:2,l:1},{date:"13 Okt 2025",p:180000,w:3,l:0}]).slice(-3).forEach(x=>{
+   dh+=`<tr><td>${x.date}</td><td class="g">${fmtRp(x.p)}</td><td class="g">${x.w}</td><td class="r">${x.l}</td></tr>`;
+  }); document.getElementById('daily').innerHTML=dh;
+  let th=""; (d.tx||[{dt:"15 Okt 2025 10:22",pos:"BUY",p:42.80},{dt:"15 Okt 2025 08:11",pos:"SELL",p:-27.35},{dt:"14 Okt 2025 16:45",pos:"BUY",p:31.20}]).forEach(x=>{
+   let badge=x.pos=="BUY"?'<span class="b-buy">BUY</span>':'<span class="b-sell">SELL</span>';
+   let col=x.p>=0?"g":"r"; th+=`<tr><td>${x.dt}</td><td>${badge}</td><td class="${col}">${x.p>=0?"+":""}$${x.p.toFixed(2)}</td></tr>`;
+  }); document.getElementById('tx').innerHTML=th;
+  // Chart dummy biar visual sama
+  if(eqC) eqC.destroy(); eqC=new Chart(document.getElementById('eq'),{type:'line',data:{labels:[1,2,3,4,5,6,7],datasets:[{data:[2,3,2.5,4,3.5,5,6],borderColor:'#00ff88',backgroundColor:'rgba(0,255,136,.1)',fill:true,tension:.4,pointRadius:0}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}});
+  if(wrC) wrC.destroy(); wrC=new Chart(document.getElementById('wr'),{type:'doughnut',data:{datasets:[{data:[66.7,33.3],backgroundColor:['#00ff88','#1e2a3a'],borderWidth:0}]},options:{cutout:'70%',plugins:{legend:{display:false}}}});
+ });
 }
-loadData(); setInterval(loadData,5000);
+load(); setInterval(load,3000);
 </script>
 </body>
 </html>
