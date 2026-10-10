@@ -7,41 +7,37 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#000;width:100%;display:block}
-.wrap{width:100%;max-width:400px;margin:0 auto;background:#070a0f;border:2.5px solid #14d8b8;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;padding:8px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:8px 4px}
-.header h1{color:#fff;font-family:Arial Black;font-size:20px}
-.header h1 span{color:#14d8b8}
+body{background:#000;width:100%;display:flex;justify-content:center}
+.wrap{width:100%;max-width:390px;background:#070a0f;border:2px solid #14d8b8;border-radius:14px;padding:8px;display:flex;flex-direction:column}
+.h{display:flex;justify-content:space-between;align-items:center;padding:6px}
+.h h1{color:#fff;font-size:20px;font-family:Arial Black} .h h1 span{color:#14d8b8}
 .sec{color:#7fffea;font-weight:800;font-size:10px;margin:10px 0 5px}
-.grid2{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.grid3{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .card{background:#10151f;border:1.5px solid #14d8b8;border-radius:8px;padding:7px;text-align:center;width:100%}
 .big{background:#10151f;border:2px solid #1effe1;border-radius:10px;padding:10px;width:100%}
 .lb{font-size:7px;color:#9ab0ac;background:#233142;padding:2px 5px;border-radius:4px}
 .v{font-weight:800;font-size:16px;color:#fff}
 .g{color:#00ff88}.r{color:#ff5a6a}.o{color:#ff9a3d}.c{color:#7fffea}
-table{width:100%;border-collapse:collapse;background:#10151f;border:1px solid #14d8b8;border-radius:8px;overflow:hidden;margin-top:4px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%}
+table{width:100%;border-collapse:collapse;background:#10151f;border:1px solid #14d8b8;border-radius:8px;overflow:hidden}
 th{font-size:8px;color:#7fffea;background:#1a2632;padding:6px 2px}
 td{font-size:10px;padding:6px 2px;text-align:center;border-top:1px solid #1e2a38;color:#cbd5d1}
 .bb{background:#1a7a4a;color:#fff;padding:2px 8px;border-radius:8px;font-size:9px;font-weight:800}
 .bs{background:#c03a4a;color:#fff;padding:2px 8px;border-radius:8px;font-size:9px;font-weight:800}
-canvas{width:100%!important;height:auto!important;max-height:130px}
+canvas{width:100%!important;height:auto!important}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="header"><span>☰</span><h1>DIEN <span>SCALPER</span></h1><span>🔔</span></div>
+<div class="h"><span>☰</span><h1>DIEN <span>SCALPER</span></h1><span>🔔</span></div>
 
-<div class="sec">SUMMARY GRAFIK</div>
-<div class="grid2">
-<div class="card"><div class="lb">Equity Curve</div><canvas id="eq"></canvas></div>
-<div class="card"><div class="lb">Winrate</div><canvas id="wr"></canvas><div class="v g" style="font-size:14px">66.7%</div></div>
-</div>
+<div class="sec">EQUITY CURVE</div>
+<div class="card"><div class="lb">Equity Curve Live</div><canvas id="eq" height="130"></canvas></div>
 
 <div class="grid3" style="margin-top:6px">
-<div class="card"><div class="lb">Total Trade</div><div class="v">653</div></div>
-<div class="card"><div class="lb">Profit</div><div class="v g" style="font-size:12px">+Rp 2.18M</div></div>
-<div class="card"><div class="lb">Loss</div><div class="v r" style="font-size:12px">-Rp 0.63M</div></div>
+<div class="card"><div class="lb">Total Trade</div><div class="v" id="total">653</div></div>
+<div class="card"><div class="lb">Profit</div><div class="v g" style="font-size:11px">+Rp 2.18M</div></div>
+<div class="card"><div class="lb">Loss</div><div class="v r" style="font-size:11px">-Rp 0.63M</div></div>
 <div class="card"><div class="lb">R:R</div><div class="v">1:2.4</div></div>
 <div class="card"><div class="lb">Profit Factor</div><div class="v c">1.85</div></div>
 <div class="card"><div class="lb">Winrate</div><div class="v g">66.7%</div></div>
@@ -49,7 +45,7 @@ canvas{width:100%!important;height:auto!important;max-height:130px}
 
 <div class="sec">BALANCE & TODAY</div>
 <div class="big">
-<div class="lb">Balance</div><div class="v" id="balance" style="font-size:22px">Rp 2.698,5</div>
+<div class="lb">Balance</div><div class="v" id="bal" style="font-size:22px">Rp 2.698,5</div>
 <div style="font-size:9px;background:#143a2a;color:#00ff88;padding:2px 7px;border-radius:8px;display:inline-block;margin-top:3px">↗ Available +2.4% today</div>
 <div class="grid2" style="margin-top:8px">
 <div class="card"><div class="lb">Profit Hari Ini</div><div class="v g" id="today" style="font-size:12px">+Rp 300,84</div></div>
@@ -61,7 +57,7 @@ canvas{width:100%!important;height:auto!important;max-height:130px}
 </div>
 </div>
 
-<div class="sec">Tanggal Profit Win Loss</div>
+<div class="sec">HISTORI PROFIT HARIAN</div>
 <table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="daily"></tbody></table>
 
 <div class="sec">HISTORI TRANSAKSI MT5</div>
@@ -73,24 +69,25 @@ const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.jso
 function load(){
 fetch(URL+"?t="+Date.now()).then(r=>r.json()).then(d=>{
 if(!d) return;
-document.getElementById('balance').innerText="Rp "+(d.balance||2698.5).toLocaleString('id-ID');
+document.getElementById('bal').innerText="Rp "+(d.balance||2698.5).toLocaleString('id-ID');
 document.getElementById('today').innerText="+Rp "+(d.profitToday||300.84).toLocaleString('id-ID');
-let dh=""; (d.daily||[]).slice(-3).forEach(x=>{
-let c=x.p>=0?"#00ff88":"#ff5a6a"; dh+=`<tr><td>${x.date}</td><td style="color:${c}">${x.p>=0?"+":""}Rp ${Number(x.p).toFixed(2)}</td><td style="color:#00ff88">${x.w}</td><td style="color:#ff5a6a">${x.l}</td></tr>`;
+document.getElementById('total').innerText=d.summary?.total||653;
+let dh=""; (d.daily||[]).forEach(x=>{
+let c=x.p>=0?"#00ff88":"#ff5a6a";
+dh+=`<tr><td>${x.date}</td><td style="color:${c};font-weight:700">Rp ${Number(x.p).toFixed(2)}</td><td style="color:#00ff88">${x.w}</td><td style="color:#ff5a6a">${x.l}</td></tr>`;
 });
 if(!dh) dh='<tr><td>07 Okt 2026</td><td style="color:#ff5a6a">-Rp 81,33</td><td>67</td><td>87</td></tr><tr><td>08 Okt 2026</td><td style="color:#00ff88">+Rp 300,6</td><td>9</td><td>7</td></tr><tr><td>09 Okt 2026</td><td style="color:#00ff88">+Rp 300,84</td><td>17</td><td>19</td></tr>';
 document.getElementById('daily').innerHTML=dh;
-let th=""; (d.tx||[]).slice(0,8).forEach(x=>{
+let th=""; (d.tx||[]).slice(0,10).forEach(x=>{
 let b=x.pos=="BUY"?'<span class="bb">BUY</span>':'<span class="bs">SELL</span>'; let col=x.p>=0?"#00ff88":"#ff5a6a";
 th+=`<tr><td>${x.dt}</td><td>${b}</td><td style="color:${col}">$${Number(x.p).toFixed(2)}</td></tr>`;
 });
-if(!th) th='<tr><td>09 Okt 2026 08:38</td><td><span class="bb">BUY</span></td><td style="color:#00ff88">+$27.92</td></tr><tr><td>09 Okt 2026 08:37</td><td><span class="bs">SELL</span></td><td style="color:#00ff88">+$93.41</td></tr><tr><td>09 Okt 2026 08:35</td><td><span class="bs">SELL</span></td><td style="color:#00ff88">+$82.81</td></tr><tr><td>09 Okt 2026 08:30</td><td><span class="bb">BUY</span></td><td style="color:#ff5a6a">-$69.30</td></tr><tr><td>09 Okt 2026 08:30</td><td><span class="bb">BUY</span></td><td style="color:#ff5a6a">-$69.70</td></tr>';
+if(!th) th='<tr><td>09 Okt 2026 08:38</td><td><span class="bb">BUY</span></td><td style="color:#00ff88">+$27.92</td></tr><tr><td>09 Okt 2026 08:37</td><td><span class="bs">SELL</span></td><td style="color:#00ff88">+$93.41</td></tr><tr><td>09 Okt 2026 08:35</td><td><span class="bs">SELL</span></td><td style="color:#00ff88">+$82.81</td></tr><tr><td>09 Okt 2026 08:30</td><td><span class="bb">BUY</span></td><td style="color:#ff5a6a">-$69.30</td></tr>';
 document.getElementById('tx').innerHTML=th;
 });
 }
 load(); setInterval(load,2000);
-new Chart(document.getElementById('eq'),{type:'line',data:{labels:[1,2,3,4,5,6,7,8],datasets:[{data:[2000,2100,2050,2300,2500,2400,2600,2698],borderColor:'#00ff88',backgroundColor:'rgba(0,255,136,.1)',fill:true,tension:.4}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}});
-new Chart(document.getElementById('wr'),{type:'doughnut',data:{datasets:[{data:[66.7,33.3],backgroundColor:['#00ff88','#1a2632'],borderWidth:0}]},options:{cutout:'70%',plugins:{legend:{display:false}}}});
+new Chart(document.getElementById('eq'),{type:'line',data:{labels:[1,[STRIPPED]
 </script>
 </body>
 </html>
