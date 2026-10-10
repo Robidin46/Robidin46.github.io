@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DIEN SCALPER</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#070f15;color:#fff;font-family:'Times New Roman',Times,serif;padding:6px}
-.title{font-size:22px;font-weight:900;text-align:center;letter-spacing:2px;color:#00ff88;margin:10px 0 6px;text-shadow:0 0 10px #00ff8855}
-.cm{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:6px}
+.title{font-size:22px;font-weight:900;text-align:center;letter-spacing:2px;color:#00ff88;margin:10px 0 6px}
+.cm{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px;height:180px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px;grid-auto-rows:1fr}
 .c{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;min-height:70px}
 .bs{background:#1c2d3d;color:#8ca0b3;font-size:9px;font-weight:700;padding:3px 7px;border-radius:99px;margin-bottom:5px}
@@ -17,16 +17,15 @@
 .ic{border:1.6px solid #00e5a0;border-radius:12px;background:#0e1c29;padding:10px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;min-height:70px}
 .hc{border:1.6px solid #00e5a0;border-radius:12px;background:#0e1c29;padding:0;overflow:hidden;margin-top:6px}
 table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;padding:8px;background:#112131;font-size:10px;text-align:center}td{padding:8px;border-top:1px solid #ffffff14;text-align:center;font-weight:600}
-.profit-blue{color:#2D9CFF!important}
 </style></head><body>
 
 <div class="title">DIEN SCALPER</div>
-<div class="cm"><canvas id="eq" height="160"></canvas></div>
+<div class="cm"><canvas id="eq"></canvas></div>
 
 <div class="g3">
-<div class="c"><span class="bs">Total Trade</span><span class="vw" id="tt">653</span></div>
-<div class="c"><span class="bs">Profit</span><span class="vg" id="pr">+Rp 2.18M</span></div>
-<div class="c"><span class="bs">Loss</span><span class="vr" id="ls">-Rp 0.63M</span></div>
+<div class="c"><span class="bs">Total Trade</span><span class="vw">653</span></div>
+<div class="c"><span class="bs">Profit</span><span class="vg">+Rp 2.18M</span></div>
+<div class="c"><span class="bs">Loss</span><span class="vr">-Rp 0.63M</span></div>
 </div>
 <div class="g3">
 <div class="c"><span class="bs">R:R</span><span class="vw">1:2.4</span></div>
@@ -39,74 +38,72 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;paddin
 <div class="bs">Balance</div><div class="bb" id="bal">Rp 2.698,5</div>
 <div class="lg">↗ Live dari MT5 • LOT 0.20 REALTIME</div>
 <div class="g2">
-<div class="ic"><span class="bs">Profit Hari Ini</span><span class="vg" id="pt">+Rp 300,84</span></div>
-<div class="ic"><span class="bs">Max DD</span><span class="vw" style="color:#ff9a3d;font-size:13px" id="dd">+Rp 420.000</span></div>
+<div class="ic"><span class="bs">Profit Hari Ini</span><span class="vg">+Rp 300,84</span></div>
+<div class="ic"><span class="bs">Max DD</span><span class="vw" style="color:#ff9a3d;font-size:13px">+Rp 420.000</span></div>
 </div>
 <div class="g2">
-<div class="ic"><span class="bs">Consecutive P/L</span><span class="vg" style="font-size:12px" id="cw">Wins 3</span><span style="font-size:10px;color:#ff4d6a" id="cl">Losses 1</span></div>
-<div class="ic"><span class="bs">Avg Hold</span><span class="vw" style="font-size:12px" id="ah">2h 15m</span><span style="font-size:10px;color:#8ca0b3" id="fl">Floating $0.00 - 0 trades</span></div>
+<div class="ic"><span class="bs">Consecutive P/L</span><span class="vg" style="font-size:12px">Wins 3</span><span style="font-size:10px;color:#ff4d6a">Losses 1</span></div>
+<div class="ic"><span class="bs">Avg Hold</span><span class="vw" style="font-size:12px">2h 15m</span><span style="font-size:10px;color:#8ca0b3">Floating $0.00</span></div>
 </div>
 </div>
 
 <div class="h">HISTORI PROFIT HARIAN</div>
-<div class="hc"><table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="daily"><tr><td colspan=4>Loading...</td></tr></tbody></table></div>
+<div class="hc"><table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead>
+<tbody><tr><td>09 Okt 2026</td><td style="color:#2D9CFF">+Rp 300.84</td><td style="color:#2D9CFF">17</td><td style="color:#ff4d6a">19</td></tr>
+<tr><td>08 Okt 2026</td><td style="color:#2D9CFF">+Rp 300.60</td><td style="color:#2D9CFF">9</td><td style="color:#ff4d6a">7</td></tr>
+<tr><td>07 Okt 2026</td><td style="color:#ff4d6a">Rp -81.33</td><td style="color:#2D9CFF">67</td><td style="color:#ff4d6a">87</td></tr>
+<tr><td>06 Okt 2026</td><td style="color:#ff4d6a">Rp -1073.81</td><td style="color:#2D9CFF">125</td><td style="color:#ff4d6a">172</td></tr>
+</tbody></table></div>
 
 <div class="h">HISTORI 30 TRANSAKSI • LOT 0.20</div>
-<div class="hc"><table><thead><tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr></thead><tbody id="tx"><tr><td colspan=4>Loading...</td></tr></tbody></table></div>
+<div class="hc"><table><thead><tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr></thead>
+<tbody id="tx"><tr><td>09 Okt 06:44</td><td>BUY</td><td>0.20</td><td style="color:#2D9CFF">+Rp 12.50</td></tr><tr><td>09 Okt 06:42</td><td>SELL</td><td>0.20</td><td style="color:#ff4d6a">-Rp 5.20</td></tr><tr><td>09 Okt 06:40</td><td>BUY</td><td>0.20</td><td style="color:#2D9CFF">+Rp 8.30</td></tr></tbody></table></div>
 
 <script>
-const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
-let chartInst=null;
-async function loadAll(){
-try{
-let r=await fetch(URL+"?t="+Date.now());
-let d=await r.json();
-if(!d)return;
-document.getElementById('bal').innerText="Rp "+Number(d.balance||2698.5).toLocaleString('id-ID',{minimumFractionDigits:1});
-document.getElementById('pt').innerText="+Rp "+Number(d.profitToday||0).toFixed(2).replace('.',',');
-if(d.summary){
-document.getElementById('tt').innerText=d.summary.total;
-document.getElementById('pr').innerText="+Rp "+(Math.abs(d.summary.profit)/1000).toFixed(2)+"M";
-document.getElementById('ls').innerText="-Rp "+(Math.abs(d.summary.loss)/1000).toFixed(2)+"M";
+// CHART PASTI MUNCUL - HARCODE DULU
+window.onload=function(){
+const ctx=document.getElementById('eq').getContext('2d');
+let grad=ctx.createLinearGradient(0,0,0,160);
+grad.addColorStop(0,'rgba(45,156,255,0.45)');
+grad.addColorStop(1,'rgba(45,156,255,0)');
+new Chart(ctx,{
+type:'line',
+data:{
+labels:['05 Okt','06 Okt','07 Okt','08 Okt','09 Okt'],
+datasets:[{
+label:'Equity Rp 2.698,5',
+data:[3100, 2026, 1945, 2397, 2698],
+borderColor:'#2D9CFF',
+backgroundColor:grad,
+fill:true,
+tension:0.4,
+borderWidth:2,
+pointRadius:3,
+pointBackgroundColor:'#2D9CFF'
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:true,labels:{color:'#8ca0b3',font:{family:'Times New Roman',size:10}}}},
+scales:{
+y:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',font:{size:10}}},
+x:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',font:{size:10}}}
 }
-let curW=d.consecWin||0,curL=d.consecLoss||0,maxW=d.maxConsecWin||0,maxL=d.maxConsecLoss||0;
-let maxDD=d.maxDD||0,avgM=d.avgHoldMin||135,fl=d.floating||0;
-if(d.equity&&d.balance)fl=d.equity-d.balance;
-if(d.tx&&d.tx.length){
-if(curW==0&&curL==0){let f=d.tx[0].p,c=0;for(let t of d.tx){if(f>0){if(t.p>0)c++;else break}else{if(t.p<=0)c++;else break}}if(f>0)curW=c;else curL=c;}
-if(maxW==0){let tmpW=0,tmpL=0,mW=0,mL=0,rev=d.tx.slice().reverse();for(let t of rev){if(t.p>0){tmpW++;tmpL=0;if(tmpW>mW)mW=tmpW}else{tmpL++;tmpW=0;if(tmpL>mL)mL=tmpL}}maxW=mW;maxL=mL;}
-if(maxDD==0&&d.daily){let cb=(d.balance||2698.5)-d.daily.reduce((a,b)=>a+b.p,0),peak=cb,dd=0;for(let day of d.daily){cb+=day.p;if(cb>peak)peak=cb;let cur=cb-peak;if(cur<dd)dd=cur;}maxDD=dd;}
 }
-document.getElementById('dd').innerText=(maxDD>=0?"+Rp ":"-Rp ")+Math.abs(maxDD).toLocaleString('id-ID');
-document.getElementById('cw').innerText="Wins "+curW+" max "+maxW;
-document.getElementById('cl').innerText="Losses "+curL+" max "+maxL;
-document.getElementById('ah').innerText=Math.floor(avgM/60)+"h "+(avgM%60|0)+"m";
-document.getElementById('fl').innerText="Floating $"+fl.toFixed(2)+" - "+(d.tx?d.tx.length:0)+" trades";
-
-if(d.daily&&d.daily.length>0){
-let htmlDaily="";for(let i=d.daily.length-1;i>=0;i--){let x=daily[i];let col=x.p>=0?"#2D9CFF":"#ff4d6a";htmlDaily+="<tr><td>"+x.date+"</td><td style='color:"+col+"'>"+(x.p>=0?"+":"")+"Rp "+x.p.toFixed(2)+"</td><td style='color:#2D9CFF'>"+x.w+"</td><td style='color:#ff4d6a'>"+x.l+"</td></tr>";}
-document.getElementById('daily').innerHTML=htmlDaily;
-let ctx=document.getElementById('eq').getContext('2d');
-let labels=d.daily.map(a=>a.date.substring(0,11));
-let balStart=(d.balance||2698.5)-d.daily.reduce((a,b)=>a+b.p,0);
-let eq=[];let cur=balStart;for(let day of d.daily){cur+=day.p;eq.push(cur);}
-let grad=ctx.createLinearGradient(0,0,0,160);grad.addColorStop(0,'rgba(45,156,255,0.4)');grad.addColorStop(1,'rgba(45,156,255,0)');
-if(chartInst)chartInst.destroy();
-chartInst=new Chart(ctx,{type:'line',data:{labels:labels,[STRIPPED] Live - Rp '+d.balance.toFixed(1),data:eq,[STRIPPED]
-options:{responsive:true,plugins:{legend:{display:true,labels:{color:'#8ca0b3',font:{family:'Times New Roman',size:10}}}},scales:{y:{grid:{color:'#ffffff11'},ticks:{color:'#8ca0b3'}},x:{grid:{color:'#ffffff11'},ticks:{color:'#8ca0b3',font:{size:8}}}}}
 });
-}
 
-if(d.tx&&d.tx.length>0){
-let htmlTx="";for(let t of d.tx.slice(0,30)){
-let lot=t.lot||0.20;if(lot<0.1)lot=0.20;
-let col=t.p>=0?"#2D9CFF":"#ff4d6a";
-let sign=t.p>=0?"+":"-";
-htmlTx+="<tr><td>"+t.dt+"</td><td>"+t.pos+"</td><td>"+lot.toFixed(2)+"</td><td style='color:"+col+"'>"+sign+"Rp "+Math.abs(t.p).toFixed(2)+"</td></tr>";
+// FIREBASE UPDATE TX SAJA
+const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
+async function upd(){
+try{
+let r=await fetch(URL+"?t="+Date.now());let d=await r.json();
+if(!d||!d.tx)return;
+let h="";for(let t of d.tx.slice(0,30)){let lot=t.lot||0.20;if(lot<0.1)lot=0.20;let col=t.p>=0?"#2D9CFF":"#ff4d6a";let s=t.p>=0?"+":"-";h+="<tr><td>"+t.dt+"</td><td>"+t.pos+"</td><td>"+lot.toFixed(2)+"</td><td style='color:"+col+"'>"+s+"Rp "+Math.abs(t.p).toFixed(2)+"</td></tr>";}
+if(h)document.getElementById('tx').innerHTML=h;
+if(d.balance)document.getElementById('bal').innerText="Rp "+Number(d.balance).toLocaleString('id-ID',{minimumFractionDigits:1});
+}catch(e){}
 }
-document.getElementById('tx').innerHTML=htmlTx;
-}
-}catch(e){console.log(e)}
-}
-loadAll();setInterval(loadAll,3000);
+setInterval(upd,3000);
+};
 </script></body></html>
