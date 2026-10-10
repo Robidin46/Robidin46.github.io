@@ -1,82 +1,100 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MRDIEN SCALPER - LIVE TRADING</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MRDIEN LIVE V7 PRO</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-body{font-family:'JetBrains Mono',monospace;background:#05070a;color:#fff}
-.orbitron{font-family:'Orbitron',sans-serif}
-.live-dot{animation:blink 1s infinite} @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+body{background:#070a0f;color:#e8f5f1;font-family:Inter,system-ui;margin:0;padding:12px}
+.card{background:#10151f;border:1px solid #1affd5a0;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 0 15px #00ffcc20}
+h1{color:#7fffea;margin:0;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.big{font-size:26px;font-weight:800}
+.green{color:#00ff99}.red{color:#ff5a6a}.teal{color:#7fffea}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{color:#888;text-align:left;padding:6px 4px;border-bottom:1px solid #222}
+td{padding:7px 4px;border-bottom:1px solid #1a1a1a}
+.badge{padding:2px 8px;border-radius:20px;font-size:11px;border:1px solid}
+.live-dot{width:8px;height:8px;background:#00ff99;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite}
+@keyframes pulse{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
 </style>
 </head>
-<body class="p-4">
-<div class="max-w-6xl mx-auto">
-  <div class="flex justify-between items-center mb-6 border-b border-cyan-500/30 pb-4">
-    <h1 class="orbitron text-2xl font-black text-cyan-400">MRDIEN <span class="text-white">LIVE</span></h1>
-    <div class="flex items-center gap-2 bg-green-500/20 px-3 py-1 rounded-full border border-green-500">
-      <div class="w-2 h-2 bg-green-400 rounded-full live-dot"></div>
-      <span class="text-xs font-bold text-green-400">LIVE FROM MT5 VPS</span>
-    </div>
-  </div>
-
-  <div id="loading" class="text-center py-20 text-cyan-400">Menunggu sinyal dari VPS...</div>
-  <div id="dashboard" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="bg-gray-900 p-4 rounded-xl border border-cyan-500/20"><p class="text-xs text-gray-500">BALANCE</p><h2 id="balance" class="text-2xl font-bold text-white">$0</h2></div>
-    <div class="bg-gray-900 p-4 rounded-xl border border-green-500/20"><p class="text-xs text-gray-500">EQUITY</p><h2 id="equity" class="text-2xl font-bold text-green-400">$0</h2></div>
-    <div class="bg-gray-900 p-4 rounded-xl border border-yellow-500/20"><p class="text-xs text-gray-500">FLOATING PnL</p><h2 id="pnl" class="text-2xl font-bold">$0</h2></div>
-    <div class="md:col-span-3 bg-gray-900 p-4 rounded-xl border border-white/10">
-      <p class="text-xs text-gray-500 mb-2">OPEN POSITIONS</p>
-      <div id="positions" class="space-y-2 text-sm"></div>
-    </div>
-    <div class="md:col-span-3 text-center text-xs text-gray-600">Akun: <span id="acc"></span> | Last Update: <span id="time"></span> | Server: <span id="server"></span></div>
-  </div>
+<body>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center">
+<div><h1>MRDIEN LIVE</h1><div style="font-size:12px;color:#888">MT5 • <span id="srv">-</span> • Acc <span id="acc">-</span></div></div>
+<div><span class="live-dot"></span> <span class="badge" style="border-color:#00ff99;color:#00ff99">LIVE</span><div id="lastUpd" style="font-size:10px;color:#666">-</div></div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+<div class="card">
+<div style="color:#888;font-size:12px">SUMMARY</div>
+<div class="grid" style="margin-top:6px">
+<div>Total Trade: <b id="sTotal">-</b></div>
+<div>Winrate: <b id="sWinrate">-</b></div>
+<div>Win: <b class="green" id="sWin">-</b> | Loss: <b class="red" id="sLoss">-</b></div>
+<div>R:R: <b id="sRR">-</b> | PF: <b id="sPF">-</b></div>
+<div style="grid-column:span 2">Total Profit: <b id="sProfit">-</b></div>
+</div>
+<canvas id="equityChart" height="120" style="margin-top:10px"></canvas>
+</div>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDVXzrd6p8VFvdvyWpTmFhh5PeKAjOOJUA",
-  authDomain: "mrdien-scalper.firebaseapp.com",
-  databaseURL: "https://mrdien-scalper-default-rtdb.firebaseio.com",
-  projectId: "mrdien-scalper",
-  storageBucket: "mrdien-scalper.firebasestorage.app",
-  messagingSenderId: "121330820516",
-  appId: "1:121330820516:web:1a53fe95a6d326e7270d31"
-};
+<div class="grid">
+<div class="card"><div style="color:#888;font-size:11px">BALANCE</div><div class="big" id="bal">$-</div><div style="font-size:11px">Eq: <span id="eq">-</span> | Fl: <span id="fl">-</span></div></div>
+<div class="card"><div style="color:#888;font-size:11px">PROFIT HARI INI</div><div class="big" id="today">$-</div><div style="font-size:11px;color:#666" id="todayDate">-</div></div>
+<div class="card"><div style="color:#888;font-size:11px">AVG HOLD POSITION</div><div class="big teal" id="avgHold">-</div><div style="font-size:11px;color:#666">Avg per trade</div></div>
+<div class="card"><div style="color:#888;font-size:11px">MAX DD</div><div class="big red" id="maxDD">$-</div></div>
+<div class="card"><div style="color:#888;font-size:11px">CONSECUTIVE PROFIT</div><div class="big green" id="consP">-</div></div>
+<div class="card"><div style="color:#888;font-size:11px">CONSECUTIVE LOSS</div><div class="big red" id="consL">-</div></div>
+</div>
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+<div class="card">
+<div style="color:#7fffea;font-weight:700;margin-bottom:8px">HISTORY PROFIT HARIAN - TANGGAL 1,2,3...</div>
+<table><thead><tr><th>Tgl</th><th>Profit</th><th>Trades</th><th>Status</th></tr></thead><tbody id="dailyBody"></tbody></table>
+</div>
 
-// GANTI 12345 DENGAN NOMOR AKUN MT5 LU NANTI
-const ACCOUNT_ID = "LIVE_MAIN"; 
-const liveRef = ref(db, 'live/' + ACCOUNT_ID);
+<div class="card">
+<div style="color:#7fffea;font-weight:700;margin-bottom:8px">HISTORI TRANSAKSI</div>
+<table><thead><tr><th>Tgl</th><th>Profit</th><th>Total</th></tr></thead><tbody id="transBody"></tbody></table>
+</div>
 
-onValue(liveRef, (snapshot) => {
-  const data = snapshot.val();
-  if(!data) return;
-  document.getElementById('loading').classList.add('hidden');
-  document.getElementById('dashboard').classList.remove('hidden');
-  
-  document.getElementById('balance').innerText = '$' + data.balance;
-  document.getElementById('equity').innerText = '$' + data.equity;
-  document.getElementById('pnl').innerText = '$' + data.profit;
-  document.getElementById('pnl').className = 'text-2xl font-bold ' + (parseFloat(data.profit) >= 0 ? 'text-green-400' : 'text-red-400');
-  document.getElementById('acc').innerText = data.account;
-  document.getElementById('time').innerText = data.time;
-  document.getElementById('server').innerText = data.server;
-
-  let posHtml = '';
-  if(data.positions && data.positions.length > 0){
-    data.positions.forEach(p => {
-      posHtml += `<div class="flex justify-between bg-black/50 p-2 rounded"><span class="${p.type=='BUY'?'text-blue-400':'text-red-400'}">${p.type} ${p.symbol} ${p.lot}</span><span class="${parseFloat(p.profit)>=0?'text-green-400':'text-red-400'}">${p.profit}$</span></div>`;
-    });
-  } else { posHtml = '<p class="text-gray-500">No open positions</p>'; }
-  document.getElementById('positions').innerHTML = posHtml;
-});
+<script>
+const FB="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
+let chart;
+async function load(){
+ const r=await fetch(FB+"?t="+Date.now()); const d=await r.json(); if(!d) return;
+ document.getElementById('srv').innerText=d.server||"-";
+ document.getElementById('acc').innerText=d.account||"-";
+ document.getElementById('bal').innerText="$"+(d.balance||0).toFixed(2);
+ document.getElementById('eq').innerText="$"+(d.equity||0).toFixed(2);
+ document.getElementById('fl').innerText="$"+(d.floating||0).toFixed(2);
+ document.getElementById('today').innerText=(d.profitToday>=0?"+$":"-$")+Math.abs(d.profitToday||0).toFixed(2);
+ document.getElementById('today').className="big "+(d.profitToday>=0?"green":"red");
+ document.getElementById('consP').innerText=d.lastP||0;
+ document.getElementById('consL').innerText=d.lastL||0;
+ document.getElementById('maxDD').innerText="$"+(d.maxDD||0).toFixed(2);
+ document.getElementById('lastUpd').innerText=new Date((d.lastUpdate||0)*1000).toLocaleString();
+ document.getElementById('todayDate').innerText=new Date().toLocaleDateString();
+ if(d.summary){
+  document.getElementById('sTotal').innerText=d.summary.total;
+  document.getElementById('sWin').innerText=d.summary.win;
+  document.getElementById('sLoss').innerText=d.summary.loss;
+  document.getElementById('sWinrate').innerText=(d.summary.winrate||0).toFixed(1)+"%";
+  document.getElementById('sRR').innerText=(d.summary.rr||0).toFixed(2);
+  document.getElementById('sPF').innerText=(d.summary.pf||0).toFixed(2);
+  document.getElementById('sProfit').innerText="$"+(d.summary.profit||0).toFixed(2);
+ }
+ let html=""; let labels=[]; let eqData=[]; let cum=0;
+ (d.daily||[]).forEach(row=>{
+  let col=row.p>=0?"#00ff99":"#ff5a6a"; let st=row.p>0?"WIN":row.p<0?"LOSS":"FLAT";
+  html+=`<tr><td>${row.d}</td><td style="color:${col}">${row.p>=0?"+":""}$${row.p.toFixed(2)}</td><td>${row.c}</td><td><span class="badge" style="color:${col};border-color:${col}">${st}</span></td></tr>`;
+  labels.push("Tgl "+row.d); cum+=row.p; eqData.push(cum);
+ });
+ document.getElementById('dailyBody').innerHTML=html||"<tr><td colspan=4>Belum ada data</td></tr>";
+ document.getElementById('transBody').innerHTML=html;
+ if(chart) chart.destroy();
+ chart=new Chart(document.getElementById('equityChart'),{type:'line',data:{labels:labels,datasets:[{label:'Equity Curve',data:eqData,borderColor:'#00ff99',backgroundColor:'rgba(0,255,153,0.1)',fill:true,tension:0.4}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#666'}},y:{ticks:{color:'#666'}}}}});
+}
+load(); setInterval(load,5000);
 </script>
 </body>
 </html>
