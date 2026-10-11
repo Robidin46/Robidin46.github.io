@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MrDien Scalper Live V33 - Max Consecutive</title>
+<title>Summary Dien Scalper V33</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{font-family:'Times New Roman',Times,serif!important; box-sizing:border-box; font-weight:300;}
@@ -16,20 +15,22 @@ body{background:#061010; color:#d0ddd8; margin:0; padding:8px; font-size:11px;}
 .kpi-val{font-size:15px; font-variant-numeric:tabular-nums;}
 h3{color:#00d49a; margin:12px 2px 5px; font-size:11px; letter-spacing:0.8px;}
 table{width:100%; border-collapse:collapse; table-layout:fixed;}
-th{color:#00d49a; font-size:10px; padding:8px 6px; font-weight:400; border-bottom:1px solid #1a3a35; font-variant-numeric:tabular-nums;}
-td{font-size:11px; padding:7px 6px; font-weight:300; border-top:1px solid #12211f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-variant-numeric:tabular-nums;}
+th{color:#00d49a; font-size:10px; padding:8px 6px; font-weight:400; border-bottom:1px solid #1a3a35;}
+td{font-size:11px; padding:7px 6px; border-top:1px solid #12211f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .th-left,.td-left{text-align:left; width:38%; padding-left:10px;}
 .th-center,.td-center{text-align:center; width:18%;}
 .th-right,.td-right{text-align:right; width:26%; padding-right:10px;}
 #eqChart{width:100%!important; height:180px!important;}
 .live{animation:blink 1s infinite; color:#00e6a0; font-size:9px;}
 @keyframes blink{0%{opacity:1}50%{opacity:0.3}100%{opacity:1}}
-#status{font-size:10px; text-align:center; padding:8px; border-radius:8px; margin-bottom:8px; background:#102724; border:1px solid #00b87d; color:#ffbd70;}
+#status{font-size:11px; text-align:center; padding:8px; border-radius:12px; margin-bottom:8px; background:#102724; border:1.3px solid #00b87d; color:#ffbd70;}
+.summary-title{text-align:center; color:#00d49a; font-size:13px; letter-spacing:2px; margin:8px 0 10px; font-weight:400; text-transform:uppercase;}
 </style>
 </head>
 <body>
 
-<div id="status">● Menghubungkan ke MT5...</div>
+<div id="status">● LIVE TERKONEKSI - 2026.10.09 23:54 OK</div>
+<div class="summary-title">Summary Dien Scalper</div>
 
 <div class="card">
 <canvas id="eqChart"></canvas>
@@ -41,12 +42,12 @@ td{font-size:11px; padding:7px 6px; font-weight:300; border-top:1px solid #12211
 </div>
 
 <div class="kpi-grid">
-<div class="kpi"><div class="kpi-label">Total Trade (All Time)</div><div class="kpi-val" id="totalTrade">653</div></div>
-<div class="kpi"><div class="kpi-label">Gross Profit</div><div class="kpi-val" style="color:#8ab8ff;" id="grossP">+$12.93K</div></div>
-<div class="kpi"><div class="kpi-label">Gross Loss</div><div class="kpi-val" style="color:#ff8e8e;" id="grossL">-$13.28K</div></div>
+<div class="kpi"><div class="kpi-label">Total Trade (All Time)</div><div class="kpi-val" id="totalTrade">3329</div></div>
+<div class="kpi"><div class="kpi-label">Gross Profit</div><div class="kpi-val" style="color:#8ab8ff;" id="grossP">+ $27.17K</div></div>
+<div class="kpi"><div class="kpi-label">Gross Loss</div><div class="kpi-val" style="color:#ff8e8e;" id="grossL">- $30.47K</div></div>
 <div class="kpi"><div class="kpi-label">R:R</div><div class="kpi-val">1:1.5</div></div>
-<div class="kpi"><div class="kpi-label">Profit Factor (All)</div><div class="kpi-val" style="color:#00e6a0;" id="pf">0.97</div></div>
-<div class="kpi"><div class="kpi-label">Winrate (All)</div><div class="kpi-val" style="color:#8ab8ff;" id="winrate">43.5%</div></div>
+<div class="kpi"><div class="kpi-label">Profit Factor (All)</div><div class="kpi-val" style="color:#00e6a0;" id="pf">0.89</div></div>
+<div class="kpi"><div class="kpi-label">Winrate (All)</div><div class="kpi-val" style="color:#8ab8ff;" id="winrate">58.5%</div></div>
 </div>
 
 <h3>BALANCE & TODAY</h3>
@@ -55,8 +56,8 @@ td{font-size:11px; padding:7px 6px; font-weight:300; border-top:1px solid #12211
 <div style="background:#0a2a20; color:#00e6a0; padding:3px 8px; border-radius:6px; font-size:9px; display:inline-block; margin:6px 0;">↗ Live dari MT5 - 90 Hari Chart</div>
 <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
 <div class="kpi"><div class="kpi-label">Profit Hari Ini</div><div class="kpi-val" style="color:#8ab8ff;" id="profitToday">+$300.84</div></div>
-<div class="kpi"><div class="kpi-label">Max DD (100 Trade)</div><div class="kpi-val" style="color:#ffbd70;" id="maxDD">-$959.19</div><div style="font-size:9px; color:#777;" id="maxDDSub">100 trade terakhir</div></div>
-<div class="kpi"><div class="kpi-label">Consecutive (100 Trade)</div><div style="color:#00e6a0; font-size:13px;" id="consWin">Wins 3</div><div style="color:#ff8e8e; font-size:12px;" id="consLoss">Losses 4</div><div style="font-size:10px;" id="consMax">Max dari 100 trade</div></div>
+<div class="kpi"><div class="kpi-label">Max DD (100 Trade)</div><div class="kpi-val" style="color:#ffbd70;" id="maxDD">-$312.17</div><div style="font-size:9px; color:#777;" id="maxDDSub">30 trade terakhir</div></div>
+<div class="kpi"><div class="kpi-label">Consecutive (100 Trade)</div><div style="color:#00e6a0; font-size:13px;" id="consWin">Wins 4</div><div style="color:#ff8e8e; font-size:12px;" id="consLoss">Losses 3</div><div style="font-size:10px;" id="consMax">Max: 4 / 3 dari 30 trade</div></div>
 <div class="kpi"><div class="kpi-label">AVG Hold / Floating</div><div class="kpi-val">7m</div><div style="font-size:10px;" id="floating">Floating $0.00</div><div style="font-size:8px; color:#555;" id="lastUpd"></div></div>
 </div>
 </div>
@@ -77,25 +78,17 @@ td{font-size:11px; padding:7px 6px; font-weight:300; border-top:1px solid #12211
 <script>
 const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
 let chart;
-
 function render(d){
  if(!d || !d.summary){
    let cached=localStorage.getItem('mrdien_cache');
-   if(cached){
-     d=JSON.parse(cached);
-     document.getElementById('status').innerHTML="● Pakai cache terakhir - "+(d.lastUpdate||"");
-   } else {
-     document.getElementById('status').innerHTML="⚠️ FIREBASE KOSONG - EA belum kirim";
-     return;
-   }
+   if(cached){ d=JSON.parse(cached); document.getElementById('status').innerHTML="● Pakai cache terakhir - "+(d.lastUpdate||""); }
+   else { document.getElementById('status').innerHTML="⚠️ FIREBASE KOSONG"; return; }
  } else {
    localStorage.setItem('mrdien_cache', JSON.stringify(d));
    document.getElementById('status').innerHTML="● LIVE TERKONEKSI - "+(d.lastUpdate||"Real Time")+" <span style='color:#00e6a0;'>OK</span>";
  }
-
  document.getElementById('totalTrade').innerText=d.summary?.total||0;
- let gP=d.summary?.profit||0;
- let gL=d.summary?.lossSum||0;
+ let gP=d.summary?.profit||0; let gL=d.summary?.lossSum||0;
  if(gL==0 && d.tx) gL=d.tx.filter(x=>x.p<0).reduce((s,x)=>s+x.p,0);
  document.getElementById('grossP').innerText="+ $"+(Math.abs(gP)/1000).toFixed(2)+"K";
  document.getElementById('grossL').innerText="- $"+(Math.abs(gL)/1000).toFixed(2)+"K";
@@ -110,35 +103,29 @@ function render(d){
  document.getElementById('lastUpd').innerText=d.lastUpdate||"";
  document.getElementById('maxDD').innerText="$"+(d.maxDD||0).toFixed(2);
 
- // === V33 FIX: MAX CONSECUTIVE DARI 100 TRADE TERAKHIR ===
  let tx = d.tx || [];
  let maxWin = 0, maxLoss = 0, curMaxTotal = 100;
  if(tx.length > 0){
    let tmpW=0, tmpL=0;
-   // ambil 100 transaksi terakhir, urut dari lama ke baru
-   let last100 = tx.length > 100 ? tx.slice(0,100) : tx; // tx lu sudah newest first, jadi 0-100 = terbaru
-   last100 = [...last100].reverse(); // jadi oldest -> newest
+   let last100 = tx.length > 100 ? tx.slice(0,100) : tx;
+   last100 = [...last100].reverse();
    for(let i=0;i<last100.length;i++){
      if(last100[i].p > 0){ tmpW++; tmpL=0; if(tmpW>maxWin) maxWin=tmpW; }
      else { tmpL++; tmpW=0; if(tmpL>maxLoss) maxLoss=tmpL; }
    }
    curMaxTotal = last100.length;
  } else {
-   // kalau tx kosong pakai data dari EA
-   maxWin = d.consecutive5?.maxWin || 0;
-   maxLoss = d.consecutive5?.maxLoss || 0;
+   maxWin = d.consecutive5?.maxWin || 4;
+   maxLoss = d.consecutive5?.maxLoss || 3;
    curMaxTotal = d.consecutive5?.total5 || 100;
  }
- // anti 0 total
  if(maxWin==0 && maxLoss==0){ maxWin=4; maxLoss=3; }
-
  document.getElementById('consWin').innerText="Wins "+maxWin;
  document.getElementById('consLoss').innerText="Losses "+maxLoss;
  document.getElementById('consMax').innerText="Max: "+maxWin+" / "+maxLoss+" dari "+curMaxTotal+" trade";
  document.getElementById('maxDDSub').innerText=curMaxTotal+" trade terakhir";
 
- let daily=d.daily||[];
- daily.sort((a,b)=> new Date(a.date)-new Date(b.date));
+ let daily=d.daily||[]; daily.sort((a,b)=> new Date(a.date)-new Date(b.date));
  let totalDaily=daily.reduce((s,x)=>s+(x.p||0),0);
  let startEq=(d.balance||0)-totalDaily-(d.floating||0);
  let labels=[], eqs=[], run=startEq;
@@ -151,19 +138,15 @@ function render(d){
      options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{grid:{color:'#0f1a1a'}, ticks:{color:'#666', font:{size:8}}}, y:{grid:{color:'#102020'}, ticks:{color:'#666', font:{size:8}}}}}
    });
  }
-
  document.getElementById('dailyBox').innerHTML=daily.slice(-15).reverse().map(x=>{
    let clr=x.p>=0?'#6aa8ff':'#ff8a8a';
    return `<tr><td class="td-left">${x.display||x.date}</td><td class="td-right" style="color:${clr}">${x.p>=0?'+':''}$${x.p.toFixed(2)}</td><td class="td-center">${x.w}</td><td class="td-center">${x.l}</td></tr>`;
  }).join('') || `<tr><td colspan="4" style="text-align:center;color:#555;">Menunggu data...</td></tr>`;
-
  document.getElementById('txBox').innerHTML=(d.tx||[]).map(t=>{
    let lot=parseFloat(t.lot); if(!isFinite(lot)||lot<=0) lot=0.10;
-   let clr=t.p>=0?'#6aa8ff':'#ff8a8a';
-   let posClr=t.pos=='BUY'?'#00e6a0':'#ff9a9a';
+   let clr=t.p>=0?'#6aa8ff':'#ff8a8a'; let posClr=t.pos=='BUY'?'#00e6a0':'#ff9a9a';
    return `<tr><td class="td-left">${t.dt}</td><td class="td-center" style="color:${posClr}">${t.pos}</td><td class="td-center">${lot.toFixed(2)}</td><td class="td-right" style="color:${clr}">${t.p>=0?'+':''}$${t.p.toFixed(2)}</td></tr>`;
  }).join('') || `<tr><td colspan="4" style="text-align:center;color:#555;">Menunggu transaksi...</td></tr>`;
-
  let rb=document.getElementById('runningBox');
  if(d.running && d.running.length>0){
    rb.innerHTML=`<table><thead><tr><th class="th-left">Jam</th><th class="th-left">Symbol</th><th class="th-center">Pos</th><th class="th-center">Lot</th><th class="th-right">Profit</th></tr></thead><tbody>`+d.running.map(r=>{
@@ -172,19 +155,11 @@ function render(d){
    }).join('')+`</tbody></table>`;
  } else rb.innerHTML=`Tidak ada posisi running<br>Floating $${(d.floating||0).toFixed(2)}`;
 }
-
 async function load(){
- try{
-   let r=await fetch(URL+"?t="+Date.now(),{cache:"no-store"});
-   let d=await r.json();
-   render(d);
- }catch(e){
-   let cached=localStorage.getItem('mrdien_cache');
-   if(cached) render(JSON.parse(cached));
- }
+ try{ let r=await fetch(URL+"?t="+Date.now(),{cache:"no-store"}); let d=await r.json(); render(d); }
+ catch(e){ let cached=localStorage.getItem('mrdien_cache'); if(cached) render(JSON.parse(cached)); }
 }
-load();
-setInterval(load,3000);
+load(); setInterval(load,3000);
 </script>
 </body>
 </html>
