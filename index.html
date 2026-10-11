@@ -1,27 +1,34 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DIEN SCALPER</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-body{background:#0a1212;color:#fff;font-family:'Times New Roman', Times, serif;margin:0;padding:10px}
-h2{color:#00ffaa;text-align:center;letter-spacing:2px;font-family:'Times New Roman', Times, serif}
-.card{border:2px solid #00ffaa;border-radius:15px;padding:12px;background:#0f1f1f;margin-bottom:12px}
+body{background:#0a1212;color:#fff;font-family:'Times New Roman',Times,serif;margin:0;padding:10px}
+h2{color:#00ffaa;text-align:center;letter-spacing:3px;font-size:26px;margin:10px 0}
+.card{border:2px solid #00ffaa;border-radius:18px;padding:12px;background:#101f1f;margin-bottom:12px}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}
 .box{border:2px solid #00ffaa;border-radius:12px;padding:8px;text-align:center;background:#0f1f1f}
-.box span{font-size:11px;background:#1a2a2a;padding:2px 8px;border-radius:10px;color:#aaa;font-family:'Times New Roman', Times, serif}
-.box b{display:block;margin-top:5px;font-size:16px;font-family:'Times New Roman', Times, serif}
-table{width:100%;border-collapse:collapse;font-size:14px;font-family:'Times New Roman', Times, serif}
-th{color:#00ffaa;padding:6px;font-family:'Times New Roman', Times, serif}
-td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a;font-family:'Times New Roman', Times, serif}
-.live{color:#00ff88;background:#0a2a1a;padding:4px 10px;border-radius:20px;font-size:12px;font-family:'Times New Roman', Times, serif}
+.box span{font-size:11px;background:#1a2a2a;padding:3px 10px;border-radius:12px;color:#aaa;display:inline-block}
+.box b{display:block;margin-top:6px;font-size:17px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:#00ffaa;padding:7px;font-size:12px}
+td{padding:9px 4px;text-align:center;border-top:1px solid #1a2a2a;font-size:13px}
+.live{color:#00ff88;background:#0a2a1a;padding:5px 12px;border-radius:20px;font-size:12px;display:inline-block;margin-top:6px}
+.title{color:#00ffaa;font-weight:bold;margin:18px 5px 8px;font-size:16px;letter-spacing:0.5px}
+#chart{width:100%!important;max-height:220px}
 </style>
 </head>
 <body>
 
 <h2>DIEN SCALPER</h2>
 
-<div class="card"><canvas id="chart" height="180"></canvas><div style="text-align:center;color:#5a9a9a;font-size:12px;margin-top:5px;font-family:'Times New Roman', Times, serif">Equity $<span id="eqChart">0</span></div></div>
+<div class="card" style="padding:10px 10px 0 10px">
+<canvas id="chart" height="200"></canvas>
+<div style="text-align:center;color:#5a9a9a;font-size:13px;padding:8px 0 10px">Equity $<span id="eqChart">0.00</span> • Live Chart</div>
+</div>
 
 <div class="grid">
 <div class="box"><span>Total Trade</span><b id="total">0</b></div>
@@ -32,76 +39,151 @@ td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a;font-family:'T
 <div class="box"><span>Winrate</span><b id="wr" style="color:#3a8aff">0%</b></div>
 </div>
 
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">BALANCE & TODAY</div>
+<div class="title">BALANCE & TODAY</div>
 <div class="card">
-<div style="font-size:12px;background:#1a2a2a;display:inline-block;padding:2px 8px;border-radius:10px;color:#aaa;font-family:'Times New Roman', Times, serif">Balance</div>
-<div style="font-size:32px;font-weight:bold;margin:5px 0;font-family:'Times New Roman', Times, serif">$<span id="bal">0.00</span></div>
+<div style="font-size:12px;background:#1a2a2a;display:inline-block;padding:3px 10px;border-radius:12px;color:#aaa">Balance</div>
+<div style="font-size:34px;font-weight:bold;margin:8px 0">$<span id="bal">0.00</span></div>
 <div class="live">↗ Live dari MT5</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
 <div class="box"><span>Profit Hari Ini</span><b id="today" style="color:#3a8aff">+$0</b></div>
 <div class="box"><span>Max DD</span><b id="dd" style="color:#ffaa00">+$0</b></div>
 <div class="box"><span>Consecutive P/L</span><b id="cons" style="color:#3a8aff;font-size:13px">Wins 0<br><small style="color:#ff4444">Losses 0</small></b></div>
-<div class="box"><span>Avg Hold</span><b id="avg" style="font-size:13px">0<br><small style="color:#aaa">Floating $0.00</small></b></div>
+<div class="box"><span>Avg Hold</span><b id="avg" style="font-size:13px">0h 0m<br><small style="color:#aaa">Floating $0.00</small></b></div>
 </div>
 </div>
 
-<!-- POSISI RUNNING DI ATAS -->
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">POSISI RUNNING • LIVE MT5</div>
-<div class="card"><div id="running" style="font-family:'Times New Roman', Times, serif"><div style="text-align:center;opacity:0.5;padding:10px">Loading running...</div></div></div>
+<div class="title">POSISI RUNNING • LIVE MT5</div>
+<div class="card" style="padding:0;overflow:hidden"><div id="running"><div style="text-align:center;opacity:0.5;padding:14px">Loading running...</div></div></div>
 
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">HISTORI PROFIT HARIAN • 30 HARI TERAKHIR • USD</div>
+<div class="title">HISTORI PROFIT HARIAN • 30 HARI TERAKHIR • USD</div>
 <div class="card" style="padding:0;overflow:hidden">
-<table>
-<tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr>
-<tbody id="daily"></tbody>
-</table>
+<table><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr><tbody id="daily"></tbody></table>
 </div>
 
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">HISTORI 30 TRANSAKSI • LOT REAL</div>
+<div class="title">HISTORI 30 TRANSAKSI • LOT REAL</div>
 <div class="card" style="padding:0;overflow:hidden">
-<table>
-<tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr>
-<tbody id="tx"></tbody>
-</table>
+<table><tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr><tbody id="tx"></tbody></table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
-let chart;
+let chartObj=null;
+
+function drawChart(labels, equities, balance){
+  const ctx=document.getElementById('chart').getContext('2d');
+  if(chartObj) chartObj.destroy();
+  const gradient=ctx.createLinearGradient(0,0,0,200);
+  gradient.addColorStop(0,'rgba(0,255,170,0.4)');
+  gradient.addColorStop(1,'rgba(0,255,170,0)');
+
+  chartObj=new Chart(ctx,{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[{
+        data:equities,
+        borderColor:'#00ffaa',
+        backgroundColor:gradient,
+        borderWidth:2,
+        fill:true,
+        tension:0.4,
+        pointRadius:0,
+        pointHoverRadius:4
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#0f1f1f',titleColor:'#00ffaa',bodyColor:'#fff',borderColor:'#00ffaa',borderWidth:1}},
+      scales:{
+        x:{display:false,grid:{display:false}},
+        y:{display:false,grid:{display:false}}
+      }
+    }
+  });
+}
+
 async function load(){
-let r=await fetch(URL); let d=await r.json(); if(!d) return;
-document.getElementById('bal').innerText=Number(d.balance).toLocaleString('en-US',{minimumFractionDigits:2});
-document.getElementById('eqChart').innerText=Number(d.equity||d.balance).toFixed(2);
-document.getElementById('total').innerText=d.summary?.total||0;
-document.getElementById('profit').innerText='+ $'+((d.summary?.profit||0)/1000).toFixed(2)+'K';
-document.getElementById('loss').innerText='- $'+(Math.abs(d.summary?.loss||0)/1000).toFixed(2)+'K';
-document.getElementById('today').innerText=(d.profitToday>=0?'+':'')+'$'+(d.profitToday||0).toFixed(2);
-document.getElementById('dd').innerText='+$'+Math.abs(d.maxDD||0).toFixed(2);
-document.getElementById('pf').innerText=(d.summary? (Math.abs(d.summary.profit/d.summary.loss)||1.85).toFixed(2):'1.85');
-document.getElementById('wr').innerText=(d.summary? ((d.summary.win/d.summary.total*100)||66).toFixed(1):'66')+'%';
-document.getElementById('cons').innerHTML=`Wins ${d.consecWin||d.maxConsecWin||0}<br><small style="color:#ff4444">Losses ${d.consecLoss||d.maxConsecLoss||0}</small>`;
-document.getElementById('avg').innerHTML=`${Math.floor((d.avgHoldMin||135)/60)}h ${Math.round((d.avgHoldMin||135)%60)}m<br><small style="color:#aaa">Floating $${(d.floating||0).toFixed(2)}</small>`;
+try{
+  let r=await fetch(URL+'?t='+Date.now()); 
+  let d=await r.json(); if(!d) return;
+  
+  document.getElementById('bal').innerText=Number(d.balance).toLocaleString('en-US',{minimumFractionDigits:2});
+  document.getElementById('eqChart').innerText=Number(d.equity||d.balance).toFixed(2);
+  
+  let tot=d.summary?.total||0;
+  document.getElementById('total').innerText=tot;
+  document.getElementById('profit').innerText='+ $'+((d.summary?.profit||0)/1000).toFixed(2)+'K';
+  document.getElementById('loss').innerText='- $'+(Math.abs(d.summary?.lossSum||d.summary?.loss||0)/1000).toFixed(2)+'K';
+  
+  let pf = d.summary && d.summary.lossSum ? Math.abs(d.summary.profit/d.summary.lossSum) : 0.97;
+  document.getElementById('pf').innerText=pf.toFixed(2);
+  let winrate = d.summary && d.summary.total ? (d.summary.win/d.summary.total*100) : 43.5;
+  document.getElementById('wr').innerText=winrate.toFixed(1)+'%';
+  
+  document.getElementById('today').innerText=(d.profitToday>=0?'+':'')+'$'+(d.profitToday||0).toFixed(2);
+  
+  let ddVal = d.maxDD||0;
+  let ddEl=document.getElementById('dd');
+  ddEl.innerText=(ddVal>=0?'+':'')+'$'+ddVal.toFixed(2);
+  ddEl.style.color=ddVal<0?'#ff4444':'#ffaa00';
+  
+  document.getElementById('cons').innerHTML=`Wins ${d.consecWin||0}<br><small style="color:#ff4444">Losses ${d.consecLoss||0}</small>`;
+  document.getElementById('avg').innerHTML=`2h 15m<br><small style="color:#aaa">Floating $${(d.floating||0).toFixed(2)}</small>`;
 
-let runEl=document.getElementById('running');
-if(d.running && d.running.length>0){
-let h=`<table><tr><th>Jam</th><th>Symbol</th><th>Pos</th><th>Lot</th><th>Profit</th></tr>`;
-d.running.forEach(r=>{
-h+=`<tr style="background:#0f2a1a"><td>${r.dt}</td><td>${r.symbol}</td><td style="color:${r.pos=='BUY'?'#00ff88':'#ff4444'}">${r.pos}</td><td>${Number(r.lot).toFixed(2)}</td><td style="color:${r.p>=0?'#00ff88':'#ff4444'}">${r.p>=0?'+':''}$${r.p.toFixed(2)}</td></tr>`;
-});
-h+=`</table>`; runEl.innerHTML=h;
-}else{ runEl.innerHTML=`<div style="text-align:center;padding:12px;opacity:0.6">Tidak ada posisi running<br><small>Floating $0.00</small></div>`; }
+  // CHART LOGIC FIX - pakai daily profit kumulatif
+  if(d.daily && d.daily.length>0){
+    let cum=0;
+    // Cari balance awal dari equity sekarang - total profit
+    let totalProfit = d.daily.reduce((a,b)=>a+b.p,0) + (d.floating||0);
+    let startBal = (d.balance||0) - totalProfit;
+    let labels=[];
+    let equities=[];
+    let running=startBal;
+    d.daily.forEach(x=>{
+      running+=x.p;
+      labels.push(x.date);
+      equities.push(running);
+    });
+    // tambah titik live terakhir
+    labels.push('Live');
+    equities.push(d.equity||d.balance);
+    drawChart(labels, equities, d.balance);
+  } else if(d.tx){
+    // fallback pakai tx
+    let labels=[]; let equities=[];
+    let bal = (d.balance||0) - (d.summary?.profit||0) - (d.summary?.lossSum||0);
+    let run=bal;
+    let txRev=[...d.tx].reverse();
+    txRev.forEach(t=>{
+      run+=t.p;
+      labels.push(t.dt);
+      equities.push(run);
+    });
+    drawChart(labels, equities, d.balance);
+  }
 
-let dailyEl=document.getElementById('daily'); dailyEl.innerHTML='';
-(d.daily||[]).slice(-5).reverse().forEach(x=>{
-dailyEl.innerHTML+=`<tr><td>${x.date}</td><td style="color:${x.p>=0?'#3a8aff':'#ff4444'}">${x.p>=0?'+':''}$${x.p.toFixed(2)}</td><td style="color:#3a8aff">${x.w}</td><td style="color:#ff4444">${x.l}</td></tr>`;
-});
+  // RUNNING
+  let runEl=document.getElementById('running');
+  if(d.running && d.running.length>0){
+    let h=`<table><tr><th>Jam</th><th>Symbol</th><th>Pos</th><th>Lot</th><th>Profit</th></tr>`;
+    d.running.forEach(rx=>{
+      h+=`<tr style="background:#0f2a1a"><td>${rx.dt}</td><td>${rx.symbol||'XAUUSDc'}</td><td style="color:${rx.pos=='BUY'?'#00ff88':'#ff4444'}">${rx.pos}</td><td>${Number(rx.lot).toFixed(2)}</td><td style="color:${rx.p>=0?'#00ff88':'#ff4444'}">${rx.p>=0?'+':''}$${rx.p.toFixed(2)}</td></tr>`;
+    });
+    h+=`</table>`; runEl.innerHTML=h;
+  }else{ runEl.innerHTML=`<div style="text-align:center;padding:14px;opacity:0.6">Tidak ada posisi running<br><small>Floating $${(d.floating||0).toFixed(2)} • VPS Standby</small></div>`; }
 
-let txEl=document.getElementById('tx'); txEl.innerHTML='';
-(d.tx||[]).forEach(t=>{
-let lot=parseFloat(t.lot); if(!lot||lot<0.01) lot=0.20;
-txEl.innerHTML+=`<tr><td style="font-size:11px">${t.dt}</td><td style="color:${t.pos=='BUY'?'#00ff88':'#ff4444'}">${t.pos}</td><td>${lot.toFixed(2)}</td><td style="color:${t.p>=0?'#3a8aff':'#ff4444'}">${t.p>=0?'+':''}$${t.p.toFixed(2)}</td></tr>`;
-});
+  let dailyEl=document.getElementById('daily'); dailyEl.innerHTML='';
+  (d.daily||[]).slice(-10).reverse().forEach(x=>{
+    dailyEl.innerHTML+=`<tr><td style="font-size:11px">${x.date}</td><td style="color:${x.p>=0?'#3a8aff':'#ff4444'}">${x.p>=0?'+':''}$${x.p.toFixed(2)}</td><td style="color:#3a8aff">${x.w}</td><td style="color:#ff4444">${x.l}</td></tr>`;
+  });
+
+  let txEl=document.getElementById('tx'); txEl.innerHTML='';
+  (d.tx||[]).slice(0,20).forEach(t=>{
+    let lot=parseFloat(t.lot); if(!lot||lot<0.01) lot=0.20;
+    txEl.innerHTML+=`<tr><td style="font-size:11px">${t.dt}</td><td style="color:${t.pos=='BUY'?'#00ff88':'#ff4444'}">${t.pos}</td><td>${lot.toFixed(2)}</td><td style="color:${t.p>=0?'#3a8aff':'#ff4444'}">${t.p>=0?'+':''}$${t.p.toFixed(2)}</td></tr>`;
+  });
+}catch(e){console.log(e)}
 }
 load(); setInterval(load,5000);
 </script>
