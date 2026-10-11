@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DIEN SCALPER 30 HARI USD</title>
+<title>DIEN SCALPER LOT REALTIME</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#070f15;color:#fff;font-family:'Times New Roman',Times,serif;padding:6px}
-.title{font-size:22px;font-weight:900;text-align:center;letter-spacing:2px;color:#00ff88;margin:10px 0 6px}
+.title{font-size:24px;font-weight:900;text-align:center;letter-spacing:2px;color:#00e5a0;margin:10px 0 6px}
 .cm{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px;height:210px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px;grid-auto-rows:1fr}
 .c{border:1.6px solid #00e5a0;border-radius:14px;background:#0e1c29;padding:8px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;min-height:70px}
@@ -17,18 +18,19 @@
 .ic{border:1.6px solid #00e5a0;border-radius:12px;background:#0e1c29;padding:10px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;min-height:70px}
 .hc{border:1.6px solid #00e5a0;border-radius:12px;background:#0e1c29;padding:0;overflow:hidden;margin-top:6px;max-height:520px;overflow-y:auto}
 table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;padding:8px;background:#112131;font-size:10px;text-align:center;position:sticky;top:0}td{padding:8px;border-top:1px solid #ffffff14;text-align:center;font-weight:600}
+.lot-realtime{color:#00e5a0;font-weight:900}
 </style></head><body>
 
 <div class="title">DIEN SCALPER</div>
 <div class="cm"><canvas id="eq"></canvas></div>
 
 <div class="g3">
-<div class="c"><span class="bs">Total Trade</span><span class="vw">653</span></div>
+<div class="c"><span class="bs">Total Trade</span><span class="vw" id="tt">653</span></div>
 <div class="c"><span class="bs">Profit</span><span class="vg">+$2.18K</span></div>
 <div class="c"><span class="bs">Loss</span><span class="vr">-$0.63K</span></div>
 </div>
 <div class="g3">
-<div class="c"><span class="bs">R:R</span><span class="vw">1:2.4</span></div>
+<div class="c"><span class="bs">R:R</span><span class="vw">1:1.5</span></div>
 <div class="c"><span class="bs">Profit Factor</span><span class="vc">1.85</span></div>
 <div class="c"><span class="bs">Winrate</span><span class="vg">66.7%</span></div>
 </div>
@@ -36,7 +38,7 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;paddin
 <div class="h">BALANCE & TODAY</div>
 <div class="bw">
 <div class="bs">Balance</div><div class="bb" id="bal">$2,698.50</div>
-<div class="lg">↗ Live dari MT5 • LOT 0.20 REALTIME</div>
+<div class="lg">↗ Live dari MT5 • LOT REALTIME DARI AKUN</div>
 <div class="g2">
 <div class="ic"><span class="bs">Profit Hari Ini</span><span class="vg" id="pt">+$300.84</span></div>
 <div class="ic"><span class="bs">Max DD</span><span class="vw" style="color:#ff9a3d;font-size:13px">+$420.00</span></div>
@@ -50,58 +52,45 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:#7ee8c9;paddin
 <div class="h">HISTORI PROFIT HARIAN • 30 HARI TERAKHIR • USD</div>
 <div class="hc"><table><thead><tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr></thead><tbody id="daily"></tbody></table></div>
 
-<div class="h">HISTORI 30 TRANSAKSI • LOT 0.20 • USD</div>
-<div class="hc" style="max-height:380px"><table><thead><tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr></thead><tbody id="tx"></tbody></table></div>
+<div class="h">HISTORI 30 TRANSAKSI • LOT REALTIME • USD</div>
+<div class="hc"><table><thead><tr><th>Tanggal</th><th>Pos</th><th>Lot Realtime</th><th>Profit</th></tr></thead><tbody id="tx"><tr><td colspan=4>Menunggu data akun...</td></tr></tbody></table></div>
 
 <script>
 const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
 let chartInst=null;
 
-function genDummy30(){
-let arr=[];let base=new Date();let bal=2698.5;
-for(let i=29;i>=0;i--){let d=new Date(base);d.setDate(base.getDate()-i);
-let p=(Math.random()>0.35?1:-1)*(Math.random()*180+20);
-if(i==29)p=300.84;if(i==28)p=300.60;if(i==27)p=-81.33;if(i==26)p=-1073.81;
-let w=Math.floor(Math.random()*40+5),l=Math.floor(Math.random()*40+5);
-arr.push({date:d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}),p:p,w:w,l:l});}
-return arr;
-}
+function gen30(){let a=[],b=new Date();for(let i=29;i>=0;i--){let d=new Date(b);d.setDate(b.getDate()-i);let p=(Math.random()>0.35?1:-1)*(Math.random()*180+20);if(i==29)p=300.84;if(i==28)p=300.60;a.push({date:d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}),p:p,w:Math.floor(Math.random()*40+5),l:Math.floor(Math.random()*40+5)});}return a;}
+function renderDaily(daily){daily=daily.slice(-30);let html="";for(let i=daily.length-1;i>=0;i--){let x=daily[i];let col=x.p>=0?"#2D9CFF":"#ff4d6a";html+="<tr><td>"+x.date+"</td><td style='color:"+col+"'>"+(x.p>=0?"+":"")+"$"+x.p.toFixed(2)+"</td><td style='color:#2D9CFF'>"+x.w+"</td><td style='color:#ff4d6a'>"+x.l+"</td></tr>";}document.getElementById('daily').innerHTML=html;
+let labels=daily.map(a=>a.date.split(' ').slice(0,2).join(' '));let balStart=2698.5-daily.reduce((a,b)=>a+b.p,0);let eq=[],cur=balStart;for(let d of daily){cur+=d.p;eq.push(cur);}
+const ctx=document.getElementById('eq').getContext('2d');let grad=ctx.createLinearGradient(0,0,0,210);grad.addColorStop(0,'rgba(45,156,255,0.45)');grad.addColorStop(1,'rgba(45,156,255,0)');
+if(chartInst)chartInst.destroy();chartInst=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:'Equity $'+cur.toFixed(2),data:eq,borderColor:'#2D9CFF',backgroundColor:grad,fill:true,tension:0.4,borderWidth:2,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#8ca0b3',font:{family:'Times New Roman',size:10}}}},scales:{y:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',callback:v=>'$'+v}},x:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',maxTicksLimit:6,font:{size:8}}}}}});}
 
-function renderDaily(daily){
-daily=daily.slice(-30);
-let html="";for(let i=daily.length-1;i>=0;i--){
-let x=daily[i];let col=x.p>=0?"#2D9CFF":"#ff4d6a";
-html+="<tr><td>"+x.date+"</td><td style='color:"+col+"'>"+(x.p>=0?"+":"")+"$"+x.p.toFixed(2)+"</td><td style='color:#2D9CFF'>"+x.w+"</td><td style='color:#ff4d6a'>"+x.l+"</td></tr>";
-}
-document.getElementById('daily').innerHTML=html;
-
-// chart 30 hari
-let labels=daily.map(a=>a.date.split(' ').slice(0,2).join(' '));
-let balStart=2698.5-daily.reduce((a,b)=>a+b.p,0);let eq=[];let cur=balStart;for(let d of daily){cur+=d.p;eq.push(cur);}
-const ctx=document.getElementById('eq').getContext('2d');
-let grad=ctx.createLinearGradient(0,0,0,210);grad.addColorStop(0,'rgba(45,156,255,0.45)');grad.addColorStop(1,'rgba(45,156,255,0)');
-if(chartInst)chartInst.destroy();
-chartInst=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:'Equity $'+cur.toFixed(2),data:eq,borderColor:'#2D9CFF',backgroundColor:grad,fill:true,tension:0.4,borderWidth:2,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#8ca0b3',font:{family:'Times New Roman',size:10}}}},scales:{y:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',callback:v=>'$'+v}},x:{grid:{color:'#ffffff15'},ticks:{color:'#8ca0b3',maxTicksLimit:6,font:{size:8}}}}}});
-}
-
-window.onload=function(){
-let dummy=genDummy30();
-renderDaily(dummy);
-
+window.onload=function(){renderDaily(gen30());
 async function loadLive(){
 try{
-let r=await fetch(URL+"?t="+Date.now());let d=await r.json();
-if(d&&d.daily&&d.daily.length>0){renderDaily(d.daily);}
-if(d&&d.tx&&d.tx.length>0){
-let h="";for(let t of d.tx.slice(0,30)){let lot=t.lot||0.20;if(lot<0.1)lot=0.20;let col=t.p>=0?"#2D9CFF":"#ff4d6a";let s=t.p>=0?"+":"-";h+="<tr><td>"+t.dt+"</td><td>"+t.pos+"</td><td>"+lot.toFixed(2)+"</td><td style='color:"+col+"'>"+s+"$"+Math.abs(t.p).toFixed(2)+"</td></tr>";}
+let r=await fetch(URL+"?t="+Date.now());let d=await r.json();if(!d)return;
+if(d.daily&&d.daily.length>0)renderDaily(d.daily);
+if(d.tx&&d.tx.length>0){
+let h="";for(let t of d.tx.slice(0,30)){
+// *** LOT REALTIME DARI AKUN - TIDAK ADA FALLBACK 0.20 LAGI ***
+let rawLot = t.lot;
+if(rawLot===undefined) rawLot = t.volume;
+if(rawLot===undefined) rawLot = t.lots;
+if(rawLot===undefined) rawLot = t.Lot;
+let lotNum = parseFloat(rawLot);
+if(isNaN(lotNum)) lotNum = 0;
+let lotShow = lotNum.toFixed(2);
+let col = t.p>=0?"#2D9CFF":"#ff4d6a";
+let s = t.p>=0?"+":"-";
+h+=`<tr><td>${t.dt||t.time||'-'}</td><td>${t.pos||t.type||'-'}</td><td class="lot-realtime">${lotShow}</td><td style="color:${col}">${s}$${Math.abs(t.p||0).toFixed(2)}</td></tr>`;
+}
 document.getElementById('tx').innerHTML=h;
+if(d.balance)document.getElementById('bal').innerText="$"+Number(d.balance).toLocaleString('en-US',{minimumFractionDigits:2});
+if(d.profitToday!=null)document.getElementById('pt').innerText=(d.profitToday>=0?"+":"")+"$"+Number(d.profitToday).toFixed(2);
+if(d.summary)document.getElementById('tt').innerText=d.summary.total||d.tx.length;
 }
-}catch(e){}
+}catch(e){console.log(e)}
 }
-loadLive();setInterval(loadLive,3000);
-
-// tx dummy awal biar gak kosong
-let txh="";for(let i=0;i<30;i++){let isProfit=i%3!=0;let col=isProfit?"#2D9CFF":"#ff4d6a";txh+="<tr><td>09 Okt 06:"+(50-i).toString().padStart(2,'0')+"</td><td>"+(i%2==0?"BUY":"SELL")+"</td><td>0.20</td><td style='color:"+col+"'>"+(isProfit?"+":"-")+"$"+(Math.random()*20+1).toFixed(2)+"</td></tr>";}
-document.getElementById('tx').innerHTML=txh;
+loadLive();setInterval(loadLive,2000);
 };
 </script></body></html>
