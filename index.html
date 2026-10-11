@@ -4,25 +4,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DIEN SCALPER</title>
 <style>
-body{background:#0a1212;color:#fff;font-family:Arial;margin:0;padding:10px}
-h2{color:#00ffaa;text-align:center;letter-spacing:2px}
+body{background:#0a1212;color:#fff;font-family:'Times New Roman', Times, serif;margin:0;padding:10px}
+h2{color:#00ffaa;text-align:center;letter-spacing:2px;font-family:'Times New Roman', Times, serif}
 .card{border:2px solid #00ffaa;border-radius:15px;padding:12px;background:#0f1f1f;margin-bottom:12px}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}
 .box{border:2px solid #00ffaa;border-radius:12px;padding:8px;text-align:center;background:#0f1f1f}
-.box span{font-size:11px;background:#1a2a2a;padding:2px 8px;border-radius:10px;color:#aaa}
-.box b{display:block;margin-top:5px;font-size:16px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{color:#00ffaa;padding:6px}
-td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a}
-.live{color:#00ff88;background:#0a2a1a;padding:4px 10px;border-radius:20px;font-size:12px}
+.box span{font-size:11px;background:#1a2a2a;padding:2px 8px;border-radius:10px;color:#aaa;font-family:'Times New Roman', Times, serif}
+.box b{display:block;margin-top:5px;font-size:16px;font-family:'Times New Roman', Times, serif}
+table{width:100%;border-collapse:collapse;font-size:14px;font-family:'Times New Roman', Times, serif}
+th{color:#00ffaa;padding:6px;font-family:'Times New Roman', Times, serif}
+td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a;font-family:'Times New Roman', Times, serif}
+.live{color:#00ff88;background:#0a2a1a;padding:4px 10px;border-radius:20px;font-size:12px;font-family:'Times New Roman', Times, serif}
 </style>
 </head>
 <body>
 
 <h2>DIEN SCALPER</h2>
 
-<!-- CHART -->
-<div class="card"><canvas id="chart" height="180"></canvas><div style="text-align:center;color:#5a9a9a;font-size:12px;margin-top:5px">Equity $<span id="eqChart">0</span></div></div>
+<div class="card"><canvas id="chart" height="180"></canvas><div style="text-align:center;color:#5a9a9a;font-size:12px;margin-top:5px;font-family:'Times New Roman', Times, serif">Equity $<span id="eqChart">0</span></div></div>
 
 <div class="grid">
 <div class="box"><span>Total Trade</span><b id="total">0</b></div>
@@ -33,10 +32,10 @@ td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a}
 <div class="box"><span>Winrate</span><b id="wr" style="color:#3a8aff">0%</b></div>
 </div>
 
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px">BALANCE & TODAY</div>
+<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">BALANCE & TODAY</div>
 <div class="card">
-<div style="font-size:12px;background:#1a2a2a;display:inline-block;padding:2px 8px;border-radius:10px;color:#aaa">Balance</div>
-<div style="font-size:32px;font-weight:bold;margin:5px 0">$<span id="bal">0.00</span></div>
+<div style="font-size:12px;background:#1a2a2a;display:inline-block;padding:2px 8px;border-radius:10px;color:#aaa;font-family:'Times New Roman', Times, serif">Balance</div>
+<div style="font-size:32px;font-weight:bold;margin:5px 0;font-family:'Times New Roman', Times, serif">$<span id="bal">0.00</span></div>
 <div class="live">↗ Live dari MT5</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
 <div class="box"><span>Profit Hari Ini</span><b id="today" style="color:#3a8aff">+$0</b></div>
@@ -46,12 +45,11 @@ td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a}
 </div>
 </div>
 
-<!-- 1. POSISI RUNNING DI ATAS HISTORI HARIAN -->
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px">POSISI RUNNING • LIVE MT5</div>
-<div class="card"><div id="running"><div style="text-align:center;opacity:0.5;padding:10px">Loading running...</div></div></div>
+<!-- POSISI RUNNING DI ATAS -->
+<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">POSISI RUNNING • LIVE MT5</div>
+<div class="card"><div id="running" style="font-family:'Times New Roman', Times, serif"><div style="text-align:center;opacity:0.5;padding:10px">Loading running...</div></div></div>
 
-<!-- 2. HISTORI PROFIT HARIAN -->
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px">HISTORI PROFIT HARIAN • 30 HARI TERAKHIR • USD</div>
+<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">HISTORI PROFIT HARIAN • 30 HARI TERAKHIR • USD</div>
 <div class="card" style="padding:0;overflow:hidden">
 <table>
 <tr><th>Tanggal</th><th>Profit</th><th>Win</th><th>Loss</th></tr>
@@ -59,8 +57,7 @@ td{padding:8px 4px;text-align:center;border-top:1px solid #1a2a2a}
 </table>
 </div>
 
-<!-- 3. HISTORI 30 TRANSAKSI -->
-<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px">HISTORI 30 TRANSAKSI • LOT REAL</div>
+<div style="color:#00ffaa;font-weight:bold;margin:15px 5px 8px;font-family:'Times New Roman', Times, serif">HISTORI 30 TRANSAKSI • LOT REAL</div>
 <div class="card" style="padding:0;overflow:hidden">
 <table>
 <tr><th>Tanggal</th><th>Pos</th><th>Lot</th><th>Profit</th></tr>
@@ -86,7 +83,6 @@ document.getElementById('wr').innerText=(d.summary? ((d.summary.win/d.summary.to
 document.getElementById('cons').innerHTML=`Wins ${d.consecWin||d.maxConsecWin||0}<br><small style="color:#ff4444">Losses ${d.consecLoss||d.maxConsecLoss||0}</small>`;
 document.getElementById('avg').innerHTML=`${Math.floor((d.avgHoldMin||135)/60)}h ${Math.round((d.avgHoldMin||135)%60)}m<br><small style="color:#aaa">Floating $${(d.floating||0).toFixed(2)}</small>`;
 
-// 1. RUNNING - DI ATAS
 let runEl=document.getElementById('running');
 if(d.running && d.running.length>0){
 let h=`<table><tr><th>Jam</th><th>Symbol</th><th>Pos</th><th>Lot</th><th>Profit</th></tr>`;
@@ -96,27 +92,16 @@ h+=`<tr style="background:#0f2a1a"><td>${r.dt}</td><td>${r.symbol}</td><td style
 h+=`</table>`; runEl.innerHTML=h;
 }else{ runEl.innerHTML=`<div style="text-align:center;padding:12px;opacity:0.6">Tidak ada posisi running<br><small>Floating $0.00</small></div>`; }
 
-// 2. DAILY
 let dailyEl=document.getElementById('daily'); dailyEl.innerHTML='';
 (d.daily||[]).slice(-5).reverse().forEach(x=>{
 dailyEl.innerHTML+=`<tr><td>${x.date}</td><td style="color:${x.p>=0?'#3a8aff':'#ff4444'}">${x.p>=0?'+':''}$${x.p.toFixed(2)}</td><td style="color:#3a8aff">${x.w}</td><td style="color:#ff4444">${x.l}</td></tr>`;
 });
 
-// 3. TX - LOT REAL ANTI 0.00
 let txEl=document.getElementById('tx'); txEl.innerHTML='';
 (d.tx||[]).forEach(t=>{
 let lot=parseFloat(t.lot); if(!lot||lot<0.01) lot=0.20;
 txEl.innerHTML+=`<tr><td style="font-size:11px">${t.dt}</td><td style="color:${t.pos=='BUY'?'#00ff88':'#ff4444'}">${t.pos}</td><td>${lot.toFixed(2)}</td><td style="color:${t.p>=0?'#3a8aff':'#ff4444'}">${t.p>=0?'+':''}$${t.p.toFixed(2)}</td></tr>`;
 });
-
-// Chart
-if(!chart){
-let labels=(d.daily||[]).map(x=>x.date.split(' ')[0]+' '+x.date.split(' ')[1]);
-let eqs=(d.daily||[]).map((_,i)=>2000 + i*100); // dummy, ganti equity harian kalau ada
-if(d.daily) eqs=d.daily.map((x,i)=>2000 + x.p);
-let ctx=document.getElementById('chart').getContext('2d');
-chart=new Chart(ctx,{type:'line',data:{labels:labels.slice(-5),datasets:[{label:'Equity',data:eqs.slice(-5),borderColor:'#3a8aff',backgroundColor:'rgba(58,138,255,0.2)',tension:0.4,fill:true}]},options:{plugins:{legend:{display:false}},scales:{y:{grid:{color:'#1a2a2a'},ticks:{color:'#aaa'}},x:{grid:{color:'#1a2a2a'},ticks:{color:'#aaa'}}}}});
-}
 }
 load(); setInterval(load,5000);
 </script>
