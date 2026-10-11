@@ -5,18 +5,18 @@
 <title>DIEN SCALPER</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-body{background:#0a1212;color:#e8e8e8;font-family:'Times New Roman',Times,serif;margin:0;padding:10px;font-weight:400}
+body{background:#0a1212;color:#e8e8e8;font-family:'Times New Roman',Times,serif;margin:0;padding:10px;font-weight:400;-webkit-font-smoothing:antialiased}
 h2{color:#00ffaa;text-align:center;letter-spacing:1px;font-size:22px;margin:10px 0;font-weight:400}
-.card{border:1px solid #00ffaa;border-radius:14px;padding:11px;background:#101f1f;margin-bottom:10px}
+.card{border:1px solid rgba(0,255,170,0.7);border-radius:14px;padding:11px;background:#101f1f;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:10px 0}
-.box{border:1px solid rgba(0,255,170,0.5);border-radius:10px;padding:7px;text-align:center;background:#0f1f1f}
+.box{border:1px solid rgba(0,255,170,0.45);border-radius:10px;padding:7px;text-align:center;background:#0f1f1f}
 .box span{font-size:10px;background:#1a2a2a;padding:2px 8px;border-radius:10px;color:#888;display:inline-block;font-weight:400}
 .box b{display:block;margin-top:5px;font-size:14px;font-weight:400}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{color:#00ffaa;padding:6px;font-size:10px;font-weight:400;opacity:0.8}
+th{color:#00ffaa;padding:6px;font-size:10px;font-weight:400;opacity:0.8;letter-spacing:0.5px}
 td{padding:8px 4px;text-align:center;border-top:1px solid rgba(255,255,255,0.07);font-size:12px;font-weight:400}
 .live{color:#00ff88;background:#0a2a1a;padding:4px 10px;border-radius:20px;font-size:11px;display:inline-block;margin-top:6px}
-.title{color:#00ffaa;font-weight:400;margin:16px 5px 7px;font-size:14px}
+.title{color:#00ffaa;font-weight:400;margin:16px 5px 7px;font-size:14px;letter-spacing:0.8px}
 #chartWrap{position:relative;height:220px;width:100%}
 </style>
 </head>
@@ -46,7 +46,7 @@ td{padding:8px 4px;text-align:center;border-top:1px solid rgba(255,255,255,0.07)
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px">
 <div class="box"><span>Profit Hari Ini</span><b id="today" style="color:#7ab8ff">+$0</b></div>
 <div class="box"><span>Max DD</span><b id="dd" style="color:#ffaa55">+$0</b><small id="ddPct" style="display:block;color:#777;font-size:9px;margin-top:2px"></small></div>
-<div class="box"><span>Consecutive</span><b id="cons" style="font-size:12px">Wins 0<br><small>Losses 0</small></b><small id="consMax" style="color:#777;font-size:9px">Max: 0 / 0</small></div>
+<div class="box"><span>Consecutive (30)</span><b id="cons" style="font-size:12px">Wins 0<br><small>Losses 0</small></b><small id="consMax" style="color:#777;font-size:9px">Max: 0 / 0</small></div>
 <div class="box"><span>Floating</span><b id="avg" style="font-size:11px">0h 0m<br><small style="color:#777">Floating $0.00</small></b></div>
 </div>
 </div>
@@ -60,7 +60,6 @@ td{padding:8px 4px;text-align:center;border-top:1px solid rgba(255,255,255,0.07)
 <script>
 const URL="https://mrdien-scalper-default-rtdb.firebaseio.com/live/LIVE_MAIN.json";
 let chartObj=null;
-
 function drawChart(labels, equities){
   try{
     const ctx=document.getElementById('chart').getContext('2d');
@@ -74,21 +73,9 @@ function drawChart(labels, equities){
     if(pad<20) pad=20;
     chartObj=new Chart(ctx,{
       type:'line',
-      data:{
-        labels:labels,
-        datasets:[{
-          data:equities,
-          borderColor:'#00ffaa',
-          backgroundColor:grad,
-          borderWidth:1.2,
-          fill:true,
-          tension:0.35,
-          pointRadius:0
-        }]
-      },
+      data:{labels:labels,datasets:[{data:equities,borderColor:'#00ffaa',backgroundColor:grad,borderWidth:1.2,fill:true,tension:0.35,pointRadius:0}]},
       options:{
-        responsive:true,
-        maintainAspectRatio:false,
+        responsive:true,maintainAspectRatio:false,
         plugins:{legend:{display:false}},
         scales:{
           x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6a8a8a',font:{family:'Times New Roman',size:9},maxTicksLimit:6}},
@@ -96,31 +83,25 @@ function drawChart(labels, equities){
         }
       }
     });
-  }catch(e){console.log('chart err',e)}
+  }catch(e){console.log('chart',e)}
 }
-
 async function load(){
   try{
     let r=await fetch(URL);
-    if(!r.ok) throw new Error('fetch '+r.status);
     let d=await r.json();
-    console.log('DATA',d);
-    if(!d ||!d.balance){
-      document.getElementById('bal').innerText='NO DATA';
-      return;
-    }
+    if(!d ||!d.balance) return;
     document.getElementById('bal').innerText=Number(d.balance).toLocaleString('en-US',{minimumFractionDigits:2});
     document.getElementById('total').innerText=d.summary?.total||0;
     document.getElementById('profit').innerText='+ $'+((d.summary?.profit||0)/1000).toFixed(2)+'K';
-    document.getElementById('loss').innerText='- $'+(Math.abs(d.summary?.lossSum||d.summary?.loss||0)/1000).toFixed(2)+'K';
+    document.getElementById('loss').innerText='- $'+(Math.abs(d.summary?.lossSum||0)/1000).toFixed(2)+'K';
     document.getElementById('today').innerText=(d.profitToday>=0?'+':'')+'$'+(d.profitToday||0).toFixed(2);
     document.getElementById('avg').innerHTML='2h 15m<br><small style="color:#777">Floating $'+(d.floating||0).toFixed(2)+'</small>';
 
-    // equity curve
+    // Equity curve
     let equities=[], labels=[], startBal=0;
     if(d.daily && d.daily.length>0){
-      let totProf = d.daily.reduce((a,b)=>a+(b.p||0),0);
-      startBal = (d.balance||0) - totProf - (d.floating||0);
+      let totProf=d.daily.reduce((a,b)=>a+(b.p||0),0);
+      startBal=(d.balance||0)-totProf-(d.floating||0);
       let run=startBal;
       d.daily.forEach(function(x){run+=x.p; labels.push((x.date||'').split(' ')[0]); equities.push(run);});
       labels.push('Live'); equities.push(d.equity||d.balance);
@@ -131,17 +112,15 @@ async function load(){
     let peak=equities[0], maxDD=0;
     equities.forEach(function(v){if(v>peak) peak=v; let dd=v-peak; if(dd<maxDD) maxDD=dd;});
     if(Math.abs(d.maxDD||0)>Math.abs(maxDD)) maxDD=d.maxDD;
-    let ddEl=document.getElementById('dd');
-    ddEl.innerText=(maxDD>=0?'+':'')+'$'+maxDD.toFixed(2);
-    ddEl.style.color=maxDD<0?'#ff6b6b':'#ffaa55';
+    document.getElementById('dd').innerText=(maxDD>=0?'+':'')+'$'+maxDD.toFixed(2);
+    document.getElementById('dd').style.color=maxDD<0?'#ff6b6b':'#ffaa55';
     document.getElementById('ddPct').innerText=(peak>0?(maxDD/peak*100).toFixed(2)+'%':'')+' dari $'+peak.toFixed(0);
-
     drawChart(labels, equities);
     document.getElementById('eqStart').innerText='Start $'+startBal.toFixed(2);
     document.getElementById('eqEnd').innerText='Equity $'+Number(d.equity||d.balance).toFixed(2);
-    document.getElementById('eqGain').innerText='+ $'+(equities[equities.length-1]-startBal).toFixed(2);
+    document.getElementById('eqGain').innerText=(equities[equities.length-1]-startBal>=0?'+ $':'- $')+Math.abs(equities[equities.length-1]-startBal).toFixed(2);
 
-    // consecutive dari tx
+    // Consecutive dari 30 trade terakhir
     let txList=d.tx||[];
     let curWin=0,curLoss=0,maxWin=0,maxLoss=0,tmpW=0,tmpL=0;
     if(txList.length>0){
@@ -151,11 +130,10 @@ async function load(){
       let rev=[...txList].reverse();
       rev.forEach(function(t){if(t.p>0){tmpW++; tmpL=0; if(tmpW>maxWin) maxWin=tmpW;}else if(t.p<0){tmpL++; tmpW=0; if(tmpL>maxLoss) maxLoss=tmpL;}});
     }
-    if(curWin==0 && curLoss==0){curWin=d.consecWin||d.maxConsecWin||0; curLoss=d.consecLoss||d.maxConsecLoss||0; maxWin=d.maxConsecWin||maxWin; maxLoss=d.maxConsecLoss||maxLoss;}
     document.getElementById('cons').innerHTML='<span style="color:#7ab8ff">Wins '+curWin+'</span><br><small style="color:#ff6b6b">Losses '+curLoss+'</small>';
     document.getElementById('consMax').innerText='Max: '+maxWin+' / '+maxLoss;
 
-    document.getElementById('pf').innerText=(d.summary&&d.summary.lossSum?Math.abs(d.summary.profit/d.summary.lossSum):0.97).toFixed(2);
+    document.getElementById('pf').innerText=(d.summary&&d.summary.lossSum?Math.abs(d.summary.profit/d.summary.lossSum):0).toFixed(2);
     document.getElementById('wr').innerText=(d.summary&&d.summary.total?(d.summary.win/d.summary.total*100):0).toFixed(1)+'%';
 
     let runEl=document.getElementById('running');
@@ -166,12 +144,8 @@ async function load(){
     }else{runEl.innerHTML='<div style="text-align:center;padding:12px;opacity:0.5;font-size:12px">Tidak ada posisi running<br><small>Floating $'+(d.floating||0).toFixed(2)+'</small></div>';}
 
     document.getElementById('daily').innerHTML=(d.daily||[]).slice(-10).reverse().map(function(x){return '<tr><td style="font-size:11px">'+x.date+'</td><td style="color:'+(x.p>=0?'#7ab8ff':'#ff6b6b')+'">'+(x.p>=0?'+':'')+'$'+x.p.toFixed(2)+'</td><td>'+x.w+'</td><td>'+x.l+'</td></tr>';}).join('');
-    document.getElementById('tx').innerHTML=(d.tx||[]).slice(0,20).map(function(t){let lot=parseFloat(t.lot)||0.20; return '<tr><td style="font-size:11px">'+t.dt+'</td><td style="color:'+(t.pos=='BUY'?'#00ffaa':'#ff6b6b')+'">'+t.pos+'</td><td>'+lot.toFixed(2)+'</td><td style="color:'+(t.p>=0?'#7ab8ff':'#ff6b6b')+'">'+(t.p>=0?'+':'')+'$'+t.p.toFixed(2)+'</td></tr>';}).join('');
-
-  }catch(e){
-    console.log('LOAD ERR',e);
-    document.getElementById('bal').innerText='ERR '+e.message;
-  }
+    document.getElementById('tx').innerHTML=(d.tx||[]).slice(0,30).map(function(t){let lot=parseFloat(t.lot)||0.20; return '<tr><td style="font-size:11px">'+t.dt+'</td><td style="color:'+(t.pos=='BUY'?'#00ffaa':'#ff6b6b')+'">'+t.pos+'</td><td>'+lot.toFixed(2)+'</td><td style="color:'+(t.p>=0?'#7ab8ff':'#ff6b6b')+'">'+(t.p>=0?'+':'')+'$'+t.p.toFixed(2)+'</td></tr>';}).join('');
+  }catch(e){console.log(e)}
 }
 load();
 setInterval(load,5000);
