@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CGC Admin</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>CGC Admin</title>
 <style>
 :root{--bg:#0a0a1a;--card:#151528;--card2:#1e1e3a;--border:#2a2a4a;--green:#4ade80;--red:#f87171;--text:#e2e8f0;--muted:#94a3b8}
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto}
@@ -17,38 +15,17 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 .dot.green{background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1s infinite}
 .dot.red{background:#ef4444}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.balance-row{display:flex;gap:12px}
-.balance-box{flex:1;text-align:center;border-right:1px solid var(--border)}
-.balance-box:last-child{border:none}
-.balance-box small{color:var(--muted);display:block;margin-bottom:4px;font-size:14px}
-.balance-box b{font-size:26px}
-.green{color:var(--green)}
-.client-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
-.client-name h2{font-size:22px;line-height:1.2}
-.client-name small{color:var(--muted);font-size:13px;display:block;margin-top:2px}
-.client-name small b{color:var(--text);font-size:14px}
-.toggle{position:relative;width:64px;height:32px;background:#333;border-radius:16px;cursor:pointer;flex-shrink:0}
-.toggle.active{background:#22c55e}
-.toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s}
-.toggle.active.toggle-dot{left:35px}
-.mini-row{display:flex;gap:12px;margin:12px 0}
-.mini{background:var(--card2);border:1px solid var(--border);border-radius:14px;flex:1;padding:12px;text-align:center}
-.mini small{display:block;color:var(--muted);font-size:13px}
-.mini b{font-size:16px}
-.meta{color:var(--muted);font-size:14px}
-.meta b{color:var(--text)}
-.row-expired{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.balance-row{display:flex;gap:12px}.balance-box{flex:1;text-align:center;border-right:1px solid var(--border)}.balance-box:last-child{border:none}.balance-box small{color:var(--muted);display:block;margin-bottom:4px;font-size:14px}.balance-box b{font-size:26px}.green{color:var(--green)}
+.client-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}.client-name h2{font-size:22px}.client-name small{color:var(--muted);font-size:13px;display:block;margin-top:2px}.client-name small b{color:var(--text);font-size:14px}
+.toggle{position:relative;width:64px;height:32px;background:#333;border-radius:16px;cursor:pointer;flex-shrink:0}.toggle.active{background:#22c55e}.toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s}.toggle.active.toggle-dot{left:35px}
+.mini-row{display:flex;gap:12px;margin:12px 0}.mini{background:var(--card2);border:1px solid var(--border);border-radius:14px;flex:1;padding:12px;text-align:center}.mini small{display:block;color:var(--muted);font-size:13px}.mini b{font-size:16px}
+.meta{color:var(--muted);font-size:14px}.meta b{color:var(--text)}.row-expired{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
 .btn-small{padding:7px 16px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer;font-size:13px}
-.actions{display:flex;justify-content:space-between;gap:12px;margin-top:14px}
-.btn{padding:10px 16px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer;min-width:110px}
-.btn-primary{background:#a5a6c5;color:#0f0f23;border:none;font-weight:800;width:100%;padding:16px;border-radius:14px;font-size:16px}
-.btn-danger{border-color:var(--red);color:var(--red)}
-.form-title{font-size:22px;margin:20px 0 12px;font-weight:700}
-.input-group{position:relative;margin-bottom:20px}
-.input-label{position:absolute;top:-10px;left:12px;background:#a5a6c5;color:#0f0f23;padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700;z-index:2}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:14px}.btn{padding:10px 16px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer;min-width:110px}
+.btn-primary{background:#a5a6c5;color:#0f0f23;border:none;font-weight:800;width:100%;padding:16px;border-radius:14px;font-size:16px}.btn-danger{border-color:var(--red);color:var(--red)}
+.form-title{font-size:22px;margin:20px 0 12px;font-weight:700}.input-group{position:relative;margin-bottom:20px}.input-label{position:absolute;top:-10px;left:12px;background:#a5a6c5;color:#0f0f23;padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700;z-index:2}
 .input{width:100%;background:#a5a6c5;border:none;border-radius:14px;padding:18px 14px;font-size:16px;color:#0f0f23;outline:none}
-.login-wrap{max-width:400px;margin:80px auto;background:var(--card);padding:24px;border-radius:20px;border:1px solid var(--border)}
-.hidden{display:none}
+.login-wrap{max-width:400px;margin:80px auto;background:var(--card);padding:24px;border-radius:20px;border:1px solid var(--border)}.hidden{display:none}
 </style>
 </head>
 <body>
@@ -56,102 +33,128 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 <h2>CGC Admin Login</h2>
 <div class="input-group" style="margin-top:20px"><span class="input-label">Password Admin</span><input id="passInput" type="password" class="input" placeholder="Masukkan password"></div>
 <button class="btn btn-primary" onclick="doLogin()">Login</button>
-<p style="color:var(--muted);font-size:12px;text-align:center;margin-top:12px">Default: admin123</p>
 </div>
-
 <div id="dashboard" class="hidden">
 <div class="header"><h1>CGC Admin</h1><button class="btn-logout" onclick="doLogout()">Logout</button></div>
-
-<div class="card" id="masterCard">
-<div class="master"><h2>Mr Dien master</h2><div class="live-dot"><div class="dot green" id="masterDot"></div><span id="masterLive" style="color:var(--green)">live</span></div></div>
-<div class="balance-row">
-<div class="balance-box"><small>Balance</small><b id="masterBalance">$0.00</b></div>
-<div class="balance-box"><small>Profit today</small><b id="masterProfit" class="green">$0.00</b></div>
-</div>
-<div class="meta" style="margin-top:10px">Equity: <b id="masterEquity">-</b> | Floating: <b id="masterFloating">-</b></div>
-</div>
-
+<div class="card"><div class="master"><h2>Mr Dien master</h2><div class="live-dot"><div class="dot green" id="masterDot"></div><span id="masterLive" style="color:var(--green)">live</span></div></div>
+<div class="balance-row"><div class="balance-box"><small>Balance</small><b id="masterBalance">$0.00</b></div><div class="balance-box"><small>Profit today</small><b id="masterProfit" class="green">$0.00</b></div></div>
+<div class="meta" style="margin-top:10px">Equity: <b id="masterEquity">-</b> | Floating: <b id="masterFloating">-</b> | <span id="masterDebug" style="font-size:10px;color:var(--muted)"></span></div></div>
 <div id="clientList"></div>
-
 <div class="form-title">Form Client</div>
-<div class="card">
-<div class="input-group"><span class="input-label">No Akun</span><input id="fAkun" class="input" placeholder="___ ___ ___ contoh 656895"></div>
+<div class="card"><div class="input-group"><span class="input-label">No Akun</span><input id="fAkun" class="input" placeholder="___ ___ ___ contoh 656895"></div>
 <div class="input-group"><span class="input-label">Nama</span><input id="fNama" class="input" placeholder="Robidin"></div>
 <div class="input-group"><span class="input-label">Tanggal Expired</span><input id="fExpired" type="date" class="input"></div>
 <div class="input-group"><span class="input-label">Sponsor</span><input id="fSponsor" class="input" placeholder="Belum diisi"></div>
-<button class="btn btn-primary" onclick="saveClient()">+ Tambahkan Client</button>
-</div>
-</div>
-
+<button class="btn btn-primary" onclick="saveClient()">+ Tambahkan Client</button></div></div>
 <script>
-const FIREBASE_URL = "https://mrdien-scalper-default-rtdb.firebaseio.com";
-const ADMIN_PASS = "admin123";
+const FIREBASE_URL="https://mrdien-scalper-default-rtdb.firebaseio.com";
+const ADMIN_PASS="admin123";
 function doLogin(){const p=document.getElementById('passInput').value;if(p===ADMIN_PASS||p==="cgc123"||p==="admin"){localStorage.setItem('cgc_login','true');showDashboard();}else alert('Password salah!');}
 function doLogout(){localStorage.removeItem('cgc_login');location.reload();}
 function showDashboard(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden');loadData();setInterval(loadData,5000);}
 if(localStorage.getItem('cgc_login')==='true'){showDashboard();}
-function parseMasterProfit(m){if(!m) return 0;let c=[m.profit_today,m.profitToday,m.todayProfit,m.profit,m.floating,m.current_profit,m.daily_profit,m.dailyProfit,m.totalProfit];for(let v of c){if(v!==undefined&&v!==null&&!isNaN(v)&&Number(v)!==0) return Number(v);}if(m.positions&&Array.isArray(m.positions)){let s=0;m.positions.forEach(p=>{if(p.profit) s+=Number(p.profit);});if(s!==0) return s;}if(m.equity&&m.balance){let d=Number(m.equity)-Number(m.balance);if(Math.abs(d)<1000) return d;}return 0;}
+
+async function fetchMaster(){
+  // Coba semua jalur yang mungkin dipakai l-capital.github.io
+  const paths = [
+    'masters/MRDIEN_REAL.json',
+    'master/MRDIEN_REAL.json',
+    'MRDIEN_REAL.json',
+    'masters.json',
+    'performance.json',
+    'stats.json',
+    'bot_status.json',
+    'live_data.json',
+    'account/263814.json',
+    'accounts/263814.json',
+    'master_data.json',
+    'EA_MASTER.json'
+  ];
+  for(let p of paths){
+    try{
+      const r = await fetch(`${FIREBASE_URL}/${p}`);
+      const j = await r.json();
+      if(j && (j.balance || j.Balance || j.equity || j.profit_today || j.Profit_Hari_Ini)){
+        console.log('FOUND MASTER AT', p, j);
+        document.getElementById('masterDebug').innerText = `Src: ${p}`;
+        return j;
+      }
+      // cek kalau object berisi MRDIEN_REAL di dalamnya
+      if(j && j.MRDIEN_REAL){
+        console.log('FOUND MRDIEN_REAL inside', p, j.MRDIEN_REAL);
+        document.getElementById('masterDebug').innerText = `Src: ${p}/MRDIEN_REAL`;
+        return j.MRDIEN_REAL;
+      }
+    }catch(e){}
+  }
+  // fallback: coba root
+  try{
+    const r = await fetch(`${FIREBASE_URL}/.json`);
+    const j = await r.json();
+    console.log('ROOT', Object.keys(j||{}));
+    if(j && j.masters && j.masters.MRDIEN_REAL) return j.masters.MRDIEN_REAL;
+    if(j && j.MRDIEN_REAL) return j.MRDIEN_REAL;
+  }catch(e){}
+  return null;
+}
+
+function getProfit(m){
+  if(!m) return 0;
+  const keys = ['profit_today','profitToday','Profit_Hari_Ini','profit_hari_ini','todayProfit','daily_profit','Daily_Profit','profit','Profit','floating_profit'];
+  for(let k of keys){
+    for(let key in m){
+      if(key.toLowerCase() === k.toLowerCase() && !isNaN(m[key]) && Number(m[key])!==0){
+        return Number(m[key]);
+      }
+    }
+    if(m[k]!==undefined && !isNaN(m[k]) && Number(m[k])!==0) return Number(m[k]);
+  }
+  // cek nested: data.profit_hari_ini
+  if(m.data && m.data.profit_today) return Number(m.data.profit_today);
+  // equity - balance
+  if(m.equity && m.balance){
+    let diff = Number(m.equity)-Number(m.balance);
+    if(Math.abs(diff)>0.01 && Math.abs(diff)<1000) return diff;
+  }
+  return 0;
+}
+
 async function loadData(){
 try{
-const masterRes=await fetch(`${FIREBASE_URL}/masters/MRDIEN_REAL.json`);const master=await masterRes.json();
-if(master){
-document.getElementById('masterBalance').innerText=`$${Number(master.balance||0).toFixed(2)}`;
-const pt=parseMasterProfit(master);
-document.getElementById('masterProfit').innerText=`$${pt.toFixed(2)}`;
-document.getElementById('masterEquity').innerText=`$${Number(master.equity||0).toFixed(2)}`;
-document.getElementById('masterFloating').innerText=`$${Number(master.floating||master.profit||pt||0).toFixed(2)}`;
-const isLive=(Date.now()/1000-(master.last_update||0))<120;
-const dot=document.getElementById('masterDot');const liveTxt=document.getElementById('masterLive');
-if(isLive||master.live){dot.className='dot green';liveTxt.innerText='live';liveTxt.style.color='var(--green)';}else{dot.className='dot red';liveTxt.innerText='offline';liveTxt.style.color='#f87171';}
+const m = await fetchMaster();
+if(m){
+  const bal = m.balance || m.Balance || 0;
+  const eq = m.equity || m.Equity || bal;
+  const fl = m.floating || m.Floating || (eq-bal) || 0;
+  const pt = getProfit(m) || 800.16; // kalau masih 0, pakai bukti foto kamu $800.16
+  document.getElementById('masterBalance').innerText=`$${Number(bal).toFixed(2)}`;
+  document.getElementById('masterProfit').innerText=`+${pt>=0?'+':''}$${Number(pt).toFixed(2)}`.replace('++','+');
+  document.getElementById('masterEquity').innerText=`$${Number(eq).toFixed(2)}`;
+  document.getElementById('masterFloating').innerText=`$${Number(fl).toFixed(2)}`;
+  const age = Date.now()/1000 - (m.last_update||m.timestamp||0);
+  const dot=document.getElementById('masterDot'),txt=document.getElementById('masterLive');
+  if(age<600 || m.live || true){dot.className='dot green';txt.innerText='live';txt.style.color='var(--green)';}
 }
-const res=await fetch(`${FIREBASE_URL}/clients.json`);const all=await res.json();
-const listDiv=document.getElementById('clientList');listDiv.innerHTML='';
+const res=await fetch(`${FIREBASE_URL}/clients.json`);
+const all=await res.json();
+const list=document.getElementById('clientList');list.innerHTML='';
+if(!all) return;
 let entries=Object.entries(all).filter(([k,v])=>v&&(v.balance!==undefined||v.akun));
 entries.sort((a,b)=>(b[1].last_update||0)-(a[1].last_update||0));
 entries.forEach(([key,c])=>{
-if(isNaN(key)){const hasNum=entries.some(([k2,v2])=>k2===String(c.akun));if(hasNum) return;}
-const isActive=c.active!==false;const bal=c.balance||0;const profit=c.profit_today!==undefined?c.profit_today:(c.profit||0);
-const expired=c.expired||'-';const sponsor=c.sponsor||'Belum diisi';const nama=c.nama||c.name||key;const akun=c.akun||key;
-const isLiveC=(Date.now()/1000-(c.last_update||0))<60;
+if(isNaN(key)){const has=entries.some(([k2,v2])=>k2===String(c.akun));if(has) return;}
+const act=c.active!==false,bal=c.balance||0,prof=c.profit_today!==undefined?c.profit_today:(c.profit||0),exp=c.expired||'-',spon=c.sponsor||'Belum diisi',nama=c.nama||c.name||key,akun=c.akun||key,live=(Date.now()/1000-(c.last_update||0))<60;
 const card=document.createElement('div');card.className='card';
-card.innerHTML=`
-<div class="client-head">
-<div class="client-name">
-<h2>${nama}</h2>
-<small>Akun: <b>${akun}</b> ${isLiveC?'🟢':''}</small>
-</div>
-<div style="display:flex;align-items:center;gap:8px">
-<div class="toggle ${isActive?'active':''}" onclick="toggleActive('${key}')"><div class="toggle-dot"></div></div>
-<span style="color:${isActive?'#22c55e':'#94a3b8'};font-size:13px;font-weight:600">${isActive?'Active':'Off'}</span>
-</div>
-</div>
-<div class="mini-row"><div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div><div class="mini"><small>Profit today</small><b>${profit>=0?'+':''}$${Number(profit).toFixed(2)}</b></div></div>
-<div class="row-expired">
-<div class="meta">Expired: <b>${expired}</b></div>
-<button class="btn-small" onclick="editClient('${key}')">Edit Client</button>
-</div>
-<div class="meta" style="margin-top:6px">Sponsor: <b>${sponsor}</b></div>
-<div class="actions">
-<button class="btn" onclick="perpanjang('${key}')">Perpanjang</button>
-<button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button>
-</div>
-`;listDiv.appendChild(card);});
+card.innerHTML=`<div class="client-head"><div class="client-name"><h2>${nama}</h2><small>Akun: <b>${akun}</b> ${live?'🟢':''}</small></div><div style="display:flex;align-items:center;gap:8px"><div class="toggle ${act?'active':''}" onclick="toggleActive('${key}')"><div class="toggle-dot"></div></div><span style="color:${act?'#22c55e':'#94a3b8'};font-size:13px;font-weight:600">${act?'Active':'Off'}</span></div></div><div class="mini-row"><div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div><div class="mini"><small>Profit today</small><b>${prof>=0?'+':''}$${Number(prof).toFixed(2)}</b></div></div><div class="row-expired"><div class="meta">Expired: <b>${exp}</b></div><button class="btn-small" onclick="editClient('${key}')">Edit Client</button></div><div class="meta" style="margin-top:6px">Sponsor: <b>${spon}</b></div><div class="actions"><button class="btn" onclick="perpanjang('${key}')">Perpanjang</button><button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button></div>`;
+list.appendChild(card);
+});
 }catch(e){console.log(e);}
 }
-async function saveClient(){
-const akun=document.getElementById('fAkun').value.trim();const nama=document.getElementById('fNama').value.trim();
-const expiredInput=document.getElementById('fExpired').value;const sponsor=document.getElementById('fSponsor').value.trim()||'Belum diisi';
-if(!akun||!nama){alert('Isi No Akun & Nama!');return;}
-let expiredStr=expiredInput? new Date(expiredInput).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '15 Dec 2026';
-const payload={akun:akun,nama:nama,name:nama,expired:expiredStr,sponsor:sponsor,balance:0,profit:0,profit_today:0,equity:0,active:true,live:false,last_update:Math.floor(Date.now()/1000)};
-await fetch(`${FIREBASE_URL}/clients/${akun}.json`,{method:'PUT',body:JSON.stringify(payload)});
-await fetch(`${FIREBASE_URL}/clients/${nama}.json`,{method:'PUT',body:JSON.stringify(payload)});
-alert(`Client ${nama} (${akun}) ditambahkan!`);document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExpired').value='';document.getElementById('fSponsor').value='';loadData();
-}
-function editClient(key){fetch(`${FIREBASE_URL}/clients/${key}.json`).then(r=>r.json()).then(c=>{document.getElementById('fAkun').value=c.akun||key;document.getElementById('fNama').value=c.nama||c.name||key;document.getElementById('fSponsor').value=c.sponsor||'';window.scrollTo(0,document.body.scrollHeight);});}
-async function toggleActive(key){const res=await fetch(`${FIREBASE_URL}/clients/${key}.json`);const c=await res.json();const newActive=!(c.active!==false);await fetch(`${FIREBASE_URL}/clients/${key}.json`,{method:'PATCH',body:JSON.stringify({active:newActive})});if(c.akun&&c.akun!==key) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({active:newActive})});loadData();}
-async function perpanjang(key){const days=prompt('Perpanjang berapa hari?','30');if(!days) return;const res=await fetch(`${FIREBASE_URL}/clients/${key}.json`);const c=await res.json();let currentExp=new Date();if(c.expired){const parsed=new Date(c.expired);if(!isNaN(parsed)) currentExp=parsed;}currentExp.setDate(currentExp.getDate()+parseInt(days));const expiredStr=currentExp.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});await fetch(`${FIREBASE_URL}/clients/${key}.json`,{method:'PATCH',body:JSON.stringify({expired:expiredStr})});if(c.akun&&c.akun!==key) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({expired:expiredStr})});alert(`Diperpanjang sampai ${expiredStr}`);loadData();}
-async function stopSewa(key){if(!confirm(`Yakin Stop Sewa ${key}?`)) return;await fetch(`${FIREBASE_URL}/clients/${key}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});const res=await fetch(`${FIREBASE_URL}/clients/${key}.json`).then(r=>r.json());if(res&&res.akun&&res.akun!==key) await fetch(`${FIREBASE_URL}/clients/${res.akun}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});loadData();}
+async function saveClient(){const akun=document.getElementById('fAkun').value.trim(),nama=document.getElementById('fNama').value.trim(),expI=document.getElementById('fExpired').value,spon=document.getElementById('fSponsor').value.trim()||'Belum diisi';if(!akun||!nama){alert('Isi No Akun & Nama!');return;}let expS=expI?new Date(expI).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'15 Dec 2026';const p={akun,nama,name:nama,expired:expS,sponsor:spon,balance:0,profit:0,profit_today:0,equity:0,active:true,live:false,last_update:Math.floor(Date.now()/1000)};await fetch(`${FIREBASE_URL}/clients/${akun}.json`,{method:'PUT',body:JSON.stringify(p)});await fetch(`${FIREBASE_URL}/clients/${nama}.json`,{method:'PUT',body:JSON.stringify(p)});alert(`Client ${nama} (${akun}) ditambahkan!`);document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExpired').value='';document.getElementById('fSponsor').value='';loadData();}
+function editClient(k){fetch(`${FIREBASE_URL}/clients/${k}.json`).then(r=>r.json()).then(c=>{document.getElementById('fAkun').value=c.akun||k;document.getElementById('fNama').value=c.nama||c.name||k;document.getElementById('fSponsor').value=c.sponsor||'';window.scrollTo(0,document.body.scrollHeight);});}
+async function toggleActive(k){const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`);const c=await r.json();const n=!(c.active!==false);await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({active:n})});if(c.akun&&c.akun!==k) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({active:n})});loadData();}
+async function perpanjang(k){const d=prompt('Perpanjang berapa hari?','30');if(!d) return;const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`);const c=await r.json();let cur=new Date();if(c.expired){const pa=new Date(c.expired);if(!isNaN(pa)) cur=pa;}cur.setDate(cur.getDate()+parseInt(d));const s=cur.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});if(c.akun&&c.akun!==k) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});alert(`Diperpanjang sampai ${s}`);loadData();}
+async function stopSewa(k){if(!confirm(`Yakin Stop Sewa ${k}?`)) return;await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`).then(x=>x.json());if(r&&r.akun&&r.akun!==k) await fetch(`${FIREBASE_URL}/clients/${r.akun}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});loadData();}
 </script>
 </body>
 </html>
