@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -7,21 +6,21 @@
 <title>CGC - Central Global Capital</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0e0f24;color:#fff;font-family:'Inter',sans-serif;min-height:100vh}
+body{background:#15172e;color:#fff;font-family:'Inter',sans-serif;min-height:100vh}
 #loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0e0f24}
 .login-box{background:#1a1c33;border:1px solid #2a2d50;border-radius:18px;padding:36px 32px;width:92%;max-width:380px;text-align:center}
-.login-box.cgc-logo{font-family:'Times New Roman',Times,serif;font-size:72px;font-weight:900;color:#fff;letter-spacing:2px}
-.login-box h2{font-size:14px;letter-spacing:2px;margin:6px 0;color:#fff}
-.login-box p{font-size:13px;color:#888;margin-bottom:20px;font-style:italic}
+.login-box.cgc-logo{font-family:'Times New Roman',Times,serif;font-size:96px;font-weight:900;color:#fff;line-height:0.9;letter-spacing:1px}
+.login-box h2{font-size:12px;letter-spacing:3px;margin:12px 0 4px;color:#fff}
+.login-box p{font-size:13px;color:#8a8db0;margin-bottom:20px;font-style:italic}
 .login-box input{width:100%;background:#252847;border:1px solid #3a3d66;border-radius:10px;padding:13px 14px;color:#fff;margin-bottom:12px;outline:none}
 .login-box button{width:100%;background:#3a3d80;border:none;border-radius:10px;padding:13px;font-weight:700;cursor:pointer;color:#fff}
 #err{color:#ff6b6b;font-size:12px;margin-top:10px;display:none}
 #app{display:none;max-width:440px;margin:0 auto;background:#15172e;min-height:100vh;padding-bottom:30px}
-.header-top{text-align:center;padding:48px 20px 18px;position:relative}
-.header-top.cgc{font-family:'Times New Roman',Times,serif!important;font-size:84px!important;font-weight:800!important;color:#fff!important;line-height:0.9!important;letter-spacing:1px!important;display:block!important}
-.header-top.title{font-size:14px!important;letter-spacing:3px!important;font-weight:700!important;color:#fff!important;margin-top:12px!important}
-.header-top.sub{font-size:14px!important;color:#a0a3c0!important;font-style:italic!important;margin-top:6px!important}
-.logout-btn{position:absolute;top:16px;right:16px;background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer}
+.header-main{text-align:center;padding:55px 20px 22px;position:relative;background:#15172e}
+.header-main.cgc{font-family:'Times New Roman',Times,serif;font-size:120px;font-weight:700;color:#ffffff;line-height:0.82;letter-spacing:-1px;display:block}
+.header-main.title{font-family:'Inter',sans-serif;font-size:15px;letter-spacing:4.8px;font-weight:700;color:#fff;margin-top:16px;text-transform:uppercase}
+.header-main.sub{font-family:'Inter',sans-serif;font-size:14px;color:#c5c7db;font-style:italic;margin-top:8px;font-weight:400}
+.logout-btn{position:absolute;top:18px;right:18px;background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer}
 .top-card{background:transparent;border:1.5px solid #4a4d7a;border-radius:16px;padding:16px 18px;margin:0 16px 14px}
 .top-card-head{display:flex;justify-content:space-between;align-items:center}
 .top-card-name{font-weight:600;font-size:15px}
@@ -31,7 +30,7 @@ body{background:#0e0f24;color:#fff;font-family:'Inter',sans-serif;min-height:100
 .balance-row-top{display:flex;justify-content:space-between;text-align:center;margin-top:12px}
 .balance-col{flex:1}
 .balance-lbl{font-size:13px;color:#8a8db0}
-.balance-val{font-size:22px;font-weight:800;margin-top:2px}
+.balance-val{font-size:24px;font-weight:800;margin-top:2px}
 .balance-val.green{color:#6fdb8a}
 .divider-v{width:1px;background:#2a2d50;margin:0 10px}
 .card{background:transparent;border:1.5px solid #4a4d7a;border-radius:16px;padding:16px 18px;margin:0 16px 14px}
@@ -49,10 +48,10 @@ body{background:#0e0f24;color:#fff;font-family:'Inter',sans-serif;min-height:100
 .mini-card.lbl{font-size:11px;color:#8a8db0}
 .mini-card.val{font-size:16px;font-weight:800;margin-top:2px}
 .mini-card.val.green{color:#6fdb8a}
-.exp-row-new{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.exp-info-new{line-height:1.8;font-size:13px;color:#8a8db0}
+.exp-row-new{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.exp-info-new{line-height:1.9;font-size:13px;color:#8a8db0}
 .exp-info-new b{color:#fff;font-weight:600}
-.btn-edit-small{border:1px solid #4a4d7a;background:transparent;color:#a0a3c0;border-radius:8px;padding:6px 12px;font-size:11px;cursor:pointer;font-weight:600}
+.btn-edit-small{border:1px solid #4a4d7a;background:transparent;color:#a0a3c0;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer;font-weight:600}
 .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
 .btn-dark{border:1.5px solid #4a4d7a;background:transparent;color:#fff;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
 .btn-red{border:1.5px solid #ff6b6b;color:#ff6b6b;background:transparent;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
@@ -77,12 +76,13 @@ body{background:#0e0f24;color:#fff;font-family:'Inter',sans-serif;min-height:100
   </div>
 </div>
 <div id="app">
-  <div class="header-top">
+  <div class="header-main">
     <button class="logout-btn" onclick="logout()">Logout</button>
     <div class="cgc">CGC</div>
     <div class="title">CENTRAL GLOBAL CAPITAL</div>
     <div class="sub">The best signal provider</div>
   </div>
+
   <div class="top-card">
     <div class="top-card-head">
       <div class="top-card-name">Mr Dien master</div>
@@ -94,7 +94,9 @@ body{background:#0e0f24;color:#fff;font-family:'Inter',sans-serif;min-height:100
       <div class="balance-col"><div class="balance-lbl">Profit today</div><div class="balance-val green">$4.20</div></div>
     </div>
   </div>
+
   <div id="clientList"></div>
+
   <div class="form-section">
     <div class="form-title">Form Client</div>
     <div class="form-group"><label>No Akun</label><input id="fAkun" placeholder="— — — —"></div>
@@ -106,7 +108,7 @@ body{background:#0e0f24;color:#fff;font-family:'Inter',sans-serif;min-height:100
 </div>
 <script>
 const ADMIN_USER="admin";const ADMIN_PASS="CGC123";
-let clients=JSON.parse(localStorage.getItem('cgc_clients_v4')||'null')||[{akun:"882910",nama:"Maesaroh",balance:127.5,profit:4.20,expired:"2024-10-12",sponsor:"Belum diisi",active:true}];
+let clients=JSON.parse(localStorage.getItem('cgc_clients_final')||'null')||[{akun:"882910",nama:"Maesaroh",balance:127.5,profit:4.20,expired:"2024-10-12",sponsor:"Belum diisi",active:true}];
 function doLogin(){const u=document.getElementById('user').value.trim();const p=document.getElementById('pass').value.trim();if(u===ADMIN_USER&&p===ADMIN_PASS){localStorage.setItem('cgc_login','1');showApp();}else{document.getElementById('err').style.display='block';}}
 function showApp(){document.getElementById('loginPage').style.display='none';document.getElementById('app').style.display='block';renderClients();}
 function logout(){localStorage.removeItem('cgc_login');location.reload();}
@@ -129,7 +131,7 @@ function hapusClient(i){if(confirm('Stop sewa '+clients[i].nama+'?')){clients.sp
 function perpanjang(i){const baru=prompt('Tanggal expired baru (YYYY-MM-DD):',clients[i].expired);if(baru){clients[i].expired=baru;save();}}
 function editClient(i){const c=clients[i];document.getElementById('fAkun').value=c.akun;document.getElementById('fNama').value=c.nama;document.getElementById('fExp').value=c.expired;document.getElementById('fSponsor').value=c.sponsor;clients.splice(i,1);save();window.scrollTo(0,document.body.scrollHeight);}
 function tambahClient(){const akun=document.getElementById('fAkun').value.trim();const nama=document.getElementById('fNama').value.trim();const exp=document.getElementById('fExp').value;const sponsor=document.getElementById('fSponsor').value.trim()||'Belum diisi';if(!akun||!nama||!exp){alert('Lengkapi No Akun, Nama, Tanggal!');return;}clients.unshift({akun,nama,balance:(Math.random()*100+50).toFixed(2),profit:(Math.random()*10).toFixed(2),expired:exp,sponsor,active:true});document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExp').value='';document.getElementById('fSponsor').value='';save();}
-function save(){localStorage.setItem('cgc_clients_v4',JSON.stringify(clients));renderClients();}
+function save(){localStorage.setItem('cgc_clients_final',JSON.stringify(clients));renderClients();}
 </script>
 </body>
 </html>
