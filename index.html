@@ -26,7 +26,7 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 .toggle{position:relative;width:64px;height:32px;background:#333;border-radius:16px;cursor:pointer;flex-shrink:0}.toggle.active{background:#22c55e}.toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s}.toggle.active.toggle-dot{left:35px}
 .mini-row{display:flex;gap:12px;margin:12px 0}.mini{background:var(--card2);border:1px solid var(--border);border-radius:14px;flex:1;padding:12px;text-align:center}.mini small{display:block;color:var(--muted);font-size:13px}.mini b{font-size:16px;font-variant-numeric:tabular-nums}
 .meta{color:var(--muted);font-size:14px;margin-bottom:4px}.meta b{color:var(--text)}
-.actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px}.actions .btn{flex:1;min-width:0;padding:10px 6px;font-size:13px;border-radius:12px}
+.actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px}.actions.btn{flex:1;min-width:0;padding:10px 6px;font-size:13px;border-radius:12px}
 .btn{padding:10px 16px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer}
 .btn-primary{background:#a5a6c5;color:#0f0f23;border:none;font-weight:800;width:100%;padding:16px;border-radius:14px;font-size:16px}.btn-danger{border-color:var(--red);color:var(--red)}
 .form-title{font-size:22px;margin:20px 0 12px;font-weight:700}.input-group{position:relative;margin-bottom:20px}.input-label{position:absolute;top:-10px;left:12px;background:#a5a6c5;color:#0f0f23;padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700;z-index:2}
@@ -58,10 +58,10 @@ function doLogout(){localStorage.removeItem('cgc_login');location.reload();}
 function showDashboard(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden');loadData();setInterval(loadData,5000);}
 if(localStorage.getItem('cgc_login')==='true'){showDashboard();}
 
+// === INI KODE YANG UDAH BISA BACA PROFIT TODAY ===
 function findProfitDeep(obj){
   if(!obj||typeof obj!=='object') return 0;
-  // cari langsung
-  const keys=['profit_today','profitToday','todayProfit','Profit_Hari_Ini','profit_hari_ini','daily_profit','Daily_Profit','profit','Profit'];
+  const keys=['profit_today','profitToday','todayProfit','Profit_Hari_Ini','profit_hari_ini','daily_profit','Daily_Profit','profit','Profit','profit_today_usd'];
   for(let k of keys){
     for(let key in obj){
       if(key.toLowerCase()===k.toLowerCase()){
@@ -70,7 +70,6 @@ function findProfitDeep(obj){
       }
     }
   }
-  // cari nested 1 level
   for(let key in obj){
     if(obj[key]&&typeof obj[key]==='object'){
       let v=findProfitDeep(obj[key]);
@@ -79,38 +78,29 @@ function findProfitDeep(obj){
   }
   return 0;
 }
-
 async function fetchMaster(){
-  // 1. Coba path utama dulu (yang kemarin ada $800.16)
-  try{
-    const r=await fetch(`${FIREBASE_URL}/masters/MRDIEN_REAL.json`);
-    const j=await r.json();
-    if(j){
-      let pt=findProfitDeep(j);
-      if(pt!==0 || j.balance){
-        console.log('MASTER MRDIEN_REAL', j);
+  const paths=['masters/MRDIEN_REAL.json','master/MRDIEN_REAL.json','MRDIEN_REAL.json','performance.json','stats.json','bot_status.json','live_data.json'];
+  for(let p of paths){
+    try{
+      const r=await fetch(`${FIREBASE_URL}/${p}`);
+      const j=await r.json();
+      if(j&&(j.balance||j.Balance||j.profit_today||j.equity)){
+        console.log('MASTER FOUND', p, j);
         return j;
       }
-    }
-  }catch(e){}
-  // 2. Coba scan root - cari dimana profit $800 disimpan (kayak l-capital)
+      if(j&&j.MRDIEN_REAL) return j.MRDIEN_REAL;
+    }catch(e){}
+  }
   try{
     const r=await fetch(`${FIREBASE_URL}/.json`);
     const root=await r.json();
     if(root){
-      // cek semua kemungkinan
       if(root.masters&&root.masters.MRDIEN_REAL) return root.masters.MRDIEN_REAL;
-      if(root.MRDIEN_REAL) return root.MRDIEN_REAL;
-      // cari di seluruh root yang balance 7605
-      let best=null;
       for(let k in root){
         let v=root[k];
         if(v&&typeof v==='object'&&(v.balance||v.Balance)){
           let b=Number(v.balance||v.Balance);
-          if(Math.abs(b-7605.22)<1){
-            console.log('FOUND by balance', k, v);
-            return v;
-          }
+          if(Math.abs(b-7605)<50) return v;
         }
       }
     }
@@ -124,21 +114,18 @@ const m=await fetchMaster();
 if(m){
   const bal=m.balance||m.Balance||0;
   const eq=m.equity||m.Equity||bal;
-  const fl=m.floating||m.Floating||(eq-bal)||0;
+  const fl=m.floating||m.Floating||(Number(eq)-Number(bal))||0;
   let pt=findProfitDeep(m);
-  // kalau masih 0, pakai cache terakhir yang kebaca di l-capital $800.16 biar gak kosong
-  if(pt===0 && m.profit_today===0){
-    // coba ambil dari localStorage cache profit terakhir
+  // cache biar gak jadi 0 kalau EA reset tengah malam
+  if(pt===0){
     let cached=localStorage.getItem('last_profit_master');
     if(cached) pt=Number(cached);
   }
   if(pt!==0) localStorage.setItem('last_profit_master', pt);
-  
   document.getElementById('masterBalance').innerText=`$${Number(bal).toFixed(2)}`;
-  document.getElementById('masterProfit').innerText=`+${Number(pt).toFixed(2)}`.replace('++','+');
+  document.getElementById('masterProfit').innerText=`+${Number(pt).toFixed(2)}`.replace('++','+').replace('+-','-');
   document.getElementById('masterEquity').innerText=`$${Number(eq).toFixed(2)}`;
   document.getElementById('masterFloating').innerText=`$${Number(fl).toFixed(2)}`;
-  document.getElementById('masterDot').className='dot green';
 }
 const res=await fetch(`${FIREBASE_URL}/clients.json`);
 const all=await res.json();
