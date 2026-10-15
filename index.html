@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,14 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#0a0e14;min-height:100vh;display:flex;justify-content:center;padding:0}
-.phone{width:100%;max-width:420px;background:#121821;min-height:100vh;position:relative;padding-bottom:85px;box-shadow:0 0 60px rgba(0,0,0,0.8)}
+body{background:#0a0e14;min-height:100vh;display:flex;justify-content:center}
+.phone{width:100%;max-width:420px;background:#121821;min-height:100vh;position:relative;padding-bottom:85px}
 .header{padding:28px 20px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,#1c2a3d 0%,#121821 100%);border-bottom:1px solid rgba(255,255,255,0.05)}
-.header-left{display:flex;align-items:center;gap:12px}
-.shield{width:44px;height:44px;background:linear-gradient(135deg,#00ffd0,#00b894);border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,255,200,0.3)}
-.header h1{font-size:15px;font-weight:800;color:#fff;letter-spacing:0.3px}
+.shield{width:44px;height:44px;background:linear-gradient(135deg,#00ffd0,#00b894);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.header h1{font-size:15px;font-weight:800;color:#fff}
 .header p{font-size:11px;color:#7fb5c5;margin-top:3px}
-.header-icons{display:flex;gap:14px;color:#7fb5c5;font-size:20px}
 .master-card{margin:16px;border:1px solid rgba(93,253,203,0.15);border-radius:18px;background:linear-gradient(135deg,#1d2c40 0%,#16202f 100%);padding:18px}
 .master-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .master-title{font-size:10px;color:#6ea8b8;letter-spacing:1.2px;font-weight:600}
@@ -30,12 +29,10 @@ body{background:#0a0e14;min-height:100vh;display:flex;justify-content:center;pad
 .progress-text{display:flex;justify-content:space-between;margin-top:10px;font-size:11px;color:#8aa0b0}
 .client-section{padding:0 16px}
 .client-head{display:flex;justify-content:space-between;align-items:center;padding:20px 4px 12px}
-.client-head h2{font-size:14px;font-weight:800;color:#d0e8f0}
-.client-head span{font-size:11px;color:#5a8a9a;background:rgba(255,255,255,0.05);padding:4px 8px;border-radius:6px}
 .client-card{background:#1b2738;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:14px;margin-bottom:14px}
 .client-top{display:flex;justify-content:space-between;align-items:center}
 .client-info{display:flex;align-items:center;gap:12px}
-.avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff}
+.avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
 .bs{background:linear-gradient(135deg,#00b4b4,#008a8a)}.sl{background:linear-gradient(135deg,#8a7cff,#6a5cff)}.aw{background:linear-gradient(135deg,#ff9a3d,#ff7a2d)}
 .client-name{font-size:14px;font-weight:700;color:#fff}
 .client-acc{font-size:11px;color:#8aa0b0;margin-top:2px}
@@ -44,107 +41,93 @@ body{background:#0a0e14;min-height:100vh;display:flex;justify-content:center;pad
 .toggle-dot{width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:4px;transition:0.3s}
 .toggle.on.toggle-dot{right:4px}.toggle.off.toggle-dot{left:4px;background:#b0b8c4}
 .date{font-size:12px;color:#a0b8c5;margin:12px 0}
-.date b{color:#fff}
 .btns{display:flex;gap:10px}
-.btn{flex:1;padding:11px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:0.5px;cursor:pointer;border:1.5px solid;background:transparent}
+.btn{flex:1;padding:11px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;border:1.5px solid;background:transparent}
 .btn-perpanjang{border-color:rgba(93,253,203,0.5);color:#5dfdcb}
 .btn-stop{border-color:rgba(255,120,140,0.5);color:#ff8a9a}
-.license-box{margin:16px;background:rgba(255,255,255,0.03);border-radius:12px;padding:14px 16px}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:#15202f;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-around;padding:10px 0 16px}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:5px;color:#5a6e80;font-size:10px;font-weight:600}
-.nav-item.active{color:#5dfdcb}
 .add-form{margin:16px;padding:16px;background:#1b2738;border-radius:14px;border:1px dashed rgba(93,253,203,0.25)}
 .add-form input{width:100%;padding:12px;margin-bottom:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:#121821;color:#fff}
 .add-form button{width:100%;padding:13px;background:linear-gradient(90deg,#00ffd0,#00b894);border:0;border-radius:10px;font-weight:800;color:#000;cursor:pointer}
+#loginOverlay{position:fixed;inset:0;background:#0a0e14;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{width:100%;max-width:340px;background:#121821;border:1px solid rgba(93,253,203,0.2);border-radius:20px;padding:30px 24px;text-align:center}
+.login-shield{width:60px;height:60px;margin:0 auto 16px;background:linear-gradient(135deg,#00ffd0,#00b894);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.login-box h2{color:#fff;font-size:18px;font-weight:800}
+.login-box p{color:#7fb5c5;font-size:12px;margin:8px 0 20px}
+.login-box input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#1b2738;color:#fff;font-size:14px;outline:none;text-align:center}
+.login-box button{width:100%;margin-top:14px;padding:14px;background:linear-gradient(90deg,#00ffd0,#00b894);border:0;border-radius:12px;font-weight:800;color:#000;cursor:pointer}
+.login-error{color:#ff7a8a;font-size:12px;margin-top:10px;display:none}
+.logout{font-size:10px;color:#5a8a9a;cursor:pointer;padding:4px 8px;border:1px solid rgba(255,255,255,0.1);border-radius:6px}
 </style>
 </head>
 <body>
-<div class="phone">
-<div class="header">
-<div class="header-left"><div class="shield">🛡️</div><div><h1>CGC ADMIN - MR.DIEN SCALPER</h1><p>MASTER • MRDIEN_REAL ✓</p></div></div>
-<div class="header-icons"><span>🔔</span><span>⚙️</span></div>
+<div id="loginOverlay">
+<div class="login-box">
+<div class="login-shield">🛡️</div>
+<h2>CGC ADMIN LOGIN</h2>
+<p>MR.DIEN SCALPER - Private Access</p>
+<input id="passInput" type="password" placeholder="Masukkan Password Admin">
+<button onclick="checkPass()">BUKA ADMIN PANEL</button>
+<div id="loginErr" class="login-error">Password salah bro!</div>
+</div>
 </div>
 
+<div class="phone">
+<div class="header">
+<div style="display:flex;align-items:center;gap:12px"><div class="shield">🛡️</div><div><h1>CGC ADMIN</h1><p>MRDIEN_REAL • MASTER</p></div></div>
+<div style="display:flex;gap:10px;align-items:center"><span>🔔</span><div class="logout" onclick="logout()">LOGOUT</div></div>
+</div>
 <div class="master-card">
 <div class="master-top"><div><div class="master-title">MASTER</div><div class="master-name">MRDIEN_REAL ↗</div></div><div class="live">● LIVE</div></div>
 <div class="stats">
 <div><div class="stat-label">Balance</div><div class="stat-val" id="bal">$7605</div></div>
 <div><div class="stat-label">Equity</div><div class="stat-val" id="eq">$8120</div></div>
-<div><div class="stat-label">3 positions open</div><div class="stat-val" id="pos">3 ↗</div></div>
+<div><div class="stat-label">Positions</div><div class="stat-val" id="pos">3 ↗</div></div>
 </div>
-<div class="progress-bar"><div class="progress-fill" id="marginFill"></div></div>
-<div class="progress-text"><span><b id="marginText">Margin Level 218% • Safe</b></span><span>Leverage 1:100</span></div>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+<div class="progress-text"><span><b>Margin Level 218% • Safe</b></span><span>Leverage 1:100</span></div>
 </div>
-
 <div class="client-section">
-<div class="client-head"><h2>👥 CLIENT SEWA</h2><span id="clientCount">LOADING...</span></div>
+<div class="client-head"><h2>👥 CLIENT SEWA</h2><span id="clientCount">0 CLIENTS</span></div>
 <div id="clientsList"></div>
-
 <div class="add-form">
-<input id="accInput" placeholder="No Akun MT5 (contoh: 102983)">
+<input id="accInput" placeholder="No Akun MT5">
 <input id="nameInput" placeholder="Nama Client">
 <input id="expInput" type="date">
-<button onclick="addClient()">+ TAMBAH CLIENT</button>
+<button onclick="addClient()">TAMBAH CLIENT</button>
 </div>
-
-<div class="license-box">
-<div>💳 RENTAL LICENSE MANAGEMENT</div>
-<div style="font-size:12px;color:#8aa0b0;margin-top:6px">Licenses Issued: <b id="totalLic">0</b> • Valid: <b id="validLic">0</b> • Expired: <b id="expLic">0</b></div>
-</div>
-</div>
-
-<div class="nav">
-<div class="nav-item active">🏠<br>Dashboard</div>
-<div class="nav-item">👥<br>Clients</div>
-<div class="nav-item">⚙️<br>Settings</div>
 </div>
 </div>
 
 <script>
+// === GANTI PASSWORD DISINI BRO ===
+var ADMIN_PASSWORD = "mrdien123";
+// ===================================
+function checkPass(){
+  if(document.getElementById('passInput').value===ADMIN_PASSWORD){
+    localStorage.setItem('cgc_admin_auth','yes');
+    document.getElementById('loginOverlay').style.display='none';
+  } else {
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+function logout(){ localStorage.removeItem('cgc_admin_auth'); location.reload(); }
+window.onload=function(){ if(localStorage.getItem('cgc_admin_auth')==='yes') document.getElementById('loginOverlay').style.display='none'; }
+
 var firebaseConfig = {databaseURL: "https://mrdien-scalper-default-rtdb.firebaseio.com"};
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
-
-db.ref('masters/MRDIEN_REAL').on('value', snap=>{
-  var d=snap.val(); if(!d) return;
-  document.getElementById('bal').innerText='$'+Math.round(d.balance||7605);
-  document.getElementById('eq').innerText='$'+Math.round(d.equity||8120);
-  document.getElementById('pos').innerText=(d.count||3)+' ↗';
-});
-
+db.ref('masters/MRDIEN_REAL').on('value', snap=>{ var d=snap.val(); if(!d) return; document.getElementById('bal').innerText='$'+Math.round(d.balance||7605); document.getElementById('eq').innerText='$'+Math.round(d.equity||8120); });
 function renderClients(data){
-  var html=''; var active=0,total=0;
-  for(var acc in data){
-    total++; if(data[acc].active) active++;
-    var c=data[acc]; var ini=c.clientName||'Client';
-    var av=ini.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase();
-    var cls=av.charAt(0)=='B'?'bs':av.charAt(0)=='S'?'sl':'aw';
-    var toggleCls=c.active?'on':'off';
-    var exp=c.expired||'28 Oct 2026';
-    try{ if(exp.includes('-')){var dt=new Date(exp); exp=dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}}catch(e){}
-    html+=`<div class="client-card"><div class="client-top"><div class="client-info"><div class="avatar ${cls}">${av}</div><div><div class="client-name">${ini}</div><div class="client-acc">ACC-${acc}</div></div></div><div class="toggle ${toggleCls}" onclick="toggleAcc('${acc}',${c.active})"><div class="toggle-dot"></div></div></div><div class="date">📅 Active until: <b>${exp}</b></div><div class="btns"><button class="btn btn-perpanjang" onclick="extend('${acc}')">PERPANJANG</button><button class="btn btn-stop" onclick="stopSewa('${acc}')">STOP SEWA</button></div></div>`;
-  }
+  var html=''; var active=0;
+  for(var acc in data){ if(data[acc].active) active++; var c=data[acc]; var ini=c.clientName||'Client'; var av=ini.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase(); var cls='bs'; var exp=c.expired||'28 Oct 2026'; try{ if(exp.includes('-')){var dt=new Date(exp); exp=dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}}catch(e){} html+=`<div class="client-card"><div class="client-top"><div class="client-info"><div class="avatar ${cls}">${av}</div><div><div class="client-name">${ini}</div><div class="client-acc">ACC-${acc}</div></div></div><div class="toggle ${c.active?'on':'off'}" onclick="toggleAcc('${acc}',${c.active})"><div class="toggle-dot"></div></div></div><div class="date">📅 Active until: <b>${exp}</b></div><div class="btns"><button class="btn btn-perpanjang" onclick="extend('${acc}')">PERPANJANG</button><button class="btn btn-stop" onclick="stopSewa('${acc}')">STOP SEWA</button></div></div>`; }
   document.getElementById('clientsList').innerHTML=html||'<p style="color:#8aa0b0;text-align:center;padding:20px">Belum ada client</p>';
   document.getElementById('clientCount').innerText=active+' CLIENTS ACTIVE';
-  document.getElementById('totalLic').innerText=total; document.getElementById('validLic').innerText=active; document.getElementById('expLic').innerText=total-active;
 }
 db.ref('licenses/MRDIEN_REAL').on('value', snap=>{ renderClients(snap.val()||{}); });
-function addClient(){
-  var acc=document.getElementById('accInput').value.replace(/[^0-9]/g,''); var name=document.getElementById('nameInput').value||'Client'; var exp=document.getElementById('expInput').value||'2026-11-15';
-  if(!acc) return alert('Isi No Akun!');
-  db.ref('licenses/MRDIEN_REAL/'+acc).set({clientName:name,key:'CGC-'+acc,active:true,expired:exp,created:new Date().toISOString()});
-}
+function addClient(){ var acc=document.getElementById('accInput').value.replace(/[^0-9]/g,''); var name=document.getElementById('nameInput').value||'Client'; var exp=document.getElementById('expInput').value||'2026-11-15'; if(!acc) return alert('Isi No Akun!'); db.ref('licenses/MRDIEN_REAL/'+acc).set({clientName:name,active:true,expired:exp}); }
 function toggleAcc(acc, active){ db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(!active); }
-function stopSewa(acc){ if(confirm('STOP sewa ACC-'+acc+'?')) db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(false); }
-function extend(acc){
-  var days=prompt('Perpanjang berapa hari? (7 / 30 / 90)', '30'); if(!days) return; days=parseInt(days);
-  db.ref('licenses/MRDIEN_REAL/'+acc+'/expired').once('value', s=>{
-    var cur=s.val()||new Date().toISOString().split('T')[0]; var d=new Date(cur); if(d < new Date()) d=new Date(); d.setDate(d.getDate()+days);
-    db.ref('licenses/MRDIEN_REAL/'+acc+'/expired').set(d.toISOString().split('T')[0]);
-    db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(true);
-    alert('Diperpanjang '+days+' hari!');
-  });
-}
+function stopSewa(acc){ if(confirm('STOP ACC-'+acc+'?')) db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(false); }
+function extend(acc){ var days=prompt('Berapa hari?','30'); if(!days) return; days=parseInt(days); db.ref('licenses/MRDIEN_REAL/'+acc+'/expired').once('value', s=>{ var cur=s.val()||new Date().toISOString().split('T')[0]; var d=new Date(cur); if(d < new Date()) d=new Date(); d.setDate(d.getDate()+days); db.ref('licenses/MRDIEN_REAL/'+acc+'/expired').set(d.toISOString().split('T')[0]); db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(true); }); }
 </script>
 </body>
 </html>
