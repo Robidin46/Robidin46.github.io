@@ -4,74 +4,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CGC - Central Global Capital</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<title>CGC Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0b1e;color:#fff;font-family:'Inter',sans-serif;min-height:100vh}
+body{background:#0a0b1e;color:#fff;font-family:'Times New Roman',Times,serif;min-height:100vh}
 #loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0a0b1e}
-.login-box{background:#15172e;border:1px solid #2a2d50;border-radius:18px;padding:36px 32px;width:92%;max-width:380px;text-align:center}
-.login-box.cgc-logo{font-family:'Times New Roman','Playfair Display',serif;font-size:96px;font-weight:700;color:#fff;line-height:0.9;letter-spacing:-1px}
-.login-box h2{font-size:12px;letter-spacing:3px;margin:12px 0 4px;color:#fff;font-family:'Inter',sans-serif}
-.login-box p{font-size:13px;color:#8a8db0;margin-bottom:20px;font-style:italic}
-.login-box input{width:100%;background:#252847;border:1px solid #3a3d66;border-radius:10px;padding:13px 14px;color:#fff;margin-bottom:12px;outline:none}
-.login-box button{width:100%;background:#3a3d80;border:none;border-radius:10px;padding:13px;font-weight:700;cursor:pointer;color:#fff}
-#err{color:#ff6b6b;font-size:12px;margin-top:10px;display:none}
+.login-box{background:#15172e;border:1px solid #2a2d50;border-radius:18px;padding:36px 32px;width:92%;max-width:380px;text-align:center;font-family:'Times New Roman',serif}
+.login-box.cgc-logo{font-family:'Times New Roman',Times,serif;font-size:72px;font-weight:700;color:#fff;line-height:0.9;letter-spacing:-1px}
+.login-box h2{font-size:18px;letter-spacing:2px;margin:10px 0 4px;color:#fff;font-family:'Times New Roman',serif}
+.login-box p{font-size:14px;color:#8a8db0;margin-bottom:20px;font-style:italic;font-family:'Times New Roman',serif}
+.login-box input{width:100%;background:#252847;border:1px solid #3a3d66;border-radius:10px;padding:13px 14px;color:#fff;margin-bottom:12px;outline:none;font-family:'Inter',sans-serif}
+.login-box button{width:100%;background:#3a3d80;border:none;border-radius:10px;padding:13px;font-weight:700;cursor:pointer;color:#fff;font-family:'Inter',sans-serif}
+#err{color:#ff6b6b;font-size:12px;margin-top:10px;display:none;font-family:'Inter',sans-serif}
 #app{display:none;max-width:440px;margin:0 auto;background:#0a0b1e;min-height:100vh;padding-bottom:30px}
 
-/* HEADER FIX FONT PERSIS FOTO */
+/* HEADER BARU - CGC Admin KIRI - Times New Roman */
 .header-main{
-  text-align:center;
-  padding:42px 20px 20px;
-  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 18px 16px;
   background:#0a0b1e;
+  border-bottom:1px solid #1e2040;
+  position:relative;
 }
 .header-main.cgc{
-  font-family:'Times New Roman','Playfair Display',Times,serif!important;
-  font-size:132px!important;
+  font-family:'Times New Roman',Times,serif!important;
+  font-size:32px!important;
   font-weight:700!important;
   color:#ffffff!important;
-  line-height:0.82!important;
-  letter-spacing:-2.5px!important;
-  display:block!important;
-  text-transform:uppercase;
+  letter-spacing:-0.5px!important;
+  line-height:1;
 }
-.header-main.title{
-  font-family:'Inter',sans-serif!important;
-  font-size:15px!important;
-  letter-spacing:5.2px!important;
-  font-weight:700!important;
-  color:#ffffff!important;
-  margin-top:12px!important;
-  text-transform:uppercase;
-}
-.header-main.sub{
-  font-family:'Inter',sans-serif!important;
-  font-size:14px!important;
-  color:#c5c7db!important;
-  font-style:italic!important;
-  font-weight:400!important;
-  margin-top:12px!important;
-  opacity:0.9;
-  letter-spacing:0.2px;
-}
-.logout-btn{position:absolute;top:14px;right:14px;background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
-.top-card{background:transparent;border:1.5px solid #3a3d66;border-radius:18px;padding:16px 18px;margin:16px 14px 14px}
+.logout-btn{background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+
+.top-card{background:transparent;border:1.5px solid #3a3d66;border-radius:18px;padding:16px 18px;margin:16px 14px 14px;font-family:'Inter',sans-serif}
 .top-card-head{display:flex;justify-content:space-between;align-items:center}
-.top-card-name{font-weight:700;font-size:16px;font-family:'Inter',sans-serif}
+.top-card-name{font-weight:700;font-size:16px;font-family:'Times New Roman',serif}
 .live-green{display:flex;align-items:center;gap:6px;color:#7bed9f;font-size:14px;font-weight:600}
 .live-dot-green{width:8px;height:8px;background:#7bed9f;border-radius:50%;box-shadow:0 0 8px #7bed9f;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .balance-row-top{display:flex;justify-content:space-between;text-align:center;margin-top:14px}
 .balance-col{flex:1}
 .balance-lbl{font-size:13px;color:#8a8db0}
-.balance-val{font-size:28px;font-weight:800;margin-top:4px}
+.balance-val{font-size:28px;font-weight:800;margin-top:4px;font-family:'Times New Roman',serif}
 .balance-val.green{color:#7bed9f}
 .divider-v{width:1px;background:#2a2d50;margin:0 10px}
-.card{background:transparent;border:1.5px solid #3a3d66;border-radius:16px;padding:16px 18px;margin:0 14px 14px}
+
+.card{background:transparent;border:1.5px solid #3a3d66;border-radius:16px;padding:16px 18px;margin:0 14px 14px;font-family:'Inter',sans-serif}
 .card-lbl{font-size:13px;color:#8a8db0;margin-bottom:10px}
 .card-top{display:flex;justify-content:space-between;align-items:center}
-.client-name{font-size:20px;font-weight:800}
+.client-name{font-size:20px;font-weight:800;font-family:'Times New Roman',serif}
 .toggle-wrap{display:flex;align-items:center;gap:8px}
 .toggle{width:48px;height:26px;background:#3a9e5a;border-radius:20px;position:relative;cursor:pointer}
 .toggle.off{background:#444}
@@ -79,6 +63,9 @@ body{background:#0a0b1e;color:#fff;font-family:'Inter',sans-serif;min-height:100
 .active-text{color:#6fdb8a;font-size:13px;font-weight:600}
 .balance-row-client{display:flex;gap:12px;margin:12px 0 10px}
 .mini-card{flex:1;background:rgba(255,255,255,0.04);border:1px solid #2a2d50;border-radius:10px;padding:10px;text-align:center}
+.mini-card.lbl{font-size:11px;color:#8a8db0}
+.mini-card.val{font-size:16px;font-weight:800;margin-top:2px;font-family:'Times New Roman',serif}
+.mini-card.val.green{color:#7bed9f}
 .exp-row-new{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .exp-info-new{line-height:1.9;font-size:13px;color:#8a8db0}
 .exp-info-new b{color:#fff;font-weight:600}
@@ -87,35 +74,43 @@ body{background:#0a0b1e;color:#fff;font-family:'Inter',sans-serif;min-height:100
 .btn-dark{border:1.5px solid #4a4d7a;background:transparent;color:#fff;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
 .btn-red{border:1.5px solid #ff6b6b;color:#ff6b6b;background:transparent;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
 .form-section{padding:0 14px;margin-top:10px}
-.form-title{font-size:15px;color:#8a8db0;margin-bottom:14px}
+.form-title{font-size:18px;color:#fff;margin-bottom:14px;font-family:'Times New Roman',serif;font-weight:700}
 .form-group{margin-bottom:18px;position:relative}
-.form-group label{position:absolute;top:-9px;left:12px;background:#0a0b1e;padding:2px 8px;font-size:11px;color:#fff;border-radius:4px;border:1px solid #3a3d66;font-weight:600}
-.form-group input{width:100%;background:#8e90ad;border:none;border-radius:10px;padding:16px 14px 12px;color:#1a1c33;font-size:14px;outline:none}
-.btn-add{width:100%;background:#2f3260;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:16px;cursor:pointer;margin-top:6px}
+.form-group label{position:absolute;top:-9px;left:12px;background:#0a0b1e;padding:2px 8px;font-size:11px;color:#fff;border-radius:4px;border:1px solid #3a3d66;font-weight:600;font-family:'Inter',sans-serif}
+.form-group input{width:100%;background:#8e90ad;border:none;border-radius:10px;padding:16px 14px 12px;color:#1a1c33;font-size:14px;outline:none;font-family:'Inter',sans-serif}
+.btn-add{width:100%;background:#2f3260;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:16px;cursor:pointer;margin-top:6px;font-family:'Inter',sans-serif}
 </style>
 </head>
 <body>
 <div id="loginPage">
   <div class="login-box">
-    <div class="cgc-logo">CGC</div>
-    <h2>CENTRAL GLOBAL CAPITAL</h2>
+    <div class="cgc-logo">CGC Admin</div>
+    <h2>Dashboard Login</h2>
     <p>The best signal provider</p>
     <input id="user" value="admin"><input id="pass" type="password" placeholder="Password"><button onclick="doLogin()">Login Admin</button><div id="err">Salah! admin / CGC123</div>
   </div>
 </div>
 <div id="app">
   <div class="header-main">
+    <div class="cgc">CGC Admin</div>
     <button class="logout-btn" onclick="logout()">Logout</button>
-    <div class="cgc">CGC</div>
-    <div class="title">CENTRAL GLOBAL CAPITAL</div>
-    <div class="sub">The best signal provider</div>
   </div>
+
   <div class="top-card">
     <div class="top-card-head"><div class="top-card-name">Mr Dien master</div><div class="live-green"><div class="live-dot-green"></div>live</div></div>
     <div class="balance-row-top"><div class="balance-col"><div class="balance-lbl">Balance</div><div class="balance-val">$127.50</div></div><div class="divider-v"></div><div class="balance-col"><div class="balance-lbl">Profit today</div><div class="balance-val green">$4.20</div></div></div>
   </div>
+
   <div id="clientList"></div>
-  <div class="form-section"><div class="form-title">Form Client</div><div class="form-group"><label>No Akun</label><input id="fAkun" placeholder="— — — —"></div><div class="form-group"><label>Nama</label><input id="fNama" placeholder="—"></div><div class="form-group"><label>Tanggal Expired</label><input id="fExp" type="date"></div><div class="form-group"><label>Sponsor</label><input id="fSponsor" placeholder="Belum diisi"></div><button class="btn-add" onclick="tambahClient()">Tambahkan</button></div>
+
+  <div class="form-section">
+    <div class="form-title">Form Client</div>
+    <div class="form-group"><label>No Akun</label><input id="fAkun" placeholder="— — — —"></div>
+    <div class="form-group"><label>Nama</label><input id="fNama" placeholder="—"></div>
+    <div class="form-group"><label>Tanggal Expired</label><input id="fExp" type="date"></div>
+    <div class="form-group"><label>Sponsor</label><input id="fSponsor" placeholder="Belum diisi"></div>
+    <button class="btn-add" onclick="tambahClient()">Tambahkan</button>
+  </div>
 </div>
 <script>
 const ADMIN_USER="admin";const ADMIN_PASS="CGC123";
