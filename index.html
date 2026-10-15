@@ -1,39 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CGC - Central Global Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#15172e;color:#fff;font-family:'Inter',sans-serif;min-height:100vh}
-#loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0e0f24}
-.login-box{background:#1a1c33;border:1px solid #2a2d50;border-radius:18px;padding:36px 32px;width:92%;max-width:380px;text-align:center}
-.login-box.cgc-logo{font-family:'Times New Roman',Times,serif;font-size:96px;font-weight:900;color:#fff;line-height:0.9;letter-spacing:1px}
-.login-box h2{font-size:12px;letter-spacing:3px;margin:12px 0 4px;color:#fff}
+body{background:#0a0b1e;color:#fff;font-family:'Inter',sans-serif;min-height:100vh}
+#loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0a0b1e}
+.login-box{background:#15172e;border:1px solid #2a2d50;border-radius:18px;padding:36px 32px;width:92%;max-width:380px;text-align:center}
+.login-box.cgc-logo{font-family:'Times New Roman','Playfair Display',serif;font-size:96px;font-weight:700;color:#fff;line-height:0.9;letter-spacing:-1px}
+.login-box h2{font-size:12px;letter-spacing:3px;margin:12px 0 4px;color:#fff;font-family:'Inter',sans-serif}
 .login-box p{font-size:13px;color:#8a8db0;margin-bottom:20px;font-style:italic}
 .login-box input{width:100%;background:#252847;border:1px solid #3a3d66;border-radius:10px;padding:13px 14px;color:#fff;margin-bottom:12px;outline:none}
 .login-box button{width:100%;background:#3a3d80;border:none;border-radius:10px;padding:13px;font-weight:700;cursor:pointer;color:#fff}
 #err{color:#ff6b6b;font-size:12px;margin-top:10px;display:none}
-#app{display:none;max-width:440px;margin:0 auto;background:#15172e;min-height:100vh;padding-bottom:30px}
-.header-main{text-align:center;padding:55px 20px 22px;position:relative;background:#15172e}
-.header-main.cgc{font-family:'Times New Roman',Times,serif;font-size:120px;font-weight:700;color:#ffffff;line-height:0.82;letter-spacing:-1px;display:block}
-.header-main.title{font-family:'Inter',sans-serif;font-size:15px;letter-spacing:4.8px;font-weight:700;color:#fff;margin-top:16px;text-transform:uppercase}
-.header-main.sub{font-family:'Inter',sans-serif;font-size:14px;color:#c5c7db;font-style:italic;margin-top:8px;font-weight:400}
-.logout-btn{position:absolute;top:18px;right:18px;background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer}
-.top-card{background:transparent;border:1.5px solid #4a4d7a;border-radius:16px;padding:16px 18px;margin:0 16px 14px}
+#app{display:none;max-width:440px;margin:0 auto;background:#0a0b1e;min-height:100vh;padding-bottom:30px}
+
+/* HEADER FIX FONT PERSIS FOTO */
+.header-main{
+  text-align:center;
+  padding:42px 20px 20px;
+  position:relative;
+  background:#0a0b1e;
+}
+.header-main.cgc{
+  font-family:'Times New Roman','Playfair Display',Times,serif!important;
+  font-size:132px!important;
+  font-weight:700!important;
+  color:#ffffff!important;
+  line-height:0.82!important;
+  letter-spacing:-2.5px!important;
+  display:block!important;
+  text-transform:uppercase;
+}
+.header-main.title{
+  font-family:'Inter',sans-serif!important;
+  font-size:15px!important;
+  letter-spacing:5.2px!important;
+  font-weight:700!important;
+  color:#ffffff!important;
+  margin-top:12px!important;
+  text-transform:uppercase;
+}
+.header-main.sub{
+  font-family:'Inter',sans-serif!important;
+  font-size:14px!important;
+  color:#c5c7db!important;
+  font-style:italic!important;
+  font-weight:400!important;
+  margin-top:12px!important;
+  opacity:0.9;
+  letter-spacing:0.2px;
+}
+.logout-btn{position:absolute;top:14px;right:14px;background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.top-card{background:transparent;border:1.5px solid #3a3d66;border-radius:18px;padding:16px 18px;margin:16px 14px 14px}
 .top-card-head{display:flex;justify-content:space-between;align-items:center}
-.top-card-name{font-weight:600;font-size:15px}
-.live-green{display:flex;align-items:center;gap:6px;color:#6fdb8a;font-size:13px;font-weight:600}
-.live-dot-green{width:8px;height:8px;background:#6fdb8a;border-radius:50%;box-shadow:0 0 8px #6fdb8a;animation:blink 1s infinite}
+.top-card-name{font-weight:700;font-size:16px;font-family:'Inter',sans-serif}
+.live-green{display:flex;align-items:center;gap:6px;color:#7bed9f;font-size:14px;font-weight:600}
+.live-dot-green{width:8px;height:8px;background:#7bed9f;border-radius:50%;box-shadow:0 0 8px #7bed9f;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.balance-row-top{display:flex;justify-content:space-between;text-align:center;margin-top:12px}
+.balance-row-top{display:flex;justify-content:space-between;text-align:center;margin-top:14px}
 .balance-col{flex:1}
 .balance-lbl{font-size:13px;color:#8a8db0}
-.balance-val{font-size:24px;font-weight:800;margin-top:2px}
-.balance-val.green{color:#6fdb8a}
+.balance-val{font-size:28px;font-weight:800;margin-top:4px}
+.balance-val.green{color:#7bed9f}
 .divider-v{width:1px;background:#2a2d50;margin:0 10px}
-.card{background:transparent;border:1.5px solid #4a4d7a;border-radius:16px;padding:16px 18px;margin:0 16px 14px}
+.card{background:transparent;border:1.5px solid #3a3d66;border-radius:16px;padding:16px 18px;margin:0 14px 14px}
 .card-lbl{font-size:13px;color:#8a8db0;margin-bottom:10px}
 .card-top{display:flex;justify-content:space-between;align-items:center}
 .client-name{font-size:20px;font-weight:800}
@@ -41,13 +76,9 @@ body{background:#15172e;color:#fff;font-family:'Inter',sans-serif;min-height:100
 .toggle{width:48px;height:26px;background:#3a9e5a;border-radius:20px;position:relative;cursor:pointer}
 .toggle.off{background:#444}
 .toggle-knob{width:20px;height:20px;background:#c8ffd8;border-radius:50%;position:absolute;top:3px;right:3px;transition:.3s}
-.toggle.off.toggle-knob{right:25px;background:#aaa}
 .active-text{color:#6fdb8a;font-size:13px;font-weight:600}
 .balance-row-client{display:flex;gap:12px;margin:12px 0 10px}
 .mini-card{flex:1;background:rgba(255,255,255,0.04);border:1px solid #2a2d50;border-radius:10px;padding:10px;text-align:center}
-.mini-card.lbl{font-size:11px;color:#8a8db0}
-.mini-card.val{font-size:16px;font-weight:800;margin-top:2px}
-.mini-card.val.green{color:#6fdb8a}
 .exp-row-new{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .exp-info-new{line-height:1.9;font-size:13px;color:#8a8db0}
 .exp-info-new b{color:#fff;font-weight:600}
@@ -55,10 +86,10 @@ body{background:#15172e;color:#fff;font-family:'Inter',sans-serif;min-height:100
 .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
 .btn-dark{border:1.5px solid #4a4d7a;background:transparent;color:#fff;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
 .btn-red{border:1.5px solid #ff6b6b;color:#ff6b6b;background:transparent;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
-.form-section{padding:0 16px;margin-top:10px}
+.form-section{padding:0 14px;margin-top:10px}
 .form-title{font-size:15px;color:#8a8db0;margin-bottom:14px}
 .form-group{margin-bottom:18px;position:relative}
-.form-group label{position:absolute;top:-9px;left:12px;background:#15172e;padding:2px 8px;font-size:11px;color:#fff;border-radius:4px;border:1px solid #3a3d66;font-weight:600}
+.form-group label{position:absolute;top:-9px;left:12px;background:#0a0b1e;padding:2px 8px;font-size:11px;color:#fff;border-radius:4px;border:1px solid #3a3d66;font-weight:600}
 .form-group input{width:100%;background:#8e90ad;border:none;border-radius:10px;padding:16px 14px 12px;color:#1a1c33;font-size:14px;outline:none}
 .btn-add{width:100%;background:#2f3260;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:16px;cursor:pointer;margin-top:6px}
 </style>
@@ -68,11 +99,8 @@ body{background:#15172e;color:#fff;font-family:'Inter',sans-serif;min-height:100
   <div class="login-box">
     <div class="cgc-logo">CGC</div>
     <h2>CENTRAL GLOBAL CAPITAL</h2>
-    <p>The best signal provider - Admin Login</p>
-    <input id="user" value="admin" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
-    <button onclick="doLogin()">Login Admin</button>
-    <div id="err">Salah! admin / CGC123</div>
+    <p>The best signal provider</p>
+    <input id="user" value="admin"><input id="pass" type="password" placeholder="Password"><button onclick="doLogin()">Login Admin</button><div id="err">Salah! admin / CGC123</div>
   </div>
 </div>
 <div id="app">
@@ -82,29 +110,12 @@ body{background:#15172e;color:#fff;font-family:'Inter',sans-serif;min-height:100
     <div class="title">CENTRAL GLOBAL CAPITAL</div>
     <div class="sub">The best signal provider</div>
   </div>
-
   <div class="top-card">
-    <div class="top-card-head">
-      <div class="top-card-name">Mr Dien master</div>
-      <div class="live-green"><div class="live-dot-green"></div>live</div>
-    </div>
-    <div class="balance-row-top">
-      <div class="balance-col"><div class="balance-lbl">Balance</div><div class="balance-val">$127.50</div></div>
-      <div class="divider-v"></div>
-      <div class="balance-col"><div class="balance-lbl">Profit today</div><div class="balance-val green">$4.20</div></div>
-    </div>
+    <div class="top-card-head"><div class="top-card-name">Mr Dien master</div><div class="live-green"><div class="live-dot-green"></div>live</div></div>
+    <div class="balance-row-top"><div class="balance-col"><div class="balance-lbl">Balance</div><div class="balance-val">$127.50</div></div><div class="divider-v"></div><div class="balance-col"><div class="balance-lbl">Profit today</div><div class="balance-val green">$4.20</div></div></div>
   </div>
-
   <div id="clientList"></div>
-
-  <div class="form-section">
-    <div class="form-title">Form Client</div>
-    <div class="form-group"><label>No Akun</label><input id="fAkun" placeholder="— — — —"></div>
-    <div class="form-group"><label>Nama</label><input id="fNama" placeholder="—"></div>
-    <div class="form-group"><label>Tanggal Expired</label><input id="fExp" type="date"></div>
-    <div class="form-group"><label>Sponsor</label><input id="fSponsor" placeholder="Belum diisi"></div>
-    <button class="btn-add" onclick="tambahClient()">Tambahkan</button>
-  </div>
+  <div class="form-section"><div class="form-title">Form Client</div><div class="form-group"><label>No Akun</label><input id="fAkun" placeholder="— — — —"></div><div class="form-group"><label>Nama</label><input id="fNama" placeholder="—"></div><div class="form-group"><label>Tanggal Expired</label><input id="fExp" type="date"></div><div class="form-group"><label>Sponsor</label><input id="fSponsor" placeholder="Belum diisi"></div><button class="btn-add" onclick="tambahClient()">Tambahkan</button></div>
 </div>
 <script>
 const ADMIN_USER="admin";const ADMIN_PASS="CGC123";
@@ -114,23 +125,12 @@ function showApp(){document.getElementById('loginPage').style.display='none';doc
 function logout(){localStorage.removeItem('cgc_login');location.reload();}
 if(localStorage.getItem('cgc_login')==='1'){showApp();}
 function formatExp(d){if(!d)return"-";const dt=new Date(d);return dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}
-function renderClients(){const list=document.getElementById('clientList');list.innerHTML='';clients.forEach((c,i)=>{const div=document.createElement('div');div.className='card';div.innerHTML=`
-<div class="card-lbl">Client card</div>
-<div class="card-top"><div class="client-name">${c.nama}</div><div class="toggle-wrap"><div class="toggle ${c.active?'':'off'}" onclick="toggleClient(${i})"><div class="toggle-knob"></div></div><div class="active-text">${c.active?'Active':'Off'}</div></div></div>
-<div class="balance-row-client">
-  <div class="mini-card"><div class="lbl">Balance</div><div class="val">$${Number(c.balance).toFixed(2)}</div></div>
-  <div class="mini-card"><div class="lbl">Profit today</div><div class="val green">+$${Number(c.profit).toFixed(2)}</div></div>
-</div>
-<div class="exp-row-new">
-  <div class="exp-info-new"><div>Expired: <b>${formatExp(c.expired)}</b></div><div>Sponsor: <b>${c.sponsor}</b></div></div>
-  <button class="btn-edit-small" onclick="editClient(${i})">Edit Client</button>
-</div>
-<div class="btn-row"><button class="btn-dark" onclick="perpanjang(${i})">Perpanjang</button><button class="btn-red" onclick="hapusClient(${i})">Stop Sewa</button></div>`;list.appendChild(div);});}
+function renderClients(){const list=document.getElementById('clientList');list.innerHTML='';clients.forEach((c,i)=>{const div=document.createElement('div');div.className='card';div.innerHTML=`<div class="card-lbl">Client card</div><div class="card-top"><div class="client-name">${c.nama}</div><div class="toggle-wrap"><div class="toggle ${c.active?'':'off'}" onclick="toggleClient(${i})"><div class="toggle-knob"></div></div><div class="active-text">${c.active?'Active':'Off'}</div></div></div><div class="balance-row-client"><div class="mini-card"><div class="lbl">Balance</div><div class="val">$${Number(c.balance).toFixed(2)}</div></div><div class="mini-card"><div class="lbl">Profit today</div><div class="val green">+$${Number(c.profit).toFixed(2)}</div></div></div><div class="exp-row-new"><div class="exp-info-new"><div>Expired: <b>${formatExp(c.expired)}</b></div><div>Sponsor: <b>${c.sponsor}</b></div></div><button class="btn-edit-small" onclick="editClient(${i})">Edit Client</button></div><div class="btn-row"><button class="btn-dark" onclick="perpanjang(${i})">Perpanjang</button><button class="btn-red" onclick="hapusClient(${i})">Stop Sewa</button></div>`;list.appendChild(div);});}
 function toggleClient(i){clients[i].active=!clients[i].active;save();}
 function hapusClient(i){if(confirm('Stop sewa '+clients[i].nama+'?')){clients.splice(i,1);save();}}
 function perpanjang(i){const baru=prompt('Tanggal expired baru (YYYY-MM-DD):',clients[i].expired);if(baru){clients[i].expired=baru;save();}}
-function editClient(i){const c=clients[i];document.getElementById('fAkun').value=c.akun;document.getElementById('fNama').value=c.nama;document.getElementById('fExp').value=c.expired;document.getElementById('fSponsor').value=c.sponsor;clients.splice(i,1);save();window.scrollTo(0,document.body.scrollHeight);}
-function tambahClient(){const akun=document.getElementById('fAkun').value.trim();const nama=document.getElementById('fNama').value.trim();const exp=document.getElementById('fExp').value;const sponsor=document.getElementById('fSponsor').value.trim()||'Belum diisi';if(!akun||!nama||!exp){alert('Lengkapi No Akun, Nama, Tanggal!');return;}clients.unshift({akun,nama,balance:(Math.random()*100+50).toFixed(2),profit:(Math.random()*10).toFixed(2),expired:exp,sponsor,active:true});document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExp').value='';document.getElementById('fSponsor').value='';save();}
+function editClient(i){const c=clients[i];document.getElementById('fAkun').value=c.akun;document.getElementById('fNama').value=c.nama;document.getElementById('fExp').value=c.expired;document.getElementById('fSponsor').value=c.sponsor;clients.splice(i,1);save();}
+function tambahClient(){const akun=document.getElementById('fAkun').value.trim();const nama=document.getElementById('fNama').value.trim();const exp=document.getElementById('fExp').value;const sponsor=document.getElementById('fSponsor').value.trim()||'Belum diisi';if(!akun||!nama||!exp){alert('Lengkapi!');return;}clients.unshift({akun,nama,balance:(Math.random()*100+50).toFixed(2),profit:(Math.random()*10).toFixed(2),expired:exp,sponsor,active:true});document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExp').value='';document.getElementById('fSponsor').value='';save();}
 function save(){localStorage.setItem('cgc_clients_final',JSON.stringify(clients));renderClients();}
 </script>
 </body>
