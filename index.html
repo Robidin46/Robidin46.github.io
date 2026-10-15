@@ -3,129 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CGC Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>CGC Admin - Mr Dien Scalper</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0b1e;color:#fff;font-family:'Times New Roman',Times,serif;min-height:100vh}
-#loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0a0b1e}
-.login-box{background:#15172e;border:1px solid #2a2d50;border-radius:18px;padding:36px 32px;width:92%;max-width:380px;text-align:center;font-family:'Times New Roman',serif}
-.login-box.cgc-logo{font-family:'Times New Roman',Times,serif;font-size:72px;font-weight:700;color:#fff;line-height:0.9;letter-spacing:-1px}
-.login-box h2{font-size:18px;letter-spacing:2px;margin:10px 0 4px;color:#fff;font-family:'Times New Roman',serif}
-.login-box p{font-size:14px;color:#8a8db0;margin-bottom:20px;font-style:italic;font-family:'Times New Roman',serif}
-.login-box input{width:100%;background:#252847;border:1px solid #3a3d66;border-radius:10px;padding:13px 14px;color:#fff;margin-bottom:12px;outline:none;font-family:'Inter',sans-serif}
-.login-box button{width:100%;background:#3a3d80;border:none;border-radius:10px;padding:13px;font-weight:700;cursor:pointer;color:#fff;font-family:'Inter',sans-serif}
-#err{color:#ff6b6b;font-size:12px;margin-top:10px;display:none;font-family:'Inter',sans-serif}
-#app{display:none;max-width:440px;margin:0 auto;background:#0a0b1e;min-height:100vh;padding-bottom:30px}
-
-/* HEADER BARU - CGC Admin KIRI - Times New Roman */
-.header-main{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 18px 16px;
-  background:#0a0b1e;
-  border-bottom:1px solid #1e2040;
-  position:relative;
-}
-.header-main.cgc{
-  font-family:'Times New Roman',Times,serif!important;
-  font-size:32px!important;
-  font-weight:700!important;
-  color:#ffffff!important;
-  letter-spacing:-0.5px!important;
-  line-height:1;
-}
-.logout-btn{background:transparent;border:1.5px solid #ff6b6b;color:#ff6b6b;border-radius:10px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
-
-.top-card{background:transparent;border:1.5px solid #3a3d66;border-radius:18px;padding:16px 18px;margin:16px 14px 14px;font-family:'Inter',sans-serif}
-.top-card-head{display:flex;justify-content:space-between;align-items:center}
-.top-card-name{font-weight:700;font-size:16px;font-family:'Times New Roman',serif}
-.live-green{display:flex;align-items:center;gap:6px;color:#7bed9f;font-size:14px;font-weight:600}
-.live-dot-green{width:8px;height:8px;background:#7bed9f;border-radius:50%;box-shadow:0 0 8px #7bed9f;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.balance-row-top{display:flex;justify-content:space-between;text-align:center;margin-top:14px}
-.balance-col{flex:1}
-.balance-lbl{font-size:13px;color:#8a8db0}
-.balance-val{font-size:28px;font-weight:800;margin-top:4px;font-family:'Times New Roman',serif}
-.balance-val.green{color:#7bed9f}
-.divider-v{width:1px;background:#2a2d50;margin:0 10px}
-
-.card{background:transparent;border:1.5px solid #3a3d66;border-radius:16px;padding:16px 18px;margin:0 14px 14px;font-family:'Inter',sans-serif}
-.card-lbl{font-size:13px;color:#8a8db0;margin-bottom:10px}
-.card-top{display:flex;justify-content:space-between;align-items:center}
-.client-name{font-size:20px;font-weight:800;font-family:'Times New Roman',serif}
-.toggle-wrap{display:flex;align-items:center;gap:8px}
-.toggle{width:48px;height:26px;background:#3a9e5a;border-radius:20px;position:relative;cursor:pointer}
-.toggle.off{background:#444}
-.toggle-knob{width:20px;height:20px;background:#c8ffd8;border-radius:50%;position:absolute;top:3px;right:3px;transition:.3s}
-.active-text{color:#6fdb8a;font-size:13px;font-weight:600}
-.balance-row-client{display:flex;gap:12px;margin:12px 0 10px}
-.mini-card{flex:1;background:rgba(255,255,255,0.04);border:1px solid #2a2d50;border-radius:10px;padding:10px;text-align:center}
-.mini-card.lbl{font-size:11px;color:#8a8db0}
-.mini-card.val{font-size:16px;font-weight:800;margin-top:2px;font-family:'Times New Roman',serif}
-.mini-card.val.green{color:#7bed9f}
-.exp-row-new{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.exp-info-new{line-height:1.9;font-size:13px;color:#8a8db0}
-.exp-info-new b{color:#fff;font-weight:600}
-.btn-edit-small{border:1px solid #4a4d7a;background:transparent;color:#a0a3c0;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer;font-weight:600}
-.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.btn-dark{border:1.5px solid #4a4d7a;background:transparent;color:#fff;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
-.btn-red{border:1.5px solid #ff6b6b;color:#ff6b6b;background:transparent;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
-.form-section{padding:0 14px;margin-top:10px}
-.form-title{font-size:18px;color:#fff;margin-bottom:14px;font-family:'Times New Roman',serif;font-weight:700}
-.form-group{margin-bottom:18px;position:relative}
-.form-group label{position:absolute;top:-9px;left:12px;background:#0a0b1e;padding:2px 8px;font-size:11px;color:#fff;border-radius:4px;border:1px solid #3a3d66;font-weight:600;font-family:'Inter',sans-serif}
-.form-group input{width:100%;background:#8e90ad;border:none;border-radius:10px;padding:16px 14px 12px;color:#1a1c33;font-size:14px;outline:none;font-family:'Inter',sans-serif}
-.btn-add{width:100%;background:#2f3260;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:16px;cursor:pointer;margin-top:6px;font-family:'Inter',sans-serif}
+:root{--bg:#0a0a1a;--card:#151528;--card2:#1e1e3a;--border:#2a2a4a;--green:#4ade80;--red:#f87171;--text:#e2e8f0;--muted:#94a3b8}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto}
+body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.btn-logout{border:1px solid #ef4444;color:#ef4444;background:transparent;padding:6px 18px;border-radius:12px;font-weight:600;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:16px;margin-bottom:16px}
+.master{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.live-dot{display:flex;align-items:center;gap:6px;color:var(--green);font-weight:600;font-size:14px}
+.dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.balance-row{display:flex;gap:12px}
+.balance-box{flex:1;text-align:center;border-right:1px solid var(--border)}
+.balance-box:last-child{border:none}
+.balance-box small{color:var(--muted);display:block;margin-bottom:4px;font-size:14px}
+.balance-box b{font-size:26px}
+.green{color:var(--green)}
+.client-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.client-head h2{font-size:22px}
+.toggle{position:relative;width:64px;height:32px;background:#333;border-radius:16px;cursor:pointer;transition:.3s}
+.toggle.active{background:#22c55e}
+.toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s}
+.toggle.active.toggle-dot{left:35px}
+.mini-row{display:flex;gap:12px;margin:12px 0}
+.mini{background:var(--card2);border:1px solid var(--border);border-radius:14px;flex:1;padding:12px;text-align:center}
+.mini small{display:block;color:var(--muted);font-size:13px}
+.mini b{font-size:16px}
+.meta{color:var(--muted);font-size:14px;margin:6px 0}
+.meta b{color:var(--text)}
+.actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn{flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer;min-width:80px}
+.btn-primary{background:var(--card2)}
+.btn-danger{border-color:var(--red);color:var(--red)}
+.form-title{font-size:20px;margin:16px 0 12px;font-weight:700}
+.input-group{position:relative;margin-bottom:18px}
+.input-label{position:absolute;top:-10px;left:12px;background:#a5a6c5;color:#0f0f23;padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700;z-index:2}
+.input{width:100%;background:#a5a6c5;border:none;border-radius:14px;padding:16px 14px;font-size:16px;color:#0f0f23;outline:none}
+.login-wrap{max-width:400px;margin:80px auto;background:var(--card);padding:24px;border-radius:20px;border:1px solid var(--border)}
+.hidden{display:none}
 </style>
 </head>
 <body>
-<div id="loginPage">
-  <div class="login-box">
-    <div class="cgc-logo">CGC Admin</div>
-    <h2>Dashboard Login</h2>
-    <p>The best signal provider</p>
-    <input id="user" value="admin"><input id="pass" type="password" placeholder="Password"><button onclick="doLogin()">Login Admin</button><div id="err">Salah! admin / CGC123</div>
-  </div>
+<div id="loginPage" class="login-wrap">
+<h2>CGC Admin Login</h2>
+<div class="input-group"><span class="input-label">Password Admin</span><input id="passInput" type="password" class="input" placeholder="Masukkan password"></div>
+<button class="btn btn-primary" style="width:100%" onclick="doLogin()">Login</button>
+<p style="color:var(--muted);font-size:12px;text-align:center;margin-top:12px">Default: admin123 / cgc123</p>
 </div>
-<div id="app">
-  <div class="header-main">
-    <div class="cgc">CGC Admin</div>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
 
-  <div class="top-card">
-    <div class="top-card-head"><div class="top-card-name">Mr Dien master</div><div class="live-green"><div class="live-dot-green"></div>live</div></div>
-    <div class="balance-row-top"><div class="balance-col"><div class="balance-lbl">Balance</div><div class="balance-val">$127.50</div></div><div class="divider-v"></div><div class="balance-col"><div class="balance-lbl">Profit today</div><div class="balance-val green">$4.20</div></div></div>
-  </div>
+<div id="dashboard" class="hidden">
+<div class="header"><h1>CGC Admin</h1><button class="btn-logout" onclick="doLogout()">Logout</button></div>
 
-  <div id="clientList"></div>
-
-  <div class="form-section">
-    <div class="form-title">Form Client</div>
-    <div class="form-group"><label>No Akun</label><input id="fAkun" placeholder="— — — —"></div>
-    <div class="form-group"><label>Nama</label><input id="fNama" placeholder="—"></div>
-    <div class="form-group"><label>Tanggal Expired</label><input id="fExp" type="date"></div>
-    <div class="form-group"><label>Sponsor</label><input id="fSponsor" placeholder="Belum diisi"></div>
-    <button class="btn-add" onclick="tambahClient()">Tambahkan</button>
-  </div>
+<div class="card" id="masterCard">
+<div class="master"><h2>Mr Dien master</h2><div class="live-dot"><div class="dot"></div><span id="masterLive">live</span></div></div>
+<div class="balance-row">
+<div class="balance-box"><small>Balance</small><b id="masterBalance">$0.00</b></div>
+<div class="balance-box"><small>Profit today</small><b id="masterProfit" class="green">$0.00</b></div>
 </div>
+</div>
+
+<div id="clientList"></div>
+
+<div class="form-title">Form Client</div>
+<div class="card">
+<div class="input-group"><span class="input-label">No Akun</span><input id="fAkun" class="input" placeholder="___ ___ ___ contoh 656895"></div>
+<div class="input-group"><span class="input-label">Nama</span><input id="fNama" class="input" placeholder="Robidin"></div>
+<div class="input-group"><span class="input-label">Tanggal Expired</span><input id="fExpired" type="date" class="input"></div>
+<div class="input-group"><span class="input-label">Sponsor</span><input id="fSponsor" class="input" placeholder="Basri / Belum diisi"></div>
+<div class="input-group"><span class="input-label">Balance Awal (optional)</span><input id="fBalance" class="input" placeholder="0"></div>
+<div class="actions">
+<button class="btn btn-primary" onclick="saveClient()">Add / Update Client</button>
+<button class="btn" onclick="clearForm()">Clear</button>
+</div>
+</div>
+<p style="text-align:center;color:var(--muted);font-size:12px;margin:20px">Firebase: mrdien-scalper-default-rtdb.firebaseio.com<br>EA Status: <span id="eaStatus">Checking...</span></p>
+</div>
+
 <script>
-const ADMIN_USER="admin";const ADMIN_PASS="CGC123";
-let clients=JSON.parse(localStorage.getItem('cgc_clients_final')||'null')||[{akun:"882910",nama:"Maesaroh",balance:127.5,profit:4.20,expired:"2024-10-12",sponsor:"Belum diisi",active:true}];
-function doLogin(){const u=document.getElementById('user').value.trim();const p=document.getElementById('pass').value.trim();if(u===ADMIN_USER&&p===ADMIN_PASS){localStorage.setItem('cgc_login','1');showApp();}else{document.getElementById('err').style.display='block';}}
-function showApp(){document.getElementById('loginPage').style.display='none';document.getElementById('app').style.display='block';renderClients();}
-function logout(){localStorage.removeItem('cgc_login');location.reload();}
-if(localStorage.getItem('cgc_login')==='1'){showApp();}
-function formatExp(d){if(!d)return"-";const dt=new Date(d);return dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}
-function renderClients(){const list=document.getElementById('clientList');list.innerHTML='';clients.forEach((c,i)=>{const div=document.createElement('div');div.className='card';div.innerHTML=`<div class="card-lbl">Client card</div><div class="card-top"><div class="client-name">${c.nama}</div><div class="toggle-wrap"><div class="toggle ${c.active?'':'off'}" onclick="toggleClient(${i})"><div class="toggle-knob"></div></div><div class="active-text">${c.active?'Active':'Off'}</div></div></div><div class="balance-row-client"><div class="mini-card"><div class="lbl">Balance</div><div class="val">$${Number(c.balance).toFixed(2)}</div></div><div class="mini-card"><div class="lbl">Profit today</div><div class="val green">+$${Number(c.profit).toFixed(2)}</div></div></div><div class="exp-row-new"><div class="exp-info-new"><div>Expired: <b>${formatExp(c.expired)}</b></div><div>Sponsor: <b>${c.sponsor}</b></div></div><button class="btn-edit-small" onclick="editClient(${i})">Edit Client</button></div><div class="btn-row"><button class="btn-dark" onclick="perpanjang(${i})">Perpanjang</button><button class="btn-red" onclick="hapusClient(${i})">Stop Sewa</button></div>`;list.appendChild(div);});}
-function toggleClient(i){clients[i].active=!clients[i].active;save();}
-function hapusClient(i){if(confirm('Stop sewa '+clients[i].nama+'?')){clients.splice(i,1);save();}}
-function perpanjang(i){const baru=prompt('Tanggal expired baru (YYYY-MM-DD):',clients[i].expired);if(baru){clients[i].expired=baru;save();}}
-function editClient(i){const c=clients[i];document.getElementById('fAkun').value=c.akun;document.getElementById('fNama').value=c.nama;document.getElementById('fExp').value=c.expired;document.getElementById('fSponsor').value=c.sponsor;clients.splice(i,1);save();}
-function tambahClient(){const akun=document.getElementById('fAkun').value.trim();const nama=document.getElementById('fNama').value.trim();const exp=document.getElementById('fExp').value;const sponsor=document.getElementById('fSponsor').value.trim()||'Belum diisi';if(!akun||!nama||!exp){alert('Lengkapi!');return;}clients.unshift({akun,nama,balance:(Math.random()*100+50).toFixed(2),profit:(Math.random()*10).toFixed(2),expired:exp,sponsor,active:true});document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExp').value='';document.getElementById('fSponsor').value='';save();}
-function save(){localStorage.setItem('cgc_clients_final',JSON.stringify(clients));renderClients();}
+const FIREBASE_URL = "https://mrdien-scalper-default-rtdb.firebaseio.com";
+const ADMIN_PASS = "admin123";
+
+function doLogin(){
+const p=document.getElementById('passInput').value;
+if(p===ADMIN_PASS||p==="cgc123"||p==="admin"){localStorage.setItem('cgc_login','true');showDashboard();}else alert('Password salah!');
+}
+function doLogout(){localStorage.removeItem('cgc_login');location.reload();}
+function showDashboard(){
+document.getElementById('loginPage').classList.add('hidden');
+document.getElementById('dashboard').classList.remove('hidden');
+loadData();setInterval(loadData,5000);
+}
+if(localStorage.getItem('cgc_login')==='true'){showDashboard();}
+
+async function loadData(){
+try{
+const masterRes=await fetch(`${FIREBASE_URL}/masters/MRDIEN_REAL.json`);
+const master=await masterRes.json();
+if(master){
+document.getElementById('masterBalance').innerText=`$${(master.balance||0).toFixed(2)}`;
+document.getElementById('masterProfit').innerText=`$${(master.profit_today||master.profit||0).toFixed(2)}`;
+document.getElementById('masterLive').innerText=master.live?'live':'offline';
+}
+const res=await fetch(`${FIREBASE_URL}/clients.json`);
+const all=await res.json();
+const listDiv=document.getElementById('clientList');
+listDiv.innerHTML='';
+if(!all){listDiv.innerHTML='<div class=card>Belum ada client</div>';return;}
+let entries=Object.entries(all).filter(([k,v])=>v&&(v.balance!==undefined||v.akun));
+entries.sort((a,b)=>(b[1].last_update||0)-(a[1].last_update||0));
+entries.forEach(([key,c])=>{
+if(isNaN(key)){
+const hasNum=entries.some(([k2,v2])=>k2===String(c.akun));
+if(hasNum) return;
+}
+const isActive=c.active!==false;
+const bal=c.balance||0;
+const profit=c.profit_today!==undefined?c.profit_today:(c.profit||0);
+const expired=c.expired||'-';
+const sponsor=c.sponsor||'Belum diisi';
+const nama=c.nama||c.name||key;
+const akun=c.akun||key;
+const card=document.createElement('div');
+card.className='card';
+card.innerHTML=`
+<div style="color:var(--muted);font-size:13px">Client card</div>
+<div class="client-head">
+<h2>${nama}</h2>
+<div style="display:flex;align-items:center;gap:8px">
+<div class="toggle ${isActive?'active':''}" onclick="toggleActive('${key}')"><div class="toggle-dot"></div></div>
+<span style="color:${isActive?'#22c55e':'#94a3b8'};font-size:13px;font-weight:600">${isActive?'Active':'Off'}</span>
+</div>
+</div>
+<div class="mini-row">
+<div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div>
+<div class="mini"><small>Profit today</small><b>${profit>=0?'+':''}$${Number(profit).toFixed(2)}</b></div>
+</div>
+<div class="meta">Expired: <b>${expired}</b></div>
+<div class="meta">Sponsor: <b>${sponsor}</b> | Akun: <b>${akun}</b> ${c.live?'🟢':''}</div>
+<div class="actions">
+<button class="btn" onclick="editClient('${key}')">Edit Client</button>
+<button class="btn" onclick="perpanjang('${key}')">Perpanjang</button>
+<button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button>
+</div>
+`;
+listDiv.appendChild(card);
+});
+document.getElementById('eaStatus').innerText=`OK - ${entries.length} client - Last: ${new Date().toLocaleTimeString()}`;
+}catch(e){document.getElementById('eaStatus').innerText='Error: '+e.message;}
+}
+
+async function saveClient(){
+const akun=document.getElementById('fAkun').value.trim();
+const nama=document.getElementById('fNama').value.trim();
+const expiredInput=document.getElementById('fExpired').value;
+const sponsor=document.getElementById('fSponsor').value.trim()||'Belum diisi';
+const balance=parseFloat(document.getElementById('fBalance').value)||0;
+if(!akun||!nama){alert('Isi No Akun & Nama!');return;}
+let expiredStr=expiredInput? new Date(expiredInput).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '15 Dec 2026';
+const payload={akun:akun,nama:nama,name:nama,expired:expiredStr,sponsor:sponsor,balance:balance,profit:0,profit_today:0,equity:balance,active:true,live:false,last_update:Math.floor(Date.now()/1000)};
+await fetch(`${FIREBASE_URL}/clients/${akun}.json`,{method:'PUT',body:JSON.stringify(payload)});
+await fetch(`${FIREBASE_URL}/clients/${nama}.json`,{method:'PUT',body:JSON.stringify(payload)});
+alert(`Client ${nama} (${akun}) disimpan!`);clearForm();loadData();
+}
+function clearForm(){document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExpired').value='';document.getElementById('fSponsor').value='';document.getElementById('fBalance').value='';}
+function editClient(key){fetch(`${FIREBASE_URL}/clients/${key}.json`).then(r=>r.json()).then(c=>{document.getElementById('fAkun').value=c.akun||key;document.getElementById('fNama').value=c.nama||c.name||key;document.getElementById('fSponsor').value=c.sponsor||'';document.getElementById('fBalance').value=c.balance||'';window.scrollTo(0,document.body.scrollHeight);});}
+async function toggleActive(key){
+const res=await fetch(`${FIREBASE_URL}/clients/${key}.json`);const c=await res.json();
+const newActive=!(c.active!==false);
+await fetch(`${FIREBASE_URL}/clients/${key}.json`,{method:'PATCH',body:JSON.stringify({active:newActive})});
+if(c.akun&&c.akun!==key) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({active:newActive})});
+loadData();
+}
+async function perpanjang(key){
+const days=prompt('Perpanjang berapa hari?','30');if(!days) return;
+const res=await fetch(`${FIREBASE_URL}/clients/${key}.json`);const c=await res.json();
+let currentExp=new Date();if(c.expired){const parsed=new Date(c.expired);if(!isNaN(parsed)) currentExp=parsed;}
+currentExp.setDate(currentExp.getDate()+parseInt(days));
+const expiredStr=currentExp.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+await fetch(`${FIREBASE_URL}/clients/${key}.json`,{method:'PATCH',body:JSON.stringify({expired:expiredStr})});
+if(c.akun&&c.akun!==key) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({expired:expiredStr})});
+alert(`Diperpanjang sampai ${expiredStr}`);loadData();
+}
+async function stopSewa(key){
+if(!confirm(`Yakin Stop Sewa ${key}?`)) return;
+await fetch(`${FIREBASE_URL}/clients/${key}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});
+const res=await fetch(`${FIREBASE_URL}/clients/${key}.json`).then(r=>r.json());
+if(res&&res.akun&&res.akun!==key) await fetch(`${FIREBASE_URL}/clients/${res.akun}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});
+loadData();
+}
 </script>
 </body>
 </html>
