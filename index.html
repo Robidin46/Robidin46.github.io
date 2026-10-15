@@ -41,7 +41,8 @@ body{background:#0a0e14;min-height:100vh;display:flex;justify-content:center}
 .toggle.on{background:linear-gradient(90deg,#00ffd0,#00c9a0)}.toggle.off{background:#3a4555}
 .toggle-dot{width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:4px;transition:0.3s}
 .toggle.on.toggle-dot{right:4px}.toggle.off.toggle-dot{left:4px;background:#b0b8c4}
-.date{font-size:12px;color:#a0b8c5;margin:12px 0}
+.date{font-size:12px;color:#a0b8c5;margin:12px 0 6px}
+.sponsor-badge{font-size:11px;color:#5dfdcb;background:rgba(93,253,203,0.08);border:1px solid rgba(93,253,203,0.15);padding:6px 10px;border-radius:8px;margin-bottom:12px}
 .btns{display:flex;gap:10px}
 .btn{flex:1;padding:11px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;border:1.5px solid;background:transparent}
 .btn-perpanjang{border-color:rgba(93,253,203,0.5);color:#5dfdcb}
@@ -104,6 +105,8 @@ body{background:#0a0e14;min-height:100vh;display:flex;justify-content:center}
 <input id="nameInput" placeholder="Nama Client (contoh: Budi)">
 <input id="expInput" type="date">
 <div style="font-size:10px;color:#7fb5c5;margin:-2px 0 10px 4px;">↑ Isi TANGGAL EXPIRED sewa (bukan tanggal mulai)</div>
+<input id="sponsorInput" placeholder="Nama Sponsor (contoh: Upline Budi)">
+<div style="font-size:10px;color:#5dfdcb;margin:-2px 0 10px 4px;">↑ Kolom NAMA SPONSOR</div>
 <button onclick="addClient()">TAMBAH CLIENT</button>
 </div>
 </div>
@@ -153,7 +156,8 @@ function renderClients(data){
     var av=ini.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase();
     var exp=c.expired||'28 Oct 2026';
     try{ if(exp.includes('-')){ var dt=new Date(exp); exp=dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }}catch(e){}
-    html+=`<div class="client-card"><div class="client-top"><div class="client-info"><div class="avatar bs">${av}</div><div><div class="client-name">${ini}</div><div class="client-acc">ACC-${acc}</div></div></div><div class="toggle ${c.active?'on':'off'}" onclick="toggleAcc('${acc}',${c.active})"><div class="toggle-dot"></div></div></div><div class="date">📅 Active until: <b>${exp}</b></div><div class="btns"><button class="btn btn-perpanjang" onclick="extend('${acc}')">PERPANJANG</button><button class="btn btn-stop" onclick="stopSewa('${acc}')">STOP SEWA</button></div></div>`;
+    var sponsor = c.sponsor? `<div class="sponsor-badge">👤 Sponsor: <b>${c.sponsor}</b></div>` : `<div class="sponsor-badge" style="color:#8aa0b0;border-style:dashed">👤 Sponsor: <i>Belum diisi</i></div>`;
+    html+=`<div class="client-card"><div class="client-top"><div class="client-info"><div class="avatar bs">${av}</div><div><div class="client-name">${ini}</div><div class="client-acc">ACC-${acc}</div></div></div><div class="toggle ${c.active?'on':'off'}" onclick="toggleAcc('${acc}',${c.active})"><div class="toggle-dot"></div></div></div><div class="date">📅 Active until: <b>${exp}</b></div>${sponsor}<div class="btns"><button class="btn btn-perpanjang" onclick="extend('${acc}')">PERPANJANG</button><button class="btn btn-stop" onclick="stopSewa('${acc}')">STOP SEWA</button></div></div>`;
   }
   document.getElementById('clientsList').innerHTML=html||'<p style="color:#8aa0b0;text-align:center;padding:24px">Belum ada client</p>';
   document.getElementById('clientCount').innerText=active+' CLIENTS ACTIVE';
@@ -164,9 +168,10 @@ function addClient(){
   var acc=document.getElementById('accInput').value.replace(/[^0-9]/g,'');
   var name=document.getElementById('nameInput').value||'Client';
   var exp=document.getElementById('expInput').value||'2026-11-15';
+  var sponsor=document.getElementById('sponsorInput').value||'';
   if(!acc) return alert('Isi No Akun MT5!');
   if(!document.getElementById('expInput').value) return alert('Isi Tanggal EXPIRED!');
-  db.ref('licenses/MRDIEN_REAL/'+acc).set({clientName:name,active:true,expired:exp,created:new Date().toISOString()}).then(()=>{alert('Client ACC-'+acc+' ditambahkan! Exp: '+exp); document.getElementById('accInput').value=''; document.getElementById('nameInput').value='';});
+  db.ref('licenses/MRDIEN_REAL/'+acc).set({clientName:name,active:true,expired:exp,sponsor:sponsor,created:new Date().toISOString()}).then(()=>{alert('Client ACC-'+acc+' ditambahkan! Sponsor: '+sponsor); document.getElementById('accInput').value=''; document.getElementById('nameInput').value=''; document.getElementById('sponsorInput').value='';});
 }
 function toggleAcc(acc, active){ db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(!active); }
 function stopSewa(acc){ if(confirm('STOP sewa ACC-'+acc+'? EA client akan mati.')) db.ref('licenses/MRDIEN_REAL/'+acc+'/active').set(false); }
