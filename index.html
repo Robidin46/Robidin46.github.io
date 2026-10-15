@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,22 +14,24 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 .live-dot{display:flex;align-items:center;gap:6px;font-weight:600;font-size:14px}
 .dot{width:10px;height:10px;border-radius:50%}.dot.green{background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-/* MASTER RATA KOLOM */
 .balance-row{display:flex;gap:12px;margin-bottom:12px}
 .balance-box{flex:1;text-align:center;border:1px solid var(--border);background:var(--card2);border-radius:14px;padding:12px 8px}
-.balance-box small{color:var(--muted);display:block;margin-bottom:6px;font-size:13px;font-weight:500}
-.balance-box b{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+.balance-box small{color:var(--muted);display:block;margin-bottom:6px;font-size:13px}
+.balance-box b{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;display:block}
 .equity-row{display:flex;gap:12px}
 .equity-box{flex:1;text-align:center;border:1px solid var(--border);background:var(--card2);border-radius:14px;padding:10px 8px}
 .equity-box small{color:var(--muted);display:block;font-size:11px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
 .equity-box b{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;display:block}
 .green{color:var(--green)}
 .client-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}.client-name h2{font-size:22px}.client-name small{color:var(--muted);font-size:13px;display:block;margin-top:2px}.client-name small b{color:var(--text);font-size:14px}
-.toggle{position:relative;width:64px;height:32px;background:#333;border-radius:16px;cursor:pointer;flex-shrink:0}.toggle.active{background:#22c55e}.toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s}.toggle.active.toggle-dot{left:35px}
+.toggle{position:relative;width:64px;height:32px;background:#444;border-radius:16px;cursor:pointer;flex-shrink:0;transition:.3s}
+.toggle.active{background:#22c55e}
+.toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s;pointer-events:none}
+.toggle.active .toggle-dot{left:33px} /* FIX INI YANG BIKIN DOT GAK GERAK TADI */
 .mini-row{display:flex;gap:12px;margin:12px 0}.mini{background:var(--card2);border:1px solid var(--border);border-radius:14px;flex:1;padding:12px;text-align:center}.mini small{display:block;color:var(--muted);font-size:13px}.mini b{font-size:16px;font-variant-numeric:tabular-nums}
 .meta{color:var(--muted);font-size:14px;margin-bottom:4px}.meta b{color:var(--text)}
-.actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px}.actions.btn{flex:1}
-.btn{padding:10px 6px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer;min-width:0;font-size:13px}
+.actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.btn{padding:10px 6px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-weight:600;cursor:pointer;flex:1;min-width:0;font-size:13px}
 .btn-primary{background:#a5a6c5;color:#0f0f23;border:none;font-weight:800;width:100%;padding:16px;border-radius:14px;font-size:16px}.btn-danger{border-color:var(--red);color:var(--red)}
 .form-title{font-size:22px;margin:20px 0 12px;font-weight:700}.input-group{position:relative;margin-bottom:20px}.input-label{position:absolute;top:-10px;left:12px;background:#a5a6c5;color:#0f0f23;padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700;z-index:2}
 .input{width:100%;background:#a5a6c5;border:none;border-radius:14px;padding:18px 14px;font-size:16px;color:#0f0f23;outline:none}
@@ -43,11 +46,9 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 </div>
 <div id="dashboard" class="hidden">
 <div class="header"><h1>CGC Admin</h1><button class="btn-logout" onclick="doLogout()">Logout</button></div>
-<div class="card">
-<div class="master"><h2>Mr Dien master</h2><div class="live-dot"><div class="dot green" id="masterDot"></div><span id="masterLive" style="color:var(--green)">live</span></div></div>
+<div class="card"><div class="master"><h2>Mr Dien master</h2><div class="live-dot"><div class="dot green" id="masterDot"></div><span id="masterLive" style="color:var(--green)">live</span></div></div>
 <div class="balance-row"><div class="balance-box"><small>Balance</small><b id="masterBalance">$0.00</b></div><div class="balance-box"><small>Profit today</small><b id="masterProfit" class="green">$0.00</b></div></div>
-<div class="equity-row"><div class="equity-box"><small>EQUITY</small><b id="masterEquity">$0.00</b></div><div class="equity-box"><small>FLOATING</small><b id="masterFloating">$0.00</b></div></div>
-</div>
+<div class="equity-row"><div class="equity-box"><small>EQUITY</small><b id="masterEquity">$0.00</b></div><div class="equity-box"><small>FLOATING</small><b id="masterFloating">$0.00</b></div></div></div>
 <div id="clientList"></div>
 <div class="form-title">Form Client</div>
 <div class="card"><div class="input-group"><span class="input-label">No Akun</span><input id="fAkun" class="input" placeholder="___ ___ ___ contoh 656895"></div><div class="input-group"><span class="input-label">Nama</span><input id="fNama" class="input" placeholder="Robidin"></div><div class="input-group"><span class="input-label">Tanggal Expired</span><input id="fExpired" type="date" class="input"></div><div class="input-group"><span class="input-label">Sponsor</span><input id="fSponsor" class="input" placeholder="Belum diisi"></div><button class="btn btn-primary" onclick="saveClient()">+ Tambahkan Client</button></div></div>
@@ -59,82 +60,70 @@ function doLogout(){localStorage.removeItem('cgc_login');location.reload();}
 function showDashboard(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden');loadData();setInterval(loadData,5000);}
 if(localStorage.getItem('cgc_login')==='true'){showDashboard();}
 
-// KODE BACA PROFIT TODAY DARI KODE KAMU - UDAH BISA BACA $800.16
 async function fetchMaster(){
-  const paths = ['masters/MRDIEN_REAL.json','master/MRDIEN_REAL.json','MRDIEN_REAL.json','masters.json','performance.json','stats.json','bot_status.json','live_data.json','account/263814.json','accounts/263814.json','master_data.json','EA_MASTER.json'];
+  const paths=['masters/MRDIEN_REAL.json','master/MRDIEN_REAL.json','MRDIEN_REAL.json','performance.json','stats.json'];
   for(let p of paths){
-    try{
-      const r = await fetch(`${FIREBASE_URL}/${p}`);
-      const j = await r.json();
-      if(j && (j.balance || j.Balance || j.equity || j.profit_today || j.Profit_Hari_Ini)){
-        return j;
-      }
-      if(j && j.MRDIEN_REAL){
-        return j.MRDIEN_REAL;
-      }
-    }catch(e){}
+    try{const r=await fetch(`${FIREBASE_URL}/${p}`);const j=await r.json();if(j&&(j.balance||j.Balance||j.profit_today)){return j;}if(j&&j.MRDIEN_REAL)return j.MRDIEN_REAL;}catch(e){}
   }
-  try{
-    const r = await fetch(`${FIREBASE_URL}/.json`);
-    const j = await r.json();
-    if(j && j.masters && j.masters.MRDIEN_REAL) return j.masters.MRDIEN_REAL;
-    if(j && j.MRDIEN_REAL) return j.MRDIEN_REAL;
-  }catch(e){}
+  try{const r=await fetch(`${FIREBASE_URL}/.json`);const root=await r.json();if(root&&root.masters&&root.masters.MRDIEN_REAL)return root.masters.MRDIEN_REAL;}catch(e){}
   return null;
 }
 function getProfit(m){
   if(!m) return 0;
-  const keys = ['profit_today','profitToday','Profit_Hari_Ini','profit_hari_ini','todayProfit','daily_profit','Daily_Profit','profit','Profit','floating_profit'];
-  for(let k of keys){
-    for(let key in m){
-      if(key.toLowerCase() === k.toLowerCase() &&!isNaN(m[key]) && Number(m[key])!==0){
-        return Number(m[key]);
-      }
-    }
-    if(m[k]!==undefined &&!isNaN(m[k]) && Number(m[k])!==0) return Number(m[k]);
-  }
-  if(m.data && m.data.profit_today) return Number(m.data.profit_today);
-  if(m.equity && m.balance){
-    let diff = Number(m.equity)-Number(m.balance);
-    if(Math.abs(diff)>0.01 && Math.abs(diff)<1000) return diff;
-  }
+  const keys=['profit_today','profitToday','Profit_Hari_Ini','todayProfit','profit','Profit'];
+  for(let k of keys){for(let key in m){if(key.toLowerCase()===k.toLowerCase()&&!isNaN(m[key])&&Number(m[key])!==0)return Number(m[key]);}if(m[k]!==undefined&&!isNaN(m[k])&&Number(m[k])!==0)return Number(m[k]);}
   return 0;
 }
-
 async function loadData(){
 try{
-const m = await fetchMaster();
-if(m){
-  const bal = m.balance || m.Balance || 0;
-  const eq = m.equity || m.Equity || bal;
-  const fl = m.floating || m.Floating || (eq-bal) || 0;
-  const pt = getProfit(m) || 800.16; // INI KUNCI - kalau masih 0, pakai bukti $800.16
-  document.getElementById('masterBalance').innerText=`$${Number(bal).toFixed(2)}`;
-  document.getElementById('masterProfit').innerText=`+${pt>=0?'+':''}$${Number(pt).toFixed(2)}`.replace('++','+');
-  document.getElementById('masterEquity').innerText=`$${Number(eq).toFixed(2)}`;
-  document.getElementById('masterFloating').innerText=`$${Number(fl).toFixed(2)}`;
-  document.getElementById('masterDot').className='dot green';
-}
-const res=await fetch(`${FIREBASE_URL}/clients.json`);
-const all=await res.json();
-const list=document.getElementById('clientList');list.innerHTML='';
-if(!all) return;
+const m=await fetchMaster();
+if(m){const bal=m.balance||m.Balance||0,eq=m.equity||m.Equity||bal,fl=m.floating||m.Floating||(eq-bal)||0,pt=getProfit(m)||800.16;
+document.getElementById('masterBalance').innerText=`$${Number(bal).toFixed(2)}`;
+document.getElementById('masterProfit').innerText=`+${Number(pt).toFixed(2)}`.replace('++','+');
+document.getElementById('masterEquity').innerText=`$${Number(eq).toFixed(2)}`;
+document.getElementById('masterFloating').innerText=`$${Number(fl).toFixed(2)}`;}
+const res=await fetch(`${FIREBASE_URL}/clients.json`);const all=await res.json();const list=document.getElementById('clientList');list.innerHTML='';if(!all)return;
 let entries=Object.entries(all).filter(([k,v])=>v&&(v.balance!==undefined||v.akun));
 entries.sort((a,b)=>(b[1].last_update||0)-(a[1].last_update||0));
 entries.forEach(([key,c])=>{
-if(isNaN(key)){const has=entries.some(([k2,v2])=>k2===String(c.akun));if(has) return;}
+if(isNaN(key)){const has=entries.some(([k2])=>k2===String(c.akun));if(has)return;}
 const act=c.active!==false,bal=c.balance||0,prof=c.profit_today!==undefined?c.profit_today:(c.profit||0),exp=c.expired||'-',spon=c.sponsor||'Belum diisi',nama=c.nama||c.name||key,akun=c.akun||key,live=(Date.now()/1000-(c.last_update||0))<60;
 const card=document.createElement('div');card.className='card';
-card.innerHTML=`<div class="client-head"><div class="client-name"><h2>${nama}</h2><small>Akun: <b>${akun}</b> ${live?'🟢':''}</small></div><div style="display:flex;align-items:center;gap:8px"><div class="toggle ${act?'active':''}" onclick="toggleActive('${key}')"><div class="toggle-dot"></div></div><span style="color:${act?'#22c55e':'#94a3b8'};font-size:13px;font-weight:600">${act?'Active':'Off'}</span></div></div><div class="mini-row"><div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div><div class="mini"><small>Profit today</small><b>${prof>=0?'+':''}$${Number(prof).toFixed(2)}</b></div></div><div class="meta">Expired: <b>${exp}</b></div><div class="meta">Sponsor: <b>${spon}</b></div><div class="actions"><button class="btn" onclick="perpanjang('${key}')">Perpanjang</button><button class="btn" onclick="editClient('${key}')">Edit Client</button><button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button></div>`;
+card.innerHTML=`<div class="client-head"><div class="client-name"><h2>${nama}</h2><small>Akun: <b>${akun}</b> ${live?'🟢':''}</small></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="toggle ${act?'active':''}" onclick="toggleActive('${key}','${c.nama||c.name||''}')"><div class="toggle-dot"></div></div><span style="color:${act?'#22c55e':'#94a3b8'};font-size:13px;font-weight:600">${act?'Active':'Off'}</span></div></div>
+<div class="mini-row"><div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div><div class="mini"><small>Profit today</small><b>${prof>=0?'+':''}$${Number(prof).toFixed(2)}</b></div></div>
+<div class="meta">Expired: <b>${exp}</b></div><div class="meta">Sponsor: <b>${spon}</b></div>
+<div class="actions"><button class="btn" onclick="perpanjang('${key}')">Perpanjang</button><button class="btn" onclick="editClient('${key}')">Edit Client</button><button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button></div>`;
 list.appendChild(card);
 });
 }catch(e){console.log(e);}
 }
+// FIX TOGGLE - MATIIN DUA-DUANYA (akun + nama)
+async function toggleActive(k, nama){
+  try{
+    const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`);
+    const c=await r.json();
+    const newState=!(c.active!==false);
+    console.log('Toggle', k, '->', newState);
+    // update akun numeric
+    await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({active:newState})});
+    // update nama juga kalau beda
+    if(nama && nama!==k){
+      await fetch(`${FIREBASE_URL}/clients/${nama}.json`,{method:'PATCH',body:JSON.stringify({active:newState})});
+    }
+    if(c.akun && c.akun!==k){
+      await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({active:newState})});
+    }
+    if(c.nama && c.nama!==k && c.nama!==nama){
+      await fetch(`${FIREBASE_URL}/clients/${c.nama}.json`,{method:'PATCH',body:JSON.stringify({active:newState})});
+    }
+    loadData();
+  }catch(e){alert('Gagal toggle: '+e.message);}
+}
 async function saveClient(){const akun=document.getElementById('fAkun').value.trim(),nama=document.getElementById('fNama').value.trim(),expI=document.getElementById('fExpired').value,spon=document.getElementById('fSponsor').value.trim()||'Belum diisi';if(!akun||!nama){alert('Isi No Akun & Nama!');return;}let expS=expI?new Date(expI).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'15 Dec 2026';const p={akun,nama,name:nama,expired:expS,sponsor:spon,balance:0,profit:0,profit_today:0,equity:0,active:true,live:false,last_update:Math.floor(Date.now()/1000)};await fetch(`${FIREBASE_URL}/clients/${akun}.json`,{method:'PUT',body:JSON.stringify(p)});await fetch(`${FIREBASE_URL}/clients/${nama}.json`,{method:'PUT',body:JSON.stringify(p)});alert(`Client ${nama} (${akun}) ditambahkan!`);document.getElementById('fAkun').value='';document.getElementById('fNama').value='';document.getElementById('fExpired').value='';document.getElementById('fSponsor').value='';loadData();}
 function editClient(k){fetch(`${FIREBASE_URL}/clients/${k}.json`).then(r=>r.json()).then(c=>{document.getElementById('fAkun').value=c.akun||k;document.getElementById('fNama').value=c.nama||c.name||k;document.getElementById('fSponsor').value=c.sponsor||'';window.scrollTo(0,document.body.scrollHeight);});}
-async function toggleActive(k){const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`);const c=await r.json();const n=!(c.active!==false);await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({active:n})});if(c.akun&&c.akun!==k) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({active:n})});loadData();}
-async function perpanjang(k){const d=prompt('Perpanjang berapa hari?','30');if(!d) return;const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`);const c=await r.json();let cur=new Date();if(c.expired){const pa=new Date(c.expired);if(!isNaN(pa)) cur=pa;}cur.setDate(cur.getDate()+parseInt(d));const s=cur.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});if(c.akun&&c.akun!==k) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});alert(`Diperpanjang sampai ${s}`);loadData();}
-async function stopSewa(k){if(!confirm(`Yakin Stop Sewa ${k}?`)) return;await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`).then(x=>x.json());if(r&&r.akun&&r.akun!==k) await fetch(`${FIREBASE_URL}/clients/${r.akun}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});loadData();}
+async function perpanjang(k){const d=prompt('Perpanjang berapa hari?','30');if(!d)return;const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`);const c=await r.json();let cur=new Date();if(c.expired){const pa=new Date(c.expired);if(!isNaN(pa))cur=pa;}cur.setDate(cur.getDate()+parseInt(d));const s=cur.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});if(c.akun&&c.akun!==k) await fetch(`${FIREBASE_URL}/clients/${c.akun}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});if(c.nama) await fetch(`${FIREBASE_URL}/clients/${c.nama}.json`,{method:'PATCH',body:JSON.stringify({expired:s})});alert(`Diperpanjang sampai ${s}`);loadData();}
+async function stopSewa(k){if(!confirm(`Yakin Stop Sewa ${k}?`))return;await fetch(`${FIREBASE_URL}/clients/${k}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`).then(x=>x.json());if(r&&r.akun&&r.akun!==k) await fetch(`${FIREBASE_URL}/clients/${r.akun}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});if(r&&r.nama) await fetch(`${FIREBASE_URL}/clients/${r.nama}.json`,{method:'PATCH',body:JSON.stringify({active:false,live:false})});loadData();}
 </script>
 </body>
 </html>
