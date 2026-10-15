@@ -54,7 +54,7 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 <div class="card"><div class="input-group"><span class="input-label">No Akun</span><input id="fAkun" class="input" placeholder="656895"></div><div class="input-group"><span class="input-label">Nama</span><input id="fNama" class="input" placeholder="Robidin"></div><div class="input-group"><span class="input-label">Tanggal Expired</span><input id="fExpired" type="date" class="input"></div><div class="input-group"><span class="input-label">Sponsor</span><input id="fSponsor" class="input" placeholder="Belum diisi"></div><button class="btn btn-primary" onclick="saveClient()">+ Tambahkan Client</button></div></div>
 <script>
 const FIREBASE_URL="https://mrdien-scalper-default-rtdb.firebaseio.com";
-const ADMIN_PASS="admin123";
+const ADMIN_PASS="@dmin123";
 function doLogin(){const p=document.getElementById('passInput').value;if(p===ADMIN_PASS||p==="cgc123"||p==="admin"){localStorage.setItem('cgc_login','true');showDashboard();}else alert('Password salah!');}
 function doLogout(){localStorage.removeItem('cgc_login');location.reload();}
 function showDashboard(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden');loadData();setInterval(loadData,5000);}
