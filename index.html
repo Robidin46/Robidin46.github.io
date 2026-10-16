@@ -21,13 +21,13 @@ body{background:var(--bg);color:var(--text);padding:16px;min-height:100vh}
 .equity-box{flex:1;text-align:center;border:1px solid var(--border);background:var(--card2);border-radius:14px;padding:10px 8px}
 .equity-box small{color:var(--muted);display:block;font-size:11px;margin-bottom:4px;text-transform:uppercase}
 .equity-box b{font-size:15px;font-weight:700;display:block}
-.green{color:var(--green)}
+.green{color:var(--green)}.red{color:var(--red)}
 .client-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .client-name h2{font-size:22px}.client-name small{color:var(--muted);font-size:13px;display:block;margin-top:2px}.client-name small b{color:var(--text);font-size:14px}
 .toggle{position:relative;width:64px;height:32px;background:#3a3a5a;border-radius:16px;cursor:pointer;flex-shrink:0;transition:.3s}
 .toggle.active{background:#22c55e}
 .toggle-dot{position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s}
-.toggle.active.toggle-dot{left:35px}
+.toggle.active .toggle-dot{left:35px}
 .mini-row{display:flex;gap:12px;margin:12px 0}.mini{background:var(--card2);border:1px solid var(--border);border-radius:14px;flex:1;padding:12px;text-align:center}.mini small{display:block;color:var(--muted);font-size:13px}.mini b{font-size:16px}
 .meta{color:var(--muted);font-size:14px;margin-bottom:4px}.meta b{color:var(--text)}
 .actions{display:flex;gap:8px;margin-top:14px}
@@ -57,11 +57,74 @@ const FIREBASE_URL="https://mrdien-scalper-default-rtdb.firebaseio.com";
 const ADMIN_PASS="@dmin123";
 function doLogin(){const p=document.getElementById('passInput').value;if(p===ADMIN_PASS||p==="cgc123"||p==="admin"){localStorage.setItem('cgc_login','true');showDashboard();}else alert('Password salah!');}
 function doLogout(){localStorage.removeItem('cgc_login');location.reload();}
-function showDashboard(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden');loadData();setInterval(loadData,5000);}
+function showDashboard(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden');loadData();setInterval(loadData,3000);}
 if(localStorage.getItem('cgc_login')==='true'){showDashboard();}
-async function fetchMaster(){const paths=['masters/MRDIEN_REAL.json','master/MRDIEN_REAL.json','MRDIEN_REAL.json','performance.json'];for(let p of paths){try{const r=await fetch(`${FIREBASE_URL}/${p}`);const j=await r.json();if(j&&(j.balance||j.Balance||j.profit_today)) return j.MRDIEN_REAL?j.MRDIEN_REAL:j;}catch(e){}}return null;}
-function getProfit(m){if(!m) return 0;const keys=['profit_today','profitToday','Profit_Hari_Ini','todayProfit','profit','Profit'];for(let k of keys){for(let key in m){if(key.toLowerCase()===k.toLowerCase()&&!isNaN(m[key])&&Number(m[key])!==0)return Number(m[key]);}if(m[k]!==undefined&&!isNaN(m[k])&&Number(m[k])!==0)return Number(m[k]);}return 0;}
-async function loadData(){try{const m=await fetchMaster();if(m){const bal=m.balance||m.Balance||0,eq=m.equity||m.Equity||bal,fl=m.floating||m.Floating||(eq-bal)||0,pt=getProfit(m)||800.16;document.getElementById('masterBalance').innerText=`$${Number(bal).toFixed(2)}`;document.getElementById('masterProfit').innerText=`+${Number(pt).toFixed(2)}`.replace('++','+');document.getElementById('masterEquity').innerText=`$${Number(eq).toFixed(2)}`;document.getElementById('masterFloating').innerText=`$${Number(fl).toFixed(2)}`;}const res=await fetch(`${FIREBASE_URL}/clients.json`);const all=await res.json();const list=document.getElementById('clientList');list.innerHTML='';if(!all)return;let entries=Object.entries(all).filter(([k,v])=>v&&(v.balance!==undefined||v.akun));entries.sort((a,b)=>(b[1].last_update||0)-(a[1].last_update||0));entries.forEach(([key,c])=>{if(isNaN(key)){const has=entries.some(([k2])=>k2===String(c.akun));if(has)return;}const act=c.active!==false,bal=c.balance||0,prof=c.profit_today!==undefined?c.profit_today:(c.profit||0),exp=c.expired||'-',spon=c.sponsor||'Belum diisi',nama=c.nama||c.name||key,akun=c.akun||key,live=(Date.now()/1000-(c.last_update||0))<60;const isSuspend=c.force_off||c.disabled_by_admin;const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="client-head"><div class="client-name"><h2>${nama} ${isSuspend?'⛔':''}</h2><small>Akun: <b>${akun}</b> ${live?'🟢':''} ${isSuspend?'<b style="color:#f87171"> SUSPEND</b>':''}</small></div><div class="toggle ${act?'active':''}" onclick="toggleActive('${key}','${nama}')"><div class="toggle-dot"></div></div></div><div class="mini-row"><div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div><div class="mini"><small>Profit today</small><b>${prof>=0?'+':''}$${Number(prof).toFixed(2)}</b></div></div><div class="meta">Expired: <b>${exp}</b></div><div class="meta">Sponsor: <b>${spon}</b></div><div class="actions"><button class="btn" onclick="perpanjang('${key}')">Perpanjang</button><button class="btn" onclick="editClient('${key}')">Edit Client</button><button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button></div>`;list.appendChild(card);});}catch(e){console.log(e);}}
+
+async function fetchMaster(){
+  const paths=['live/LIVE_MAIN.json','live/LIVE.json','masters/MRDIEN_REAL.json','master/MRDIEN_REAL.json','MRDIEN_REAL.json','performance.json'];
+  for(let p of paths){
+    try{
+      const r=await fetch(`${FIREBASE_URL}/${p}`,{cache:"no-store"});
+      if(!r.ok) continue;
+      const txt=await r.text();
+      if(!txt||txt==="null") continue;
+      const j=JSON.parse(txt);
+      if(!j) continue;
+      const data=j.MRDIEN_REAL?j.MRDIEN_REAL:j;
+      if(data.balance!==undefined||data.Balance!==undefined||data.profitToday!==undefined||data.profit_today!==undefined||data.equity!==undefined){
+        return data;
+      }
+    }catch(e){}
+  }
+  return null;
+}
+
+function getProfit(m){
+  if(!m) return 0;
+  if(m.profitToday!==undefined) return Number(m.profitToday);
+  if(m.profit_today!==undefined) return Number(m.profit_today);
+  if(m.Profit_Hari_Ini!==undefined) return Number(m.Profit_Hari_Ini);
+  if(m.todayProfit!==undefined) return Number(m.todayProfit);
+  return 0;
+}
+
+async function loadData(){
+  try{
+    const m=await fetchMaster();
+    if(m){
+      const bal=m.balance||m.Balance||0;
+      const eq=m.equity||m.Equity||bal;
+      const fl=m.floating!==undefined?m.floating:(m.Floating!==undefined?m.Floating:(eq-bal));
+      const pt=getProfit(m);
+      document.getElementById('masterBalance').innerText=`$${Number(bal).toFixed(2)}`;
+      const profitEl=document.getElementById('masterProfit');
+      profitEl.innerText=`${pt>=0?'+':''}${Number(pt).toFixed(2)}`;
+      profitEl.className=pt>=0?'green':'red';
+      document.getElementById('masterEquity').innerText=`$${Number(eq).toFixed(2)}`;
+      document.getElementById('masterFloating').innerText=`$${Number(fl).toFixed(2)}`;
+    }
+    const res=await fetch(`${FIREBASE_URL}/clients.json`,{cache:"no-store"});
+    const all=await res.json();
+    const list=document.getElementById('clientList');
+    list.innerHTML='';
+    if(!all) return;
+    let entries=Object.entries(all).filter(([k,v])=>v&&(v.balance!==undefined||v.akun));
+    entries.sort((a,b)=>(b[1].last_update||0)-(a[1].last_update||0));
+    entries.forEach(([key,c])=>{
+      if(isNaN(key)){
+        const has=entries.some(([k2])=>k2===String(c.akun));
+        if(has) return;
+      }
+      const act=c.active!==false,bal=c.balance||0,prof=c.profit_today!==undefined?c.profit_today:(c.profit||0),exp=c.expired||'-',spon=c.sponsor||'Belum diisi',nama=c.nama||c.name||key,akun=c.akun||key,live=(Date.now()/1000-(c.last_update||0))<60;
+      const isSuspend=c.force_off||c.disabled_by_admin;
+      const card=document.createElement('div');
+      card.className='card';
+      card.innerHTML=`<div class="client-head"><div class="client-name"><h2>${nama} ${isSuspend?'⛔':''}</h2><small>Akun: <b>${akun}</b> ${live?'🟢':''} ${isSuspend?'<b style="color:#f87171"> SUSPEND</b>':''}</small></div><div class="toggle ${act?'active':''}" onclick="toggleActive('${key}','${nama}')"><div class="toggle-dot"></div></div></div><div class="mini-row"><div class="mini"><small>Balance</small><b>$${Number(bal).toFixed(2)}</b></div><div class="mini"><small>Profit today</small><b>${prof>=0?'+':''}$${Number(prof).toFixed(2)}</b></div></div><div class="meta">Expired: <b>${exp}</b></div><div class="meta">Sponsor: <b>${spon}</b></div><div class="actions"><button class="btn" onclick="perpanjang('${key}')">Perpanjang</button><button class="btn" onclick="editClient('${key}')">Edit Client</button><button class="btn btn-danger" onclick="stopSewa('${key}')">Stop Sewa</button></div>`;
+      list.appendChild(card);
+    });
+  }catch(e){console.log(e);}
+}
+
 async function toggleActive(k, nama){
   try{
     const r=await fetch(`${FIREBASE_URL}/clients/${k}.json`).then(x=>x.json()).catch(()=>null);
